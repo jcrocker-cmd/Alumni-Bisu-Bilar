@@ -1,7 +1,7 @@
 <section id="login">
 <div class="wrapper">
          <div class="title">
-            Login Form
+         <img src="/images/LOGO-3.png" alt="" srcset="" class="logo-for-login">
          </div>
          <form action="#">
             <div class="field">
@@ -25,7 +25,7 @@
                <input type="submit" value="Login">
             </div>
             <div class="signup-link">
-               Not a member? <a href="#">Signup now</a>
+               Not a member? <a href="/signin">Signup now</a>
             </div>
          </form>
       </div>
