@@ -21,7 +21,17 @@ Route::get('/login', function () {
     return view('main.login');
 });
 
+Route::get('/signin', function () {
+    return view('main.signin');
+});
 
 Route::get('/home', function () {
     return view('main.home');
+});
+
+
+// DASHBOARD
+
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
 });
