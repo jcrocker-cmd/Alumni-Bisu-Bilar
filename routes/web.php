@@ -29,9 +29,33 @@ Route::get('/home', function () {
     return view('main.home');
 });
 
+Route::get('/home-alumni-id', function () {
+    return view('main.alumni-id');
+});
+
+Route::get('/home-alumni-membership', function () {
+    return view('main.alumni-membership');
+});
+
 
 // DASHBOARD
 
 Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+    return view('dashboard.dashboard');
+});
+
+Route::get('/alumni-membership', function () {
+    return view('dashboard.alumni-membership');
+});
+
+Route::get('/alumni-id', function () {
+    return view('dashboard.alumni-id');
+});
+
+Route::get('/announcement', function () {
+    return view('dashboard.announcement');
+});
+
+Route::get('/settings', function () {
+    return view('dashboard.settings');
 });
