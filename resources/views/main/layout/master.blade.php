@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/css/news-announcements.css">
     <link rel="stylesheet" href="/css/alumni-id.css">
     <link rel="stylesheet" href="/css/alumni-member.css">
+    <link rel="stylesheet" href="/css/account.css">
 
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>

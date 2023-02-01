@@ -37,6 +37,11 @@ Route::get('/home-alumni-membership', function () {
     return view('main.alumni-membership');
 });
 
+Route::get('/home-account', function () {
+    return view('main.account');
+});
+
+
 
 // DASHBOARD
 
