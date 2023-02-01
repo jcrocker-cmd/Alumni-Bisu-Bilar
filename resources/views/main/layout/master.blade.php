@@ -29,7 +29,9 @@
 <body>
     @yield('content')
 
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
+    <script src="/js/jquery.js"></script>
     <script src="/js/navbar.js"></script>
+    <script src="/js/addphoto.js"></script>
 </body>
 </html>

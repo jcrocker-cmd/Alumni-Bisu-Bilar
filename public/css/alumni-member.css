@@ -99,3 +99,13 @@
     }
 
   }
+
+  @media(max-width: 770px){
+    .alumni-member-wrapper .group
+
+    {
+        flex-direction: column;
+        gap: 0px;
+    }
+    
+  }
