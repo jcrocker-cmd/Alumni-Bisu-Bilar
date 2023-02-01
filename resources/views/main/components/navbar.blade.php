@@ -9,14 +9,14 @@
           <i class='bx bx-x' ></i>
         </div>
         <ul class="links">
-          <li><a href="#">Home</a></li>
+          <li><a href="/home">Home</a></li>
           <li><a href="#">Announcements</a></li>
           <li>
             <a href="#">ALUMNI</a>
             <i class='bx bxs-chevron-down js-arrow arrow '></i>
             <ul class="js-sub-menu sub-menu">
-              <li><a href="#">Apply for Alumni Membership</a></li>
-              <li><a href="#">Apply for Alumni ID</a></li>
+              <li><a href="/home-alumni-membership">Apply for Alumni Membership</a></li>
+              <li><a href="/home-alumni-id">Apply for Alumni ID</a></li>
             </ul>
           </li>
           
