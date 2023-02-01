@@ -12,6 +12,14 @@
 {
     width: 180px;
 }
+
+.header-section
+{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 10px;
+}
 .container{
     position: relative;
     max-width: 900px;
