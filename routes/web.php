@@ -41,6 +41,10 @@ Route::get('/home-account', function () {
     return view('main.account');
 });
 
+Route::get('/home-reissuance', function () {
+    return view('main.reissuance');
+});
+
 
 
 // DASHBOARD

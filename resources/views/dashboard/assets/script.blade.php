@@ -27,3 +27,4 @@
     <script src="/capitalize-eachword.js"></script>
     <script src="/alert.js"></script>
     <script src="/submitbtn-loader.js"></script>
+    <script src="/js/addphoto.js"></script>

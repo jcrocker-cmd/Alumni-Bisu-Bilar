@@ -1,4 +1,4 @@
-#alumni-id-sec
+#alumni-reissuance-sec
 {
     padding: 70px 80px;
     background: rgb(4, 85, 151);
@@ -11,14 +11,14 @@
     background-repeat: no-repeat; */
 }
 
-/* #alumni-id-sec .overlay
+/* #alumni-reissuance-sec .overlay
 {
     width: 100%;
     height: 100%;
     background-color: rgb(4, 85, 151, 0.8);
 } */
 
-.alumni-id-wrapper
+.alumni-reissuance-wrapper
 {
     background-color: #fff;
     width: 100%;
@@ -27,14 +27,14 @@
     
 }
 
-.alumni-id-wrapper h2 
+.alumni-reissuance-wrapper h2 
 {
     font-family: 'Poppins', sans-serif;
     color: black;
     font-size: 30px;
 }
 
-.alumni-id-wrapper p
+.alumni-reissuance-wrapper p
 {
     font-family: 'Poppins', sans-serif;
     color: black;
@@ -43,26 +43,26 @@
     padding-bottom: 15px;
 }
 
-.alumni-id-wrapper hr
+.alumni-reissuance-wrapper hr
 {
     border-top: dashed 3px;
     margin-bottom: 15px;
 }
 
-.alumni-id-wrapper .fields span
+.alumni-reissuance-wrapper .fields span
 {
     font-size: 12px;
     font-style: italic;
     font-weight: bold;
 }
 
-.alumni-id-wrapper .fields .group
+.alumni-reissuance-wrapper .fields .group
 {
     display: flex;
     gap: 20px;
 }
 
-.alumni-id-wrapper .fields .group .input-field
+.alumni-reissuance-wrapper .fields .group .input-field
 {
     font-family: 'Poppins', sans-serif;
     display: flex;
@@ -71,14 +71,14 @@
     width: 100%;
 }
 
-.alumni-id-wrapper .fields .input-field label{
+.alumni-reissuance-wrapper .fields .input-field label{
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     font-weight: 500;
     color: #2e2e2e;
 }
 
-.alumni-id-wrapper .fields .input-field input, select{
+.alumni-reissuance-wrapper .fields .input-field input, select{
     font-family: 'Poppins', sans-serif;
     outline: none;
     font-size: 14px;
@@ -91,7 +91,7 @@
     margin: 8px 0;
 }
 
-.alumni-id-wrapper button[type="submit"]
+.alumni-reissuance-wrapper button[type="submit"]
 {
     padding: 10px 20px;
     font-size: 15px;
@@ -129,7 +129,7 @@
 
 @media(max-width: 540px){
     
-    #alumni-id-sec
+    #alumni-reissuance-sec
     {
         padding: 60px 20px;
         background: rgb(4, 85, 151);
@@ -141,7 +141,7 @@
   }
 
   @media(max-width: 770px){
-    .alumni-id-wrapper .fields .group
+    .alumni-reissuance-wrapper .fields .group
 
     {
         flex-direction: column;

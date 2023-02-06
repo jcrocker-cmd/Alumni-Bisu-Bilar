@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/css/alumni-id.css">
     <link rel="stylesheet" href="/css/alumni-member.css">
     <link rel="stylesheet" href="/css/account.css">
+    <link rel="stylesheet" href="/css/reissuance.css">
 
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -30,8 +31,8 @@
     @yield('content')
 
     <!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
-    <script src="/js/jquery.js"></script>
     <script src="/js/navbar.js"></script>
+    <script src="/js/jquery.js"></script>
     <script src="/js/addphoto.js"></script>
 </body>
 </html>
