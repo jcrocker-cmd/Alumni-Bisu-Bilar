@@ -64,16 +64,6 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarText">
       
-
-    <button type="button" class="btn position-relative nav-msg"><a href="#" class="text-decoration-none text-dark"><i class="fal fa-comment"></i>
-      <span class="nav-msg-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-        99+
-        <span class="visually-hidden">unread messages</span>
-      </span>
-      </a>
-      </button>
-    
-
       <button type="button" class="btn position-relative nav-notif"><a href="/notification" class="text-decoration-none text-dark"><i class="fal fa-bell"></i>
       <span class="nav-notif-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
         99+
