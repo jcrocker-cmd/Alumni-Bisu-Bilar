@@ -92,12 +92,24 @@ hr.hr-2
     font-size: 12px;
 }
 
-
-.row-card
+.dashboard-tab-wrapper
 {
-    width: 16rem;
+    gap: 20px;
     display: flex;
+    flex-direction: column;
+}
+.dashboard-tab
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px 0px 20px;
     border-radius: 10px;
+}
+
+.dashboard-tab p
+{
+    font-size: 20px;
 }
 .col-1
 {
@@ -601,11 +613,12 @@ input.purok
 
 .settings-row-1 .settings-col-1
 {
-    flex-basis: 65%;
+    flex-basis: 70%;
 }
 .settings-row-1 .settings-col-2
 {
-    flex-basis: 35%;
+    flex-basis: 30%;
+    text-align: center;
 }
 
 #settings input , 
@@ -631,6 +644,6 @@ input.purok
 
 #settings .addphoto img
 {
-    height: 100%;
-    width: 100%;
+    height: 200px;
+    width: 200px;
 }
