@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ReissueanceController;
+use App\Http\Controllers\AlumniIDController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\LoginController;
 /*
@@ -42,9 +43,8 @@ Route::get('/home', function () {
 
 Route::get('/home', [AnnouncementController::class,'route_home']);
 
-Route::get('/home-alumni-id', function () {
-    return view('main.alumni-id');
-});
+Route::get('/home-alumni-id', [AlumniIDController::class,'route_alumni_id']);
+Route::post('/home-alumni-id-post', [AlumniIDController::class,'post_alumni_id']);
 
 Route::get('/home-alumni-membership', function () {
     return view('main.alumni-membership');
@@ -55,7 +55,6 @@ Route::get('/home-account', function () {
 });
 
 Route::get('/home-reissuance', [ReissueanceController::class,'route_reissuance']);
-
 Route::post('/home-reissuance-post', [ReissueanceController::class,'post_reissuance']);
 
 
@@ -80,7 +79,6 @@ Route::get('/users', function () {
 });
 
 Route::get('/announcement', [AnnouncementController::class,'route_announcement']);
-
 Route::post('/post_announcement', [AnnouncementController::class,'post_announcement']);
 
 

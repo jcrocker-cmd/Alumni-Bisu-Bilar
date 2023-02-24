@@ -34,5 +34,6 @@
     <script src="/js/navbar.js"></script>
     <script src="/js/jquery.js"></script>
     <script src="/js/addphoto.js"></script>
+    @stack('scripts')
 </body>
 </html>
