@@ -5,43 +5,49 @@
             <h1>|</h1>
             <header>Registration</header>
         </div>
-        <form action="#">
+        <form action="post_signin" method="post">
+        @csrf
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Personal Details</span>
-
                     <div class="fields">
                         <div class="group">
                             <div class="input-field">
                                 <label>Last Name</label>
-                                <input type="text" placeholder="Enter your Lastname" required>
+                                <input type="text" name="last_name" placeholder="Enter your Lastname" value="{{old('last_name')}}">
+                                <span class="error-text">@error('last_name') {{$message}} @enderror</span>
                             </div>
 
                             <div class="input-field">
                                 <label>First Name</label>
-                                <input type="text" placeholder="Enter your Firstname" required>
+                                <input type="text" name="first_name" placeholder="Enter your Firstname" value="{{old('first_name')}}">
+                                <span class="error-text">@error('first_name') {{$message}} @enderror</span>
                             </div>
 
                             <div class="input-field">
                                 <label>Middle Name</label>
-                                <input type="text" placeholder="Enter your Middlename" required>
+                                <input type="text" name="middle_name" placeholder="Enter your Middlename" value="{{old('middle_name')}}">
+                                <span class="error-text">@error('middle_name') {{$message}} @enderror</span>
                             </div>
                         </div>
 
                         <div class="group">
                             <div class="input-field">
                                 <label>Course</label>
-                                <input type="text" placeholder="Enter Course" required>
+                                <input type="text" name="course" placeholder="Enter Course" value="{{old('course')}}">
+                                <span class="error-text">@error('course') {{$message}} @enderror</span>
                             </div>
 
                             <div class="input-field">
                                 <label>Email</label>
-                                <input type="text" placeholder="Enter your email" required>
+                                <input type="text" name="email" placeholder="Enter your email" value="{{old('email')}}">
+                                <span class="error-text">@error('email') {{$message}} @enderror</span>
                             </div>
 
                             <div class="input-field">
                                 <label>Password</label>
-                                <input type="number" placeholder="Enter Password" required>
+                                <input type="password" name="password" placeholder="Enter Password" value="{{old('password')}}">
+                                <span class="error-text">@error('password') {{$message}} @enderror</span>
                             </div>
                         </div>
 
@@ -49,17 +55,19 @@
                         <div class="group">
                             <div class="input-field">
                                 <label>Gender</label>
-                                <select required>
+                                <select name="gender" value="{{old('gender')}}">
                                     <option disabled selected>Select gender</option>
                                     <option>Male</option>
                                     <option>Female</option>
                                     <option>Others</option>
                                 </select>
+                                <span class="error-text">@error('gender') {{$message}} @enderror</span>
                             </div>
 
                             <div class="input-field" style="width: 100%;">
                                 <label>Address</label>
-                                <input type="text" placeholder="Enter your Address" required>
+                                <input type="text" name="address" placeholder="Enter your Address" value="{{old('address')}}">
+                                <span class="error-text">@error('address') {{$message}} @enderror</span>
                             </div>
                         </div>
                     </div>

@@ -22,12 +22,12 @@
 </tr>
 </thead>
 <tbody>
-
+@foreach($announce as $item)
  <tr>
-  <td>Example Subject</td>
+  <td>{{ $item->subject}}</td>
   
-  <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta perspiciatis sit eum eius inventore delectus natus debitis ullam fugit facilis placeat, aut eaque aliquam eos, sed omnis ratione beatae officia.</td>
-  <td>January 11, 2023</td>
+  <td>{{ $item->description}}</td>
+  <td>{{ date('F j, Y', strtotime($item->date)) }}</td>
   <td>
   <a href="#" title="View" class="actions action-view"><i class="fa fa-eye" aria-hidden="true"></i></a>
   <a href="#" title="Edit" class="actions action-edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
@@ -36,7 +36,7 @@
   </td>
   </tr>
 
-
+@endforeach
 
 </tbody>
 </table>
@@ -52,38 +52,42 @@
 
 </section>
 
-
-
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Announcements</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Subject:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Description:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
 
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Date:</label>
-            <!-- <textarea class="form-control" id="message-text"></textarea> -->
-            <input type="date" class="form-control" name="" id="">
-          </div>
+    <form action="post_announcement" method="post">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Announcements</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          @csrf
+            <div class="mb-3">
+              <label for="recipient-name" class="col-form-label">Subject:</label>
+              <input type="text" class="form-control" id="recipient-name" name="subject">
+              <span class="text-danger">Error message</span>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Description:</label>
+              <textarea class="form-control" id="message-text" name="description"></textarea>
+              <span class="text-danger">Error message</span>
 
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Create & Send</button>
-      </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Date:</label>
+              <input type="date" class="form-control" name="date" id="">
+              <span class="text-danger">Error message</span>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Create & Send</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
+
