@@ -49,12 +49,12 @@
     margin-bottom: 15px;
 }
 
-.alumni-reissuance-wrapper .fields span
+/* .alumni-reissuance-wrapper .fields span
 {
     font-size: 12px;
     font-style: italic;
     font-weight: bold;
-}
+} */
 
 .alumni-reissuance-wrapper .fields .group
 {
@@ -125,6 +125,14 @@
     /* margin-top: 5px; */
 }
 
+.alumni-reissuance-wrapper .error-text
+{
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    color: red;
+    /* margin-top: 0; */
+}
 
 
 @media(max-width: 540px){

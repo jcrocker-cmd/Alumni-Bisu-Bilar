@@ -8,12 +8,13 @@
             <div class="fields">
                 <div class="group">
                     <div class="input-field">
-                        <label for="message-text" class="">Alumni ID No. : <span>(leave it blank)</span> </label>
+                        <label for="message-text" class="">Alumni ID No. : <span class="sub-name">(leave it blank)</span> </label>
                         <input type="text" class="" id="message-text" placeholder=""></input>
+                        <span class="error-text">Error message</span>
                     </div>
 
                     <div class="input-field">
-                        <label for="message-text" class="">ID No. : <span>(Year Grauduated)</span> </label>
+                        <label for="message-text" class="">ID No. : <span class="sub-name">(Year Grauduated)</span> </label>
                         <select id="message-text">
                             <option value="">Select a year</option>
                             <?php
@@ -22,18 +23,22 @@
                             }
                             ?>
                         </select>
+                        <span class="error-text">Error message</span>
+
                     </div>
                 </div>
 
                 <div class="group">
                     <div class="input-field">
-                        <label for="message-text" class="">Name: <span>(ex: CERO, JOSENITO A.)</span> </label>
+                        <label for="message-text" class="">Name: <span class="sub-name">(ex: CERO, JOSENITO A.)</span> </label>
                         <input type="text" class="" id="message-text" placeholder="Enter your name"></input>
+                        <span class="error-text">Error message</span>
                     </div>
 
                     <div class="input-field">
                         <label for="message-text" class="">Address: <span></span> </label>
                         <input type="text" class="" id="message-text" placeholder="Enter your address"></input>
+                        <span class="error-text">Error message</span>
                     </div>
                 </div>
 
@@ -41,11 +46,14 @@
                     <div class="input-field">
                         <label for="message-text" class="">Birthday: <span></span> </label>
                         <input type="date" class="" id="message-text" placeholder="Enter your Birthday"></input>
+                        <span class="error-text">Error message</span>
+
                     </div>
 
                     <div class="input-field">
                         <label for="message-text" class="">Course: <span></span> </label>
                         <input type="text" class="" id="message-text" placeholder="Enter your course"></input>
+                        <span class="error-text">Error message</span>
                     </div>
                 </div>
             </div>
@@ -54,6 +62,7 @@
                     <img src="images/LOGO.png"
                     id="change-img-add" style="object-fit: cover;">
                     <p>Add your Signature</p>
+                    <!-- <span class="error-text">Error message</span> -->
                 </div>
 
                 <div class="img-button mt-3">

@@ -8,19 +8,19 @@
     padding: 20px 0px;
     font-family: 'Poppins', sans-serif;
 }
-.logo-for-signin
+#signin .logo-for-signin
 {
     width: 180px;
 }
 
-.header-section
+#signin .header-section
 {
     display: flex;
     align-items: center;
     gap: 20px;
     padding-bottom: 10px;
 }
-.container{
+#signin .container{
     position: relative;
     max-width: 900px;
     width: 100%;
@@ -30,14 +30,14 @@
     background-color: #fff;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
-.container header{
+#signin .container header{
     position: relative;
     font-size: 25px;
     font-weight: 600;
     color: #333;
     margin-bottom: 20px;
 }
-.container header::before{
+#signin .container header::before{
     content: "";
     position: absolute;
     left: 0;
@@ -48,7 +48,7 @@
     background-color: #4070f4;
 }
 
-.container form .title{
+#signin .container form .title{
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
@@ -57,13 +57,13 @@
     color: #333;
 }
 
-.fields .group
+#signin .fields .group
 {
     display: flex;
     gap: 20px;
 }
 
-.group .input-field
+#signin .group .input-field
 {
     display: flex;
     flex-direction: column;
@@ -71,13 +71,13 @@
     width: 100%;
 }
 
-.input-field label{
+#signin .input-field label{
     font-size: 15px;
     font-weight: 500;
     color: #2e2e2e;
 }
 
-.input-field input, select{
+#signin .input-field input, select{
     outline: none;
     font-size: 14px;
     font-weight: 400;
@@ -89,7 +89,7 @@
     margin: 8px 0;
 }
 
-.container form button, .backBtn{
+#signin .container form button, .backBtn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,31 +105,40 @@
     transition: all 0.3s linear;
     cursor: pointer;
 }
-.container form .btnText{
+#signin .container form .btnText{
     font-size: 14px;
     font-weight: 400;
 }
-form button:hover{
+#signin form button:hover{
     background-color: #265df2;
 }
-form button i,
-form .backBtn i{
+#signin form button i,
+#signin form .backBtn i{
     margin: 0 6px;
 }
-form .backBtn i{
+#signin form .backBtn i{
     transform: rotate(180deg);
 }
-form .buttons{
+#signin form .buttons{
     display: flex;
     align-items: center;
 }
-form .buttons button{
+#signin form .buttons button{
     margin-right: 14px;
 }
 
-.group-2 p
+#signin .group-2 p
 {
     font-size: 13px;
+}
+
+#signin .error-text
+{
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    color: red;
+    /* margin-top: 0; */
 }
 
 @media (max-width: 910px) {

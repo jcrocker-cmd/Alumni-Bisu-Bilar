@@ -63,7 +63,7 @@
 
 }
 
-.alumni-member-wrapper .fields span
+.alumni-member-wrapper .sub-name
 {
     font-size: 12px;
     font-style: italic;
@@ -90,6 +90,16 @@
     margin-top: 5px;
     cursor: pointer;
 }
+
+.alumni-member-wrapper .error-text
+{
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    color: red;
+    /* margin-top: 0; */
+}
+
 
 @media(max-width: 540px){
     
