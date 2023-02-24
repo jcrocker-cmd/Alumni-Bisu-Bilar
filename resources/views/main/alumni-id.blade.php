@@ -6,3 +6,6 @@
     @include('main.components.footer')
 @endsection
 
+@push('scripts')
+    <script src="/js/validation-alumni-id.js"></script>
+@endpush
