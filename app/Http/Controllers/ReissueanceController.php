@@ -15,15 +15,6 @@ class ReissueanceController extends Controller
 
     public function post_reissuance(Request $request)
     {
-        $this->validate($request, [
-        'name' => 'required',
-        'id_no' => 'required',
-        'degree' => 'required',
-        'reason' => 'required',
-        'or_no' => 'required',
-        ]);
-              
-
         $reissuance = $request->all();
         Reissueance::create($reissuance);
         Session::flash('success_reissuance','Succesful.');

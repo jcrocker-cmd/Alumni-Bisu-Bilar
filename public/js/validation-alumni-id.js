@@ -99,7 +99,7 @@ input7.addEventListener("change", function() {
   }
 
   
-  const submit_btn = document.getElementById("submit_reissueance");
+  const submit_btn = document.getElementById("submit_alumni_id");
   submit_btn.onclick = function(){
     if (error_a_no.innerHTML === "" && error_id_no.innerHTML === "" && error_name.innerHTML === "" && error_add.innerHTML === "" && error_bday.innerHTML === "" && error_course.innerHTML === "" && error_sig.innerHTML === "" ) {
         // this.innerHTML = "<div class='loader'></div>";

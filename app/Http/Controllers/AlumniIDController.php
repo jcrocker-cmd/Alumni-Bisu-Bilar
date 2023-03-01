@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AlumniID;
+use Session;
 
 class AlumniIDController extends Controller
 {

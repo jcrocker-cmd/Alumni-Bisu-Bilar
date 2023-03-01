@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reissueances', function (Blueprint $table) {
+        Schema::create('admininfo', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('id_no')->nullable();
-            $table->string('degree')->nullable();
-            $table->string('reason')->nullable();
-            $table->string('or_no')->nullable();
-            $table->string('signature')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('middle_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('password')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reissueances');
+        Schema::dropIfExists('admininfo');
     }
 };
