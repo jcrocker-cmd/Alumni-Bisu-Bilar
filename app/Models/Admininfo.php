@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Reissueance extends Model
+class Admininfo extends Model
 {
     use HasFactory;
-    protected $table = 'reissueances';
+    protected $table = 'admininfo';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'name',
-        'id_no',
-        'degree',
-        'reason',
-        'or_no',
-        'signature',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'email',
+        'password',
     ];
 }

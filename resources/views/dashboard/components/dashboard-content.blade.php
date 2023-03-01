@@ -23,14 +23,14 @@
         <a href="http://" class="text-decoration-none">
           <div class="bg-dark text-white dashboard-tab">
             <p>Record for Information of Alumni Students</p>
-            <p>100</p>
+            <p>{{ $numberOfAlumni }}</p>
           </div>
         </a>
 
         <a href="http://" class="text-decoration-none">
           <div class="bg-dark text-white dashboard-tab">
             <p>Announcements</p>
-            <p>100</p>
+            <p>{{ $numberOfAnnouncement }}</p>
           </div>
         </a>
 

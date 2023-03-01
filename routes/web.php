@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ReissueanceController;
 use App\Http\Controllers\AlumniIDController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\LoginController;
 /*
@@ -62,9 +63,11 @@ Route::post('/home-reissuance-post', [ReissueanceController::class,'post_reissua
 
 // DASHBOARD
 
-Route::get('/dashboard', function () {
-    return view('dashboard.dashboard');
-});
+Route::get('/dashboard-login', [AdminController::class,'route_db_login']);
+Route::post('/dashboard-check-login', [AdminController::class,'db_check_login']);
+
+Route::get('/dashboard', [AdminController::class,'route_dashboard']);
+
 
 Route::get('/alumni-membership', function () {
     return view('dashboard.alumni-membership');
@@ -80,6 +83,8 @@ Route::get('/users', function () {
 
 Route::get('/announcement', [AnnouncementController::class,'route_announcement']);
 Route::post('/post_announcement', [AnnouncementController::class,'post_announcement']);
+Route::get('/delete_announcement/{id}', [AnnouncementController::class, 'delete_announcement']);
+
 
 
 Route::get('/settings', function () {

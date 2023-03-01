@@ -36,6 +36,20 @@
             </div>
             
         </div>
+
+        <div class="addphoto">
+            <img src="images/signature.png"
+            id="change-img-add" class="image" style="object-fit: cover;" draggable="true">
+            <p>Add your Signature <span class="error-text" id="error_sig"></span></p>
+            
+        </div>
+
+        <div class="img-button mt-3">
+            <input type="file" name="signature" id="addphotoBtn" class="signature" accept="image/jpg, image/jpeg, image/png" hidden>
+            <button onclick ="addPhoto()" type="button" class="addphoto-btn" id="addphotoBtn">Choose Image</button>
+        </div>
+
+        
         <button type="submit">SUBMIT</button>
 
     </div>

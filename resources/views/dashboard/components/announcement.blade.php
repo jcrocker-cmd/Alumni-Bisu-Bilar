@@ -31,7 +31,7 @@
   <td>
   <a href="#" title="View" class="actions action-view"><i class="fa fa-eye" aria-hidden="true"></i></a>
   <a href="#" title="Edit" class="actions action-edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-  <a href="#" title="Delete" onclick="return confirm(&quot;Confirm delete?&quot;)" class="actions action-delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+  <a href="/delete_announcement/{{ $item->id }}" title="Delete" onclick="return confirm(&quot;Confirm delete?&quot;)" class="actions action-delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
   </td>
   </tr>
@@ -70,7 +70,7 @@
             </div>
             <div class="mb-3">
               <label for="message-text" class="col-form-label">Description:</label>
-              <textarea class="form-control" id="message-text" name="description"></textarea>
+              <textarea rows="5" class="form-control" id="message-text" name="description"></textarea>
               <span class="text-danger">Error message</span>
 
             </div>

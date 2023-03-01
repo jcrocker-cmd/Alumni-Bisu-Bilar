@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="img-button mt-3">
-                    <input type="file" name="photo" id="addphotoBtn" class="signature" accept="image/jpg, image/jpeg, image/png" hidden>
+                    <input type="file" name="signature" id="addphotoBtn" class="signature" accept="image/jpg, image/jpeg, image/png" hidden>
                     <button onclick ="addPhoto()" type="button" class="addphoto-btn" id="addphotoBtn">Choose Image</button>
                 </div>
 

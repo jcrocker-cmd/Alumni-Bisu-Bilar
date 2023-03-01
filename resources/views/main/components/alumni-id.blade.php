@@ -62,7 +62,7 @@
                 <div class="addphoto">
                     <img src="images/signature.png"
                     id="change-img-add" style="object-fit: cover;">
-                    <p>Add your Signature <span class="error-text"></span></p>
+                    <p>Add your Signature <span class="error-text" id="error_sig"></span></p>
                 </div>
 
                 <div class="img-button mt-3">
@@ -70,7 +70,7 @@
                     <button onclick ="addPhoto()" type="button" class="addphoto-btn" id="addphotoBtn">Choose Image</button>
                 </div>
 
-            <button type="submit">SUBMIT</button>
+            <button type="submit" id="submit_alumni_id">SUBMIT</button>
             </form>
         </div>
     </div>

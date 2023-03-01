@@ -20,6 +20,8 @@
       <li class="active"><a href="/alumni-id" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-portrait" style="margin-right: 10px;"></i>   Alumni ID Production <span style="margin-left: 30px;">Report</span></a></li>
       <li class=""><a href="/rented" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-book-alt" style="margin-right: 10px;"></i>   Record for the Information <span style="margin-left: 30px;">of Alumni Students</span></a></li>
       <li class=""><a href="/announcement" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-bullhorn" style="margin-right: 10px;"></i>   Announcement</a></li>
+      <li class=""><a href="/users" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-user" style="margin-right: 10px;"></i>   Users</a></li>
+
     </ul>
 
     <hr class="hr-1 mx-2">

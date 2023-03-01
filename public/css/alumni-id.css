@@ -147,6 +147,12 @@
         margin-top: 70px;
     }
 
+    .alumni-id-wrapper .addphoto img
+    {
+        height: 200px;
+        width: 100%;
+    }
+
   }
 
   @media(max-width: 770px){
