@@ -4,7 +4,7 @@
             <h2>Application for Alumni ID</h2>
             <p>Please write the information legibly</p>
             <hr style="">
-            <form action="home-alumni-id-post" id="alumni_id_form" method="post">
+            <form action="home-alumni-id-post" enctype="multipart/form-data" id="alumni_id_form" method="post">
                 @csrf
             <div class="fields">
                 <div class="group">

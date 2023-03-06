@@ -109,6 +109,10 @@
     {
         flex-basis: 100%;
     }
+    .logo-for-home
+    {
+        width: 200px;
+    }
 
     /* .home-row
     {

@@ -647,3 +647,9 @@ input.purok
     height: 200px;
     width: 200px;
 }
+
+/* ANNOUNCEMENT */
+.error-text
+{
+    font-size: 14px;
+}

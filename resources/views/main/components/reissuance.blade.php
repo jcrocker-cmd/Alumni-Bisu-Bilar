@@ -4,7 +4,7 @@
             <h2>Alumni ID Reissuance</h2>
             <p>Please write the information legibly</p>
             <hr style="">
-            <form action="home-reissuance-post" method="post" id="reissueance-from">
+            <form action="home-reissuance-post" enctype="multipart/form-data" method="post" id="reissueance-from">
             @csrf
             <div class="fields">
                 <div class="group">

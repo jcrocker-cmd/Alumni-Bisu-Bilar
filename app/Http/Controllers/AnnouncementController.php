@@ -61,4 +61,56 @@ class AnnouncementController extends Controller
         return redirect('/announcement')->with('delete_annnouncement', $delete_annnouncement); 
     }
 
+    public function update_announcement(Request $request)
+    {
+
+        $data = [
+            'subject' => $request->subject,
+            'description' => $request->description,
+            'date' => $request->date,
+          ];
+
+        $id = $request->input('aid');
+        $announce = Announcement::find($id);
+        if (!$announce) {
+            return response()->json(['error' => 'Announcement not found'], 404);
+        }
+        $announce->subject = $request->input('subject');
+        $announce->description = $request->input('description');
+        $announce->date = $request->input('date');
+        $announce->update();
+
+        // Get all email addresses from the users table
+        $emails = DB::table('signin')->pluck('email')->toArray();
+
+        Mail::send('dashboard.email-template', ['data' => $data], function($message) use ($data, $emails) {
+            // Send email to all email addresses
+            $message->to($emails);
+            $message->subject($data['subject']);
+        });
+
+        Session::flash('status', 'You have successfully edited an announcement!');
+        return redirect('/announcement')->with('announce', $announce);
+    }
+    
+
+    public function db_announcement_ajaxview($id)
+    {
+        $announce = Announcement::find($id);
+        return response()->json([
+            'status' => 200,
+            'announce' => $announce,
+        ]);
+    }
+
+    public function db_announcement_ajaxedit($id)
+    {
+        $announce = Announcement::find($id);
+        return response()->json([
+            'status' => 200,
+            'announce' => $announce,
+        ]);
+    }
+
+
 }

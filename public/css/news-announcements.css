@@ -1,6 +1,6 @@
 .news-announce-row
 {
-    padding: 40px 80px;
+    padding: 80px 80px;
     font-family: 'Poppins', sans-serif;
     width: 100%;
 
@@ -13,6 +13,7 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     width: 100%;
+    /* margin-top: 50px; */
 }
 
 .news-announce-col
@@ -75,6 +76,11 @@
     {
         flex-direction: column;
     }
+
+    .news-announce-row
+    {
+        padding: 40px 10px;
+    }
     .na-card
     {
         width: 100%;
@@ -84,7 +90,30 @@
   @media(max-width: 574px){
     .news-announce-row
     {
-        padding: 40px 20px;
-    
+        padding: 40px 10px;
     }
+
+    .na-card h5 ,
+    .na-card p 
+    {
+        font-size: 14px;
+    }
+
+    .na-card h2
+    {
+        font-size: 18px;
+    }
+
+    .na-card h4
+    {
+        font-size: 12px;
+    }
+
+    .na-date
+    {
+        text-align: center;
+        padding: 10px 30px;
+
+    }
+
   }
