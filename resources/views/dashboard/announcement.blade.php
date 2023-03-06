@@ -106,5 +106,13 @@
 
 @section('scripts')
     @include('dashboard.assets.script')
-
 @endsection
+
+
+@push('scripts')
+    <script src="/js/moment-library.js"></script>
+    <script src="/js/ajax-announce-view.js"></script>
+    <script src="/js/ajax-announce-edit.js"></script>
+    <script src="/js/db-validation-announce.js"></script>
+    <script src="/js/db-validation-announce-edit.js"></script>
+@endpush

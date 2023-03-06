@@ -56,6 +56,14 @@ input5.addEventListener("keyup", function() {
 input6.addEventListener("change", function() {
     error_sig.innerHTML = ""; // reset the error message
     image.style.borderColor = "";
+    if (!validateImageSize(input6)) {
+      error_sig.innerHTML = "<span class='err-text' >(Image size should be less than 1MB.)</span>";
+      image.style.borderColor = "red";
+    }
+    if (!validateImageType(input6)) {
+      error_sig.innerHTML = "<span class='err-text' >(Only image files are allowed.)</span>";
+      image.style.borderColor = "red";
+    }
 });
 
  // validate the input fields
@@ -84,6 +92,39 @@ input6.addEventListener("change", function() {
   if(input6.value === ""){
     error_sig.innerHTML = "<span style='margin-bottom: 0px; margin-top: 5px;' >(Please Upload your Signature)</span>";
     image.style.borderColor = "red";
+  } else {
+    if (!validateImageSize(input6)) {
+      error_sig.innerHTML = "<span class='err-text' >(Image size should be less than 1MB.)</span>";
+      image.style.borderColor = "red";
+    }
+    if (!validateImageType(input6)) {
+      error_sig.innerHTML = "<span class='err-text' >(Only image files are allowed.)</span>";
+      image.style.borderColor = "red";
+    }
+  }
+
+
+  // Function to validate image size
+  function validateImageSize(input) {
+    if (input.files && input.files[0]) { // check if input has files and at least one file is selected
+        const fileSize = input.files[0].size / 1024 / 1024; // get the file size in MB
+        if (fileSize > 1) { // check if file size is greater than 1MB
+            return false; // return false if file size is greater than 1MB
+        }
+    }
+    return true; // return true if file size is less than or equal to 1MB or input doesn't have files
+  }
+
+  // Function to validate image type
+  function validateImageType(input) {
+      if (input.files && input.files[0]) { // check if input has files and at least one file is selected
+          const allowedTypes = ["image/jpeg", "image/png", "image/gif"]; // allowed image types
+          const fileType = input.files[0].type; // get the file type
+          if (!allowedTypes.includes(fileType)) { // check if file type is not in the allowed image types
+              return false; // return false if file type is not allowed
+          }
+      }
+      return true; // return true if file type is allowed or input doesn't have files
   }
 
   

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ReissueanceController;
 use App\Http\Controllers\AlumniIDController;
+use App\Http\Controllers\AlumniMemController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\LoginController;
@@ -47,6 +48,9 @@ Route::get('/home', [AnnouncementController::class,'route_home']);
 Route::get('/home-alumni-id', [AlumniIDController::class,'route_alumni_id']);
 Route::post('/home-alumni-id-post', [AlumniIDController::class,'post_alumni_id']);
 
+Route::get('/home-alumni-membership', [AlumniMemController::class,'route_alumni_mem']);
+Route::post('/home-alumni-membership-post', [AlumniMemController::class,'post_alumni_mem']);
+
 Route::get('/home-alumni-membership', function () {
     return view('main.alumni-membership');
 });
@@ -83,7 +87,10 @@ Route::get('/users', function () {
 
 Route::get('/announcement', [AnnouncementController::class,'route_announcement']);
 Route::post('/post_announcement', [AnnouncementController::class,'post_announcement']);
+Route::put('/update_announcement', [AnnouncementController::class, 'update_announcement']);
 Route::get('/delete_announcement/{id}', [AnnouncementController::class, 'delete_announcement']);
+Route::get('/announcement/{id}/ajaxview', [AnnouncementController::class, 'db_announcement_ajaxview']);
+Route::get('/announcement/{id}/ajaxedit', [AnnouncementController::class, 'db_announcement_ajaxedit']);
 
 
 
