@@ -1,4 +1,4 @@
-<section class="all-vehicles-section">
+<section class="reissueance-section">
 
 @if (session('status'))
   <h6 class="alert alert-success my-0" id="myAlert" style="font-size: 14px;">{{ session('status') }}</h6>
@@ -6,23 +6,30 @@
 
 
     <div class="pb-3 d-flex justify-content-between px-3 pt-4">
-    <h5 class="">Alumni Membership</h5>
+    <h5 class="title">Re-Issueance of ID</h5>
     </div>
 
-<div class="table-responsive px-3 pb-3" style="width: 100%;">
+<div class="table-responsive px-3 pb-3">
 
-<table class="table align-middle mb-0 bg-light table-hover display responsive nowrap" id="dbTable" style="width: 100%;">
+<div class="table-options">
+  <div class="length-menu" style="display: none;"></div>
+  <div class="print-button"></div>
+</div>
+
+
+<table class="table align-middle mb-0 bg-light table-hover display responsive nowrap" id="dbTable" style="width:100%">
 <thead class="table bg-primary text-white">
 <tr>
   <th scope="col" class="col-3">Student</th>
-  <th scope="col">Address</th>
-  <th scope="col">Bday</th>
-  <th scope="col">Contact #</th>
+  <th scope="col">Or No.</th>
+  <th scope="col">ID No.</th>
+  <th scope="col">Degree</th>
+  <th scope="col">Reason</th>
   <th scope="col">Actions</th>
 </tr>
 </thead>
 <tbody>
-@foreach($amem as $item)
+@foreach($reissueance as $item)
  <tr>
   <td>
     <div class ="d-flex align-items-center">
@@ -36,21 +43,19 @@
     </div>
 
   </td>
-  <td>
-   {{ $item->address}}
-  </td>
-  <td>{{ $item->bday}}</td>
+  <td>{{ $item->or_no}}</td>
   
-  <td>{{ $item->con_num}}</td>
+  <td>{{ $item->id_no}}</td>
+  <td>{{ $item->degree}}</td>
+  <td>{{ $item->reason}}</td>
   <td>
   <a href="#" title="View" class="actions action-view" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#viewModal"><i class="fa fa-eye" aria-hidden="true"></i></a>
-  <a href="/delete_alumni_mem/{{ $item->id }}" title="Delete" onclick="return confirm(&quot;Confirm delete?&quot;)" class="actions action-delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+  <a href="/delete_reissueance/{{ $item->id }}" title="Delete" onclick="return confirm(&quot;Confirm delete?&quot;)" class="actions action-delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
   </td>
   </tr>
+
   @endforeach
-
-
 
 </tbody>
 </table>
@@ -61,12 +66,10 @@
 
 </div>
 
-
-
 <div class="chart-wrapper px-3 pb-3">
   <div class="bg-light db-chart px-3 py-3 mt-4" style=" border-radius: 10px; width: 100%; ">
-    <h5><strong>Alumni Membership Graphical Reports</strong></h5>
-    <canvas id="alumni_mem_Chart" style=" margin: 0; padding: 0;"></canvas>
+    <h5><strong>Reissueances Graphical Reports</strong></h5>
+    <canvas id="reissuance_Chart" style=" margin: 0; padding: 0;"></canvas>
 
     <select id="display-selector">
       <option value="day" selected>Daily</option>
@@ -84,13 +87,12 @@
 </div>
 
 
-
 </section>
 
 
 
 
-<!-- MODAL FOR VIEW ANNOUNCEMENT -->
+<!-- MODAL FOR VIEW REISSUEANCE -->
 
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" style="width: 100%;">
@@ -114,20 +116,20 @@
               <td style="padding: 10px;"><span id="view_name"></span></td>
             </tr>
             <tr>
-              <td style="padding: 10px;">Adress</td>
-              <td style="padding: 10px;"><span id="view_address"></span></td>
+              <td style="padding: 10px;">ID No</td>
+              <td style="padding: 10px;"><span id="view_idno"></span></td>
             </tr>
             <tr>
-              <td style="padding: 10px;">Birthday</td>
-              <td style="padding: 10px;"><span id="view_bday"></span></td>
+              <td style="padding: 10px;">Degree</td>
+              <td style="padding: 10px;"><span id="view_degree"></span></td>
             </tr>
             <tr>
-              <td style="padding: 10px;">Contact #</td>
-              <td style="padding: 10px;"><span id="view_con_num"></span></td>
+              <td style="padding: 10px;">Reason</td>
+              <td style="padding: 10px;"><span id="view_reason"></span></td>
             </tr>
             <tr>
-              <td style="padding: 10px;">FB Url</td>
-              <td style="padding: 10px;"><span id="view_fb"></span></td>
+              <td style="padding: 10px;">OR No</td>
+              <td style="padding: 10px;"><span id="view_orno"></span></td>
             </tr>
             <tr>
               <td style="padding: 10px;">Signature</td>

@@ -1,12 +1,14 @@
 @extends('dashboard.layout.master')
 
+@section('title', 'Announcement')
+
 @section('styles')
     @include('dashboard.assets.style')
 @endsection
 
 @section('content')
     <div class="main-container d-flex">
-  <div class="sidebar" id="side_nav">
+    <div class="sidebar" id="side_nav">
     <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
         <!-- <h1 class="fs-4 text-white px-3">   You-Drive</h1> -->
         <img src="/images/LOGO-3.png" class="sidebar-logo px-3 py-3" alt="Comapny Logo">
@@ -16,12 +18,12 @@
     
     <ul class ="list-unstyled px-2 ">
       <li class=""><a href="/dashboard" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-home" style="margin-right: 10px;"></i>   Dashboard</a></li>
-      <li class=""><a href="/alumni-membership" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-list" style="margin-right: 10px;"></i>   Alumni Membership <span style="margin-left: 30px;">Report</span></a></li>
-      <li class=""><a href="/alumni-id" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-portrait" style="margin-right: 10px;"></i>   Alumni ID Production <span style="margin-left: 30px;">Report</span></a></li>
-      <li class=""><a href="/rented" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-book-alt" style="margin-right: 10px;"></i>   Record for the Information <span style="margin-left: 30px;">of Alumni Students</span></a></li>
-      <li class="active"><a href="/announcement" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-bullhorn" style="margin-right: 10px;"></i>   Announcement</a></li>
-      <li class=""><a href="/users" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-user" style="margin-right: 10px;"></i>   Users</a></li>
-
+      <li class=""><a href="/alumni-membership" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-list" style="margin-right: 12px;"></i>   Alumni Membership <span style="margin-left: 32px;">Report</span></a></li>
+      <li class=""><a href="/alumni-id" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-portrait" style="margin-right: 15px;"></i>   Alumni ID Production <span style="margin-left: 32px;">Report</span></a></li>
+      <li class=""><a href="/rented" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-book-alt" style="margin-right: 13px;"></i>   Record for the Information <span style="margin-left: 30px;">of Alumni Students</span></a></li>
+      <li class=""><a href="/reissueance" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-portrait" style="margin-right: 15px;"></i>   Reissuance of ID</a></li>
+      <li class="active"><a href="/announcement" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-bullhorn" style="margin-right: 9px;"></i>   Announcement</a></li>
+      <li class=""><a href="/users" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-user" style="margin-right: 14px;"></i>   Users</a></li>
     </ul>
 
     <hr class="hr-1 mx-2">
@@ -30,10 +32,10 @@
     
     <ul class="list-unstyled px-2">
 
-    <li class=""><a href="/settings" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-cog" style="margin-right: 10px;"></i>  Settings</a></li>
+    <li class=""><a href="/settings" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-cog" style="margin-right: 12px;"></i>  Settings</a></li>
 
       <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
-      <span><i class="fal fa-bell" style="margin-right: 10px;"></i>  Notification</span>
+      <span><i class="fal fa-bell" style="margin-right: 13px;"></i>  Notification</span>
       <span class="bg-danger rounded-pill text-white px-2 py-0 d-flex align-items-center message-notif">02</span>
       </a>
       </li>
@@ -44,7 +46,7 @@
 
     <ul class="list-unstyled px-2">
 
-    <li class=""><a href="/adminlogout" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-sign-out" style="margin-right: 10px;"></i>  Log Out</a></li>
+    <li class=""><a href="/adminlogout" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-sign-out" style="margin-right: 11px;"></i>  Log Out</a></li>
       
     </ul>
 

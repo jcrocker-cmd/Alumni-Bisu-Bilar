@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Dashboard</title>
+    <title>@yield('title')</title>
     @yield('styles')
 </head>
 <body>
@@ -13,6 +13,10 @@
     <a href="/" class="brand"><img src="/images/LOGO.png" class="logo pb-2"></a>
     <div class="linePreloader"></div>
 </div> -->
+
+<div class="loader-wrapper" id="loads">
+<span class="loader"><span class="loader-inner"></span></span>
+</div>
 
     @yield('content')
     @yield('scripts')
@@ -23,6 +27,11 @@ $(window).on("load",function(){
     $(".loader-wrapper").delay(1000).fadeIn("slow").fadeOut("slow");
 });
 </script> -->
+<script>
+    $(window).on("load",function(){
+        $(".loader-wrapper").delay(1000).fadeIn("slow").fadeOut("slow");
+    });
+</script>
 
 </body>
 </html>

@@ -59,6 +59,9 @@ Route::get('/home-account', function () {
     return view('main.account');
 });
 
+
+Route::get('/alumni-id', [AlumniIDController::class,'route_alumni_id']);
+
 Route::get('/home-reissuance', [ReissueanceController::class,'route_reissuance']);
 Route::post('/home-reissuance-post', [ReissueanceController::class,'post_reissuance']);
 
@@ -73,17 +76,25 @@ Route::post('/dashboard-check-login', [AdminController::class,'db_check_login'])
 Route::get('/dashboard', [AdminController::class,'route_dashboard']);
 
 
-Route::get('/alumni-membership', function () {
-    return view('dashboard.alumni-membership');
-});
+Route::get('/alumni-membership', [AlumniMemController::class,'db_route_alumni_mem']);
+Route::get('/alumni_mem/{id}/ajaxview', [AlumniMemController::class, 'db_alumni_mem_ajaxview']);
+Route::get('/delete_alumni_mem/{id}', [AlumniMemController::class, 'db_delete_alumni_mem']);
 
-Route::get('/alumni-id', function () {
-    return view('dashboard.alumni-id');
-});
+
+Route::get('/alumni-id', [AlumniIDController::class,'db_route_alumni_id']);
+Route::get('/alumni_id/{id}/ajaxview', [AlumniIDController::class, 'db_alumni_id_ajaxview']);
+Route::get('/delete_alumni_id/{id}', [AlumniIDController::class, 'db_delete_alumni_id']);
 
 Route::get('/users', function () {
     return view('dashboard.users');
 });
+
+Route::get('/reissueance', [ReissueanceController::class,'db_route_reissuance']);
+Route::get('/reissueance/{id}/ajaxview', [ReissueanceController::class, 'db_reissueance_ajaxview']);
+Route::get('/delete_reissueance/{id}', [ReissueanceController::class, 'db_delete_reissueance']);
+
+
+
 
 Route::get('/announcement', [AnnouncementController::class,'route_announcement']);
 Route::post('/post_announcement', [AnnouncementController::class,'post_announcement']);

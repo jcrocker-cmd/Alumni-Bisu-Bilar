@@ -37,19 +37,19 @@
       </div>
     </div>
 
-    <div class="sub-menu-wrap">
-        <div class="sub-menu">
+    <div class="pro-menu-wrap">
+        <div class="pro-menu">
             <div class="user-info">
                     <div><h5>John Christian Narbaja</h5></div>
                     <div><span>narbajajc</span></div>
             </div>
             <hr>
 
-        <a href="#" class="sub-menu-link">
+        <a href="#" class="pro-menu-link">
             <img src="images/profile/setting.png">
             <p>My Settings</p>
         </a>
-        <a href="/logout" class="sub-menu-link">
+        <a href="/logout" class="pro-menu-link">
             <img src="images/profile/logout.png">
             <p>Logout</p>
         </a>

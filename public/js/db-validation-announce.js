@@ -8,9 +8,10 @@ var input1 = document.getElementById("subject");
 var input2 = document.getElementById("description");
 var input3 = document.getElementById("date");
 
-var e_input1 = document.getElementById("edit_subject");
-var e_input2 = document.getElementById("edit_description");
-var e_input3 = document.getElementById("edit_date");
+// Get the error message elements
+var error_sub = document.getElementById("error_sub");
+var error_des = document.getElementById("error_des");
+var error_date = document.getElementById("error_date");
 
 // Add a submit event listener to the form
 form.addEventListener("submit", function(event) {
@@ -50,8 +51,8 @@ input3.addEventListener("change", function() {
   submit_btn.onclick = function(){
     if (error_sub.innerHTML === "" && error_des.innerHTML === "" && error_date.innerHTML === "") {
         // this.innerHTML = "<div class='loader'></div>";
-        this.disabled = true;
         form.submit();
+        this.disabled = true;
         submit_btn.style.backgroundColor = "#5794ef";
     }
   }
