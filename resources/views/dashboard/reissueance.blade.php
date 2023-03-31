@@ -1,5 +1,7 @@
 @extends('dashboard.layout.master')
 
+@section('title', 'Re-Issueance of ID')
+
 @section('styles')
     @include('dashboard.assets.style')
 @endsection
@@ -15,11 +17,11 @@
     
     
     <ul class ="list-unstyled px-2 ">
-      <li class="active"><a href="/dashboard" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-home" style="margin-right: 10px;"></i>   Dashboard</a></li>
+      <li class=""><a href="/dashboard" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-home" style="margin-right: 10px;"></i>   Dashboard</a></li>
       <li class=""><a href="/alumni-membership" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-list" style="margin-right: 12px;"></i>   Alumni Membership <span style="margin-left: 32px;">Report</span></a></li>
       <li class=""><a href="/alumni-id" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-portrait" style="margin-right: 15px;"></i>   Alumni ID Production <span style="margin-left: 32px;">Report</span></a></li>
       <li class=""><a href="/rented" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-book-alt" style="margin-right: 13px;"></i>   Record for the Information <span style="margin-left: 30px;">of Alumni Students</span></a></li>
-      <li class=""><a href="/reissueance" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-portrait" style="margin-right: 15px;"></i>   Reissuance of ID</a></li>
+      <li class="active"><a href="/reissueance" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-portrait" style="margin-right: 15px;"></i>   Reissuance of ID</a></li>
       <li class=""><a href="/announcement" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-bullhorn" style="margin-right: 9px;"></i>   Announcement</a></li>
       <li class=""><a href="/users" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-user" style="margin-right: 14px;"></i>   Users</a></li>
     </ul>
@@ -96,7 +98,7 @@
   </nav>
   <div id="dashboard-content">
   
-    @include('dashboard.components.dashboard-content')
+    @include('dashboard.components.reissueance')
 </div>
 
   </div>
@@ -108,8 +110,23 @@
     @include('dashboard.assets.script')
 @endsection
 
-
 @push('scripts')
+    <script src="/js/moment-library.js"></script>
     <script src="/js/chart-library.js"></script>
-    <script src="/js/dashboard-content-chart.js"></script>
+
+    <script type="text/javascript">
+      var day_labels = {!! json_encode($days) !!}.map(date => new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }));
+      var day_data = {!! json_encode($day_counts) !!};
+
+      var week_labels = {!! json_encode($weeks) !!}.map(date => new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+      var week_data = {!! json_encode($week_counts) !!};
+
+      var month_labels = {!! json_encode($months) !!}.map(date => new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }));
+      var month_data = {!! json_encode($month_counts) !!};
+      
+      var year_labels = {!! json_encode($years ) !!}.map(year => new Date(year + '-01-01').toLocaleDateString('en-US', { year: 'numeric' }));
+      var year_data = {!! json_encode($year_counts ) !!};
+    </script>
+    <script src="/js/chart-reissueance.js"></script>
+    <script src="/js/ajax-reissueance-view.js"></script>
 @endpush

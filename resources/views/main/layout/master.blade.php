@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/css/account.css">
     <link rel="stylesheet" href="/css/reissuance.css">
     <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/preloader.css">
 
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -29,7 +30,13 @@
 
 </head>
 <body>
+
+
     @yield('content')
+
+    <div class="loader-wrapper" id="loads">
+    <span class="loader"><span class="loader-inner"></span></span>
+    </div>
 
     <!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
     <script src="/js/navbar.js"></script>
@@ -37,5 +44,10 @@
     <script src="/js/addphoto.js"></script>
     <script src="/js/user-toggle.js"></script>
     @stack('scripts')
+    <script>
+        $(window).on("load",function(){
+            $(".loader-wrapper").delay(1000).fadeIn("slow").fadeOut("slow");
+        });
+    </script>
 </body>
 </html>

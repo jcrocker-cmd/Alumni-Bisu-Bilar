@@ -159,7 +159,7 @@ nav{
     cursor: pointer;
 }
 
-.sub-menu-wrap
+.pro-menu-wrap
 {
     position: absolute;
     top: 100%;
@@ -172,14 +172,14 @@ nav{
 
    
 }
-.sub-menu-wrap.active
+.pro-menu-wrap.active
 {
     opacity: 1;
     top: 100%;
     visibility: visible;
 }
 
-.sub-menu
+.pro-menu
 {
     background: #fff;
     padding: 20px;
@@ -214,7 +214,7 @@ nav{
     font-size: 14px;
 }
 
-.sub-menu hr
+.pro-menu hr
 {
     height: 1px;
     width: 100%;
@@ -222,7 +222,7 @@ nav{
     margin: 10px 0 15px;
     color: #000000;
 }
-.sub-menu-link
+.pro-menu-link
 {
     display: flex;
     align-items: center;
@@ -230,7 +230,7 @@ nav{
     color: #525252;
     margin: 12px 0;
 }
-.sub-menu-link p
+.pro-menu-link p
 {
     width: 100%;
     height: 15px;
@@ -238,7 +238,7 @@ nav{
     
 }
 
-.sub-menu-link img
+.pro-menu-link img
 {
     width: 40px;
     background: #e5e5e5;
@@ -250,6 +250,15 @@ nav{
     padding: 8px;
     margin-right: 15px;
 }
+
+@media (max-width:1425px) {
+
+  .pro-menu-wrap
+  {
+      right: 0px;
+  }
+}
+
   /* .search-box .input-box::before{
     content: '';
     position: absolute;
@@ -280,13 +289,6 @@ nav{
     display: none;
   }
 
-  @media (max-width:1425px) {
-
-    .sub-menu-wrap
-    {
-        right: 0px;
-    }
-  }
 
   @media (max-width:920px) {
     nav .navbar{

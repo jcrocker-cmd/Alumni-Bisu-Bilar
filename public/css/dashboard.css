@@ -467,39 +467,6 @@ input.purok
     place-content: center;
 }
 
-.loader
-{
-     pointer-events: none;
-     width: 30px;
-     height: 30px;
-     border: 3px solid transparent;
-     border-top-color: #fff;
-     border-radius: 50%;
-     -webkit-border-radius: 50%;
-     -moz-border-radius: 50%;
-     -ms-border-radius: 50%;
-     -o-border-radius: 50%;
-     animation: loader 0.5s ease infinite;
-     -webkit-animation: loader 0.5s ease infinite;
-}
-
-@keyframes loader {
-    0%{
-        transform: rotate(0turn);
-        -webkit-transform: rotate(0turn);
-        -moz-transform: rotate(0turn);
-        -ms-transform: rotate(0turn);
-        -o-transform: rotate(0turn);
-    }
-    100%{
-        transform: rotate(1turn);
-        -webkit-transform: rotate(1turn);
-        -moz-transform: rotate(1turn);
-        -ms-transform: rotate(1turn);
-        -o-transform: rotate(1turn);
-} 
-}
-
 .loginfail-alert ,
 .alert-danger li 
 {
@@ -653,3 +620,21 @@ input.purok
 {
     font-size: 14px;
 }
+
+/* BUTTON DATATABLE */
+
+#btn_datatable_excel,
+#btn_datatable_print,
+#btn_datatable_pdf
+ {
+    background-color: #ffffff;
+    color: #797c7a;
+    border-color: #797c7a;
+    }
+    
+.dataTables_length {
+    padding-bottom: 8px;
+    }
+.dataTables_paginate .paginate_button {
+    margin-top: -26px;
+    }

@@ -1,6 +1,6 @@
 
 // Get the form element
-var form = document.getElementById("edit_announcement_form");
+var edit_form = document.getElementById("edit_announcement_form");
 
 
 // Get the input elements
@@ -17,7 +17,7 @@ var e_error_date = document.getElementById("e_error_date");
 
 
 // Add a submit event listener to the form
-form.addEventListener("submit", function(event) {
+edit_form.addEventListener("submit", function(event) {
   event.preventDefault(); // prevent the form from submitting
 
   // Reset the error messages
@@ -56,8 +56,8 @@ e_input3.addEventListener("change", function() {
   submit_btn.onclick = function(){
     if (e_error_sub.innerHTML === "" && e_error_des.innerHTML === "" && e_error_date.innerHTML === "") {
         // this.innerHTML = "<div class='loader'></div>";
+        edit_form.submit();
         this.disabled = true;
-        form.submit();
         submit_btn.style.backgroundColor = "#5794ef";
     }
   }
