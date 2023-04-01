@@ -1,5 +1,5 @@
 <div class="dashboard-content px-3 pt-4">
-        <h2 class="fs-5">Welcome Back <span>John</span> (Administrator)</h2>
+        <h2 class="fs-5">Welcome Back <span>{{ Auth::user()->first_name }} {{ Auth::user()->middle_name }}, {{ Auth::user()->last_name }}</span> ({{ Auth::user()->roles->pluck('name')->implode(', ') }})</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptas iste nemo quasi aperiam ducimus sed culpa, in, praesentium iure non aliquam veniam neque! In molestias eveniet laudantium eius facere!</p>
       
       <div class="row pt-2 d-flex justify-content-between" id="dashboard-row">

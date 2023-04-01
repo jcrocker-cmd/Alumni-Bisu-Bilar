@@ -40,17 +40,21 @@
     <div class="pro-menu-wrap">
         <div class="pro-menu">
             <div class="user-info">
-                    <div><h5>John Christian Narbaja</h5></div>
-                    <div><span>narbajajc</span></div>
+
+            @if (Auth::check())
+              <div><h5>{{ Auth::user()->first_name }} {{ Auth::user()->middle_name }}, {{ Auth::user()->last_name }}</h5></div>
+              <div><span>{{ Auth::user()->email }}</span></div>
+            @endif
+                    
             </div>
             <hr>
 
         <a href="#" class="pro-menu-link">
-            <img src="images/profile/setting.png">
+            <img src="/images/profile/setting.png">
             <p>My Settings</p>
         </a>
-        <a href="/logout" class="pro-menu-link">
-            <img src="images/profile/logout.png">
+        <a href="/clientlogout" class="pro-menu-link">
+            <img src="/images/profile/logout.png">
             <p>Logout</p>
         </a>
 

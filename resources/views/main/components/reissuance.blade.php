@@ -10,7 +10,7 @@
                 <div class="group">
                     <div class="input-field">
                         <label for="message-text" class="">Name of Alumni : <span></span> </label>
-                        <input type="text" class="" id="name" placeholder="Please enter your name" name="name" ></input>
+                        <input type="text" class="" id="name" placeholder="Please enter your name" name="name" value="{{ Auth::user()->name }}"></input>
                         <span class="error-text" id="error_name"></span>
                     </div>
 

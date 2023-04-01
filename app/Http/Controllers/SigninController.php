@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Signin;
+use App\Models\User;
 use Session;
+use Hash;
+use Spatie\Permission\Models\Role;
 
 class SigninController extends Controller
 {
@@ -36,9 +39,17 @@ class SigninController extends Controller
         'address.required' => 'Please enter your Adrress.',
         ]);
 
-        $signin = $request->all();
-        Signin::create($signin);
+        $user = $request->all();
+        $user['password'] = Hash::make($user['password']);
+        $newUser = User::create($user);
+    
+        $role = Role::where('name', 'Student')->first();
+        $newUser->roles()->attach($role);
+
         Session::flash('successregister','Succesful Signin try to LOG-IN.');
-        return redirect('/login')->with('signin', $signin); 
+        return redirect('/');
+
+        // Session::flash('successregister','Succesful Signin try to LOG-IN.');
+        // return redirect('/login')->with('signin', $signin); 
     }
 }

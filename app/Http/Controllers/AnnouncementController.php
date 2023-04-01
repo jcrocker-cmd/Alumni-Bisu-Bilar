@@ -47,11 +47,7 @@ class AnnouncementController extends Controller
           
     }
 
-    public function route_home(Request $request)
-    {
-        $announce = Announcement::all();
-        return view('main.home')->with('announce', $announce); 
-    }
+
 
     public function delete_announcement($id)
     {

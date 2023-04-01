@@ -9,6 +9,7 @@ use App\Models\Admininfo;
 use Session;
 use Hash;
 use Mail;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -56,5 +57,37 @@ class AdminController extends Controller
         'numberOfAlumni' => $numberOfAlumni
     ]);
 
+    }
+
+    public function adminpassword_update(Request $request)
+    {
+      $request->validate([
+         'old_password'=>'required|min:8|max:20|alphaNum',
+         'new_password'=>'required|min:8|max:20|alphaNum',
+         'confirm_password'=>'required|same:new_password',
+      ]);
+      $user = Auth::user();
+
+      if (Hash::check($request->old_password, $user->password)) {
+         
+         $user->update([
+               'password'=>bcrypt($request->new_password)
+         ]);
+
+         Session::flash('successpassword','You`ve successfully edited your password!');
+         return view('dashboard.settings',compact('user'));
+
+      } else {
+         return back()
+         ->withErrors(['old_password' => 'Old password does not match our records.'])
+         ->withInput()
+         ->with(session()->flash('failpassword', 'Password change failed!'));
+      }
+    }
+
+    public function adminlogout()
+    {
+     Auth::logout();
+     return redirect('/dashboard-login');
     }
 }

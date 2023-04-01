@@ -1,3 +1,15 @@
+@if (session('accountstatus'))
+  <h6 class="alert alert-success my-0" id="myAlert" style="font-size: 14px;">{{ session('accountstatus') }}</h6>
+@endif
+
+@if (session('successpassword'))
+  <h6 class="alert alert-success my-0" id="myAlert" style="font-size: 14px;">{{ session('successpassword') }}</h6>
+@endif
+
+@if (session('failpassword'))
+  <h6 class="alert alert-danger my-0" id="myAlert" style="font-size: 14px;">{{ session('failpassword') }}</h6>
+@endif
+
 <section id="settings" class="px-3 py-4">
     <h5 class="pb-2">Settings</h5>
 
@@ -53,7 +65,7 @@
         <h6 class="mt-3">Edit Password</h6>
         <hr>
 
-        <form action="" method="post" class="py-2">
+        <form action="/change-admin-password" method="post" class="py-2">
         @csrf
         @method('put')
         <div class="mb-3 old_password">

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>@yield('title')</title>
     @yield('styles')
 </head>
@@ -14,9 +17,9 @@
     <div class="linePreloader"></div>
 </div> -->
 
-<div class="loader-wrapper" id="loads">
+<!-- <div class="loader-wrapper" id="loads">
 <span class="loader"><span class="loader-inner"></span></span>
-</div>
+</div> -->
 
     @yield('content')
     @yield('scripts')

@@ -32,7 +32,7 @@
                 <div class="group">
                     <div class="input-field">
                         <label for="message-text" class="">Name: <span class="sub-name">(ex: CERO, JOSENITO A.)</span> </label>
-                        <input type="text" class="" id="name" name="name"placeholder="Enter your name"></input>
+                        <input type="text" class="" id="name" name="name"placeholder="Enter your name" value="{{ Auth::user()->name }}"></input>
                         <span class="error-text" id="error_name"></span>
                     </div>
 

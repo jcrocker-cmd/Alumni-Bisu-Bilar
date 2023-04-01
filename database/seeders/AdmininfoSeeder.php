@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Hash;
 
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+
 class AdmininfoSeeder extends Seeder
 {
     /**
@@ -17,15 +20,20 @@ class AdmininfoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('admininfo')->insert([
-
-            'first_name' => 'Juan',
-            'middle_name' => 'Dela',
-            'last_name' => 'Cruz',
-            'email' => 'admin@123',
-            'password' => Hash::make('12345678'),
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
+        $user = User::create([
+            'first_name' => 'Johnny Boy',
+            'middle_name' => 'Johnny Boy',
+            'last_name' => 'Johnny Boy',
+            'email' => 'sample@gmail.com',
+            'password' => Hash::make('aug151973'),
+            'address' => 'Bilar',
+            // 'address' => 'Bilar',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
+
+        // Find the role by name and assign it to the user
+        $role = Role::where('name', 'Admin')->first();
+        $user->assignRole($role);
     }
 }
