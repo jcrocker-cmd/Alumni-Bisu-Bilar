@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('degree')->nullable();
             $table->string('reason')->nullable();
             $table->string('or_no')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('signature')->nullable();
             $table->timestamps();
         });

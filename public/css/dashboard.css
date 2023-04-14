@@ -66,18 +66,6 @@ hr.hr-2
 {
     color: #000;
 }
-/* .sidebar li:hover
-{
-    background: #fff;
-    border-radius: 8px;
-    opacity: 0.1;
-
-}
-.sidebar li:hover a
-{
-    color: #fff;
-} */
-
 .sidebar-logo
 {
     width: 180px;
@@ -86,15 +74,18 @@ hr.hr-2
 .sidebar li a
 {
     color: #fff;
+    font-size: 15px;
 }
 .message-notif
 {
     font-size: 12px;
 }
 
+/* Dashboard */
+
 .dashboard-tab-wrapper
 {
-    gap: 20px;
+    gap: 15px;
     display: flex;
     flex-direction: column;
 }
@@ -103,13 +94,13 @@ hr.hr-2
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px 0px 20px;
+    padding: 12px 20px 0px 20px;
     border-radius: 10px;
 }
 
 .dashboard-tab p
 {
-    font-size: 20px;
+    font-size: 15px;
 }
 .col-1
 {
@@ -126,6 +117,22 @@ hr.hr-2
     size: 100px;
 }
 
+.dashboard-content h2
+{
+    font-size: 16px;
+}
+
+.dashboard-content .text-par
+{
+    font-size: 14px;
+}
+
+#dashboard-content-table th,
+#dashboard-content-table td
+{
+    font-size: 12px;
+}
+
 
 /* Dashboard Table */
 .table
@@ -134,165 +141,68 @@ hr.hr-2
     font-size: 15px;
 }
 
-
-/* ADD Car */
-.add-row
+.title
 {
-    gap: 40px;
-    display: flex;
+    font-size: 18px;
 }
 
-#addcar-section-forms
+#myAlert ,
+.table-responsive,
+#dbTable,
+#dbTable thead ,
+#dbTable tbody 
+{
+    font-size: 13px;
+}
+
+
+/* Charts */
+.db-chart
 {
     box-shadow: 5px 3px 15px -3px rgba(0, 0, 0, 0.25);
-    
+
 }
 
-.add-col
+.db-chart h5
 {
-    width: 50%;
-}
-.addcar-button-group
-{
-    width: 100%;
-    display: flex;
-    column-gap: 10px;
-    justify-content: flex-end;
+    font-size: 18px;
 }
 
-.add-car-form
+/* Modals */
+#addModal h5 ,
+#addModal .btn-close,
+#viewModal h5 ,
+#viewModal .btn-close,
+#editModal h5 ,
+#editModal .btn-close
 {
-    display: none;
-    animation: fade 2s linear;
-    -webkit-animation: fade 0.5s linear;
+    font-size: 15px;
 }
 
-@keyframes fade {
-    0%,50% { opacity: 0 }
-    100% { opacity: 1 }
-  }
-.add-car-form.active
-{
-    display: block;
-}
-.add-car-btn
-{
-    border: 0;
-    transform: all 250ms ease-in-out;
-    -webkit-transform: all 250ms ease-in-out;
-    -moz-transform: all 250ms ease-in-out;
-    -ms-transform: all 250ms ease-in-out;
-    -o-transform: all 250ms ease-in-out;
-}
-.add-car-btn:active
-{
-    transform: scale(.85);
-    -webkit-transform: scale(.85);
-    -moz-transform: scale(.85);
-    -ms-transform: scale(.85);
-    -o-transform: scale(.85);
-    outline: none;
-}
+#addModal label,
+#addModal input,
+#addModal textarea,
+#addModal .modal-footer button,
 
-input.purok
-{
-    width: 50px;
-    
-}
-.first-form a , .first-form label , .first-form input , .first-form select , .first-form
+#editModal label,
+#editModal input,
+#editModal textarea,
+#editModal .modal-footer button,
+
+#viewModal thead,
+#viewModal tbody,
+#viewModal .modal-footer button,
+#viewModal span
+
 {
     font-size: 13px;
 }
-.second-form span , .second-form input , .second-form a , .second-form label , .second-form button
-{
-    font-size: 13px;
-}
-
-
-/* PROGRESS BAR */
-
-.progress-bar-container
-{
-    padding: 0 60px
-}
-.progressbar
-{
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0 40px 0;
-    counter-reset: step;
-}
-.progressbar::before , .progress
-{
-    content: "";
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    height: 4px;
-    width: 100%;
-    background-color: #dcdcdc;
-}
-
-.progress
-{
-    background-color: #042a91;
-    width: 0%;
-    transition: 0.5s;
-    -webkit-transition: 0.5s;
-    -moz-transition: 0.5s;
-    -ms-transition: 0.5s;
-    -o-transition: 0.5s;
-}
-.progress-step
-{
-    width: 35px;
-    height: 35px;
-    background-color: #dcdcdc;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 0;
-}
-.progress-step::before
-{
-    counter-increment: step;
-    content: counter(step);
-}
-.progress-step::after
-{
-    content: attr(data-title);
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    font-size: .80rem;
-    color: #666666;
-    text-align: center;
-    width: 150px;
-
-}
-
-.progress-step.active
-{
-    background-color: #042a91;
-    color: #fff;
-}
-
-
 
 
 /* ACCOUNT LINK */
 .account-link , .account-dropdowns
 {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 15px;
 
 }
@@ -476,12 +386,6 @@ input.purok
 
 /* DASHBOARD CONTENT */
 
-/* .dashboard-content
-{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-} */
 
 .row-card
 {
@@ -511,11 +415,6 @@ input.purok
 
 }
 
-.db-chart
-{
-    box-shadow: 5px 3px 15px -3px rgba(0, 0, 0, 0.25);
-
-}
 .for-border
 {
     box-shadow: 5px 3px 15px -3px rgba(0, 0, 0, 0.25);
@@ -523,17 +422,6 @@ input.purok
 
 }
 
-/* ALLVEHICLES TABLE */
-/* .allvehicles-table
-{
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 5px 3px 15px -3px rgba(0, 0, 0, 0.25);
-
-}.allvehicles-table table */
-/* {
-    overflow-y: scroll;
-} */
 
 .actions
 {
@@ -571,6 +459,28 @@ input.purok
 
 
 /* SETTINGS */
+#settings
+{
+    display: flex;
+    flex-direction: column;
+}
+
+#settings .settings-row-1
+{
+    display: flex;
+}
+
+#settings .settings-wrapper-1
+{
+    width: 70%;
+}
+#settings .settings-wrapper-2
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
 
 #settings .settings-row-1
 {
@@ -578,20 +488,31 @@ input.purok
     gap: 20px;
 }
 
-.settings-row-1 .settings-col-1
+#settings .settings-col-1
 {
-    flex-basis: 70%;
+    width: 100%;
 }
-.settings-row-1 .settings-col-2
+
+#settings .settings-col-1 .group
 {
-    flex-basis: 30%;
+    display: flex;
+    gap: 20px;
+}
+#settings .settings-col-2
+{
     text-align: center;
+}
+#settings .settings-col-2 #addphotoBtn
+{
+    width: 100;
 }
 
 #settings input , 
-#settings button
+#settings button,
+#settings label ,
+#settings .fa-eye
 {
-    font-size: 14px;
+    font-size: 13px;
 }
 
 #settings .addphoto img
@@ -604,10 +525,6 @@ input.purok
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
 }
-#settings .addphoto-btn
-{
-    width: 100%;
-}
 
 #settings .addphoto img
 {
@@ -615,12 +532,105 @@ input.purok
     width: 200px;
 }
 
+.settings-col-2 .img-button
+{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.settings-col-2 .db-user
+{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 12px;
+}
+
+@media(max-width: 1200px)
+{
+    #settings .settings-row-1
+    {
+        flex-direction: column-reverse;
+    }
+    #settings .settings-wrapper-1 ,
+    #settings .settings-wrapper-2
+    {
+        width: 100%;
+    }
+
+ 
+}
+
+@media(max-width: 600px)
+{
+    #settings .settings-col-1 .group
+    {
+        flex-direction: column;
+        gap: 0px;
+    }
+ 
+}
+
+
 /* ANNOUNCEMENT */
 .error-text
 {
     font-size: 14px;
 }
 
+.add-announcement
+{
+    font-size: 13px;
+}
+
+
+
+
+/* User Roles */
+
+.roles-modal
+{
+    display: flex;
+    gap: 20px;
+}
+
+.roles-modal .group
+{
+    width: 100%;
+}
+
+.roles-modal .group .input-field
+{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: 2px 0;
+    width: 100%;
+}
+
+.roles-modal .group .input-field label
+{
+    margin-bottom: 10px;
+}
+
+.roles-modal .group .input-field label,
+.roles-modal .group .input-field .text-danger
+{
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+.roles-modal .group .input-field input,
+.roles-modal .group .input-field select
+{
+    outline: none;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 6px 10px;
+    border: 1px solid #aaa;
+}
 /* BUTTON DATATABLE */
 
 #btn_datatable_excel,

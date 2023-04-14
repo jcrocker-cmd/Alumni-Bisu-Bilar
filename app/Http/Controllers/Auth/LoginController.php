@@ -41,7 +41,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if ($user->hasAnyRole(['Admin', 'Super-Admin'])) {
+        if ($user->hasAnyRole(['Super-Admin','Admin', 'ID Staff','Secretary'])) {
             return redirect('/dashboard');
         } elseif ($user->hasRole('Student')) {
             return redirect('/home');

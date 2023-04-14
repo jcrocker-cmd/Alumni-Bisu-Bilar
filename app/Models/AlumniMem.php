@@ -16,7 +16,13 @@ class AlumniMem extends Model
         'bday',
         'con_num',
         'fb',
+        'user_id',
         'signature',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

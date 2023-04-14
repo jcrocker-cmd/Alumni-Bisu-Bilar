@@ -117,6 +117,17 @@
 {
     font-size: 13px;
 }
+#login .remember_me
+{
+    font-size: 13px;
+}
+
+#login .group-2 .links
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
 #login .error-text
 {

@@ -1,6 +1,16 @@
 <section id="alumni-reissuance-sec">
     <div class="overlay">
         <div class="alumni-reissuance-wrapper">
+
+            @if(Auth::user()->reissueance_applied)
+                <main class="already_applied">
+                    <div class="content">
+                        <i class="fas fa-check-circle"></i>
+                        <span>You have already Re-issue you ID</span>
+                    </div>
+                </main>
+            @else
+
             <h2>Alumni ID Reissuance</h2>
             <p>Please write the information legibly</p>
             <hr style="">
@@ -10,7 +20,7 @@
                 <div class="group">
                     <div class="input-field">
                         <label for="message-text" class="">Name of Alumni : <span></span> </label>
-                        <input type="text" class="" id="name" placeholder="Please enter your name" name="name" value="{{ Auth::user()->name }}"></input>
+                        <input type="text" class="" id="name" placeholder="Please enter your name" name="name" value="{{ Auth::user()->last_name }}, {{ Auth::user()->first_name }} {{ Auth::user()->middle_name }}"></input>
                         <span class="error-text" id="error_name"></span>
                     </div>
 
@@ -58,5 +68,6 @@
             <button type="submit" id="submit_reissueance">SUBMIT</button>
         </form>
         </div>
+        @endif
     </div>
 </section>

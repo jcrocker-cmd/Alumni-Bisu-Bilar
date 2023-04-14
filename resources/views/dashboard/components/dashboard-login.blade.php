@@ -44,9 +44,23 @@
                     <button type="submit" class="nextBtn">
                         <span class="btnText">Log in</span>
                     </button>
+                    
 
-                    <p><a href="/signin">Forgot Password?</a></p>
+                    <div class="links">
 
+                        
+                        <div class="remember_me">
+                            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                            <label for="remember">
+                                {{ __('Remember Me') }}
+                            </label>
+                        </div>
+
+                        <p><a href="{{ route('password.request') }}">Forgot Password?</a></p>
+
+                    </div>
+                    
                 </div> 
             </div>
         </form>

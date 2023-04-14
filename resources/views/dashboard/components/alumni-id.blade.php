@@ -6,7 +6,7 @@
 
 
     <div class="pb-3 d-flex justify-content-between px-3 pt-4">
-    <h5 class="">Alumni ID</h5>
+    <h5 class="title">Alumni ID</h5>
     </div>
 
 <div class="table-responsive px-3 pb-3" style="width: 100%;">
@@ -27,9 +27,8 @@
  <tr>
   <td>
     <div class ="d-flex align-items-center">
-        <img src="{{ asset('/images/default-user.webp') }}" alt=""
-        style="height: 45px; width: 45px;" class="rounded-circle">
-    <div class="ms-3">
+
+    <div class="">
         <p class="fw-bold mb-1">{{ $item->name}}</p>
         <p class="text-muted mb-0">example@gmail.com</p>
 
@@ -46,7 +45,10 @@
   <td>{{ $item->course}}</td>
   <td>
   <a href="#" title="View" class="actions action-view" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#viewModal"><i class="fa fa-eye" aria-hidden="true"></i></a>
+  
+  @role(['Secretary','Super-Admin', 'Admin'])
   <a href="/delete_alumni_id/{{ $item->id }}" title="Delete" onclick="return confirm(&quot;Confirm delete?&quot;)" class="actions action-delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+  @endrole
 
   </td>
   </tr>

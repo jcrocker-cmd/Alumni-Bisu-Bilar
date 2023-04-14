@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AlumniMem;
+use App\Models\User;
 use Session;
 use DB;
 use Illuminate\Support\Facades\File;
@@ -95,6 +96,8 @@ class AlumniMemController extends Controller
     public function post_alumni_mem(Request $request)
     {
         $amem = $request->all();
+        // Add the user_id to the form data
+        $amem['user_id'] = $request->user()->id;
 
         if ($image = $request->file('signature')) {
             $destinationPath = 'images/alumni_mem/signature/';
@@ -104,8 +107,14 @@ class AlumniMemController extends Controller
         }
 
         AlumniMem::create($amem);
+
+        // Update the user's alumni_mem_applied column to true
+        $user = User::find($request->user()->id);
+        $user->alumni_mem_applied = true;
+        $user->save();
+
         Session::flash('success_reissuance','Succesful.');
-        return redirect('/home-reissuance')->with('amem', $amem)->withInput();
+        return redirect('/success-alumni-mem')->with('amem', $amem)->withInput();
     }
 
     public function db_alumni_mem_ajaxview($id)
@@ -130,5 +139,10 @@ class AlumniMemController extends Controller
         $delete_amem -> delete();
         Session::flash('status','You`ve successfully deleted a membership!');
         return redirect('/alumni-membership')->with('delete_amem', $delete_amem); 
+    }
+
+    public function success_alumni_mem()
+    {
+        return view('main.success-alumni-mem');
     }
 }

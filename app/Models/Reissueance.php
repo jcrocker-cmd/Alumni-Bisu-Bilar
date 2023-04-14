@@ -16,6 +16,12 @@ class Reissueance extends Model
         'degree',
         'reason',
         'or_no',
+        'user_id',
         'signature',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

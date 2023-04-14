@@ -24,7 +24,11 @@ return new class extends Migration
             $table->string('gender')->nullable();
             $table->string('address')->nullable();
             $table->string('course')->nullable();
+            $table->string('profile_picture')->nullable();
             $table->rememberToken();
+            $table->boolean('alumni_id_applied')->default(false);
+            $table->boolean('alumni_mem_applied')->default(false);
+            $table->boolean('reissueance_applied')->default(false);
             $table->timestamps();
         });
     }

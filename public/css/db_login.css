@@ -73,7 +73,7 @@
 
 
 
-#login .input-field input, select{
+#login .input-field input{
   outline: none;
   font-size: 14px;
   font-weight: 400;
@@ -118,6 +118,18 @@
 #login .group-2 p
 {
     font-size: 13px;
+}
+
+#login .remember_me
+{
+    font-size: 13px;
+}
+
+#login .group-2 .links
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 #login .error-text

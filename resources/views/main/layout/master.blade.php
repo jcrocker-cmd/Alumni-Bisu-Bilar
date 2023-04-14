@@ -8,7 +8,9 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Alumni - BISU</title>
+    @stack('styles')
     <!-- <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="/css/reset-pm.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/navbar.css">
@@ -22,6 +24,8 @@
     <link rel="stylesheet" href="/css/reissuance.css">
     <link rel="stylesheet" href="/css/about.css">
     <link rel="stylesheet" href="/css/preloader.css">
+    <link rel="stylesheet" href="/css/success.css">
+    <link rel="stylesheet" href="/css/record.css">
 
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -30,6 +34,8 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+
 
 </head>
 <body>

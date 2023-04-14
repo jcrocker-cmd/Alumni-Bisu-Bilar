@@ -59,9 +59,9 @@
                                     <label>Gender</label>
                                     <select name="gender" value="{{old('gender')}}">
                                         <option disabled selected>Select gender</option>
-                                        <option>Male</option>
-                                        <option>Female</option>
-                                        <option>Others</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Others">Others</option>
                                     </select>
                                     <span class="error-text">@error('gender') {{$message}} @enderror</span>
                                 </div>

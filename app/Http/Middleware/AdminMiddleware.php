@@ -17,7 +17,10 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {
 
-        if (auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Super-Admin')) {
+        if ( auth()->user()->hasRole('Super-Admin') || 
+             auth()->user()->hasRole('Admin') ||
+             auth()->user()->hasRole('ID Staff') ||
+             auth()->user()->hasRole('Secretary')) {
             return $next($request);
         }
 

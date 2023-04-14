@@ -24,7 +24,7 @@ class AdmininfoSeeder extends Seeder
             'first_name' => 'Johnny Boy',
             'middle_name' => 'Johnny Boy',
             'last_name' => 'Johnny Boy',
-            'email' => 'sample@gmail.com',
+            'email' => 'narbajajc@gmail.com',
             'password' => Hash::make('aug151973'),
             'address' => 'Bilar',
             // 'address' => 'Bilar',

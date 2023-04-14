@@ -1,60 +1,145 @@
-#home-account
+/* SETTINGS */
+
+.settings-wrapper-1,
+.settings-wrapper,
+.settings-wrapper-2
 {
-    padding: 70px 80px;
-    background: rgb(4, 85, 151);
-    width: 100%;
-    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+
+
+}
+#settings
+{
+    display: flex;
+    flex-direction: column;
     margin-top: 70px;
+    background-color: #0f68c1;
+    font-family: 'Poppins', sans-serif;
+    padding: 70px 80px;
 }
 
-.home-account-wrapper
+#settings .alert
 {
-    background-color: #fff;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+#settings .settings-row-1
+{
+    display: flex;
+}
+
+#settings .settings-wrapper-1
+{
+    width: 70%;
+}
+#settings .settings-wrapper-2
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+#settings .settings-row-1
+{
+    display: flex;
+    gap: 20px;
+}
+
+#settings .settings-col-1
+{
     width: 100%;
-    padding: 20px;
 }
 
-.home-account-wrapper h1
+#settings .settings-col-1 .group
 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 30px;
+    display: flex;
+    gap: 20px;
 }
-
-.home-account-wrapper h4
+#settings .settings-col-2
 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    margin-bottom: 10px
+    text-align: center;
 }
-
-.home-account-wrapper .fields label
+#settings .settings-col-2 #addphotoBtn
 {
-    font-family: 'Poppins', sans-serif;
+    width: 100;
 }
 
-.home-account-wrapper .input-field input, 
-select{
-    outline: none;
-    font-size: 14px;
-    font-weight: 400;
-    color: #333;
-    border-radius: 5px;
-    border: 1px solid #aaa;
-    padding: 0 15px;
-    height: 42px;
-    margin: 8px 0;
-}
-
-.home-account-wrapper button[type="submit"]
+#settings input 
 {
-    padding: 10px 20px;
-    font-size: 15px;
-    background: rgb(3, 134, 29);
-    color: #fff;
-    font-family: 'Poppins', sans-serif;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    margin-top: 5px;
-    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#settings input , 
+#settings button,
+#settings label ,
+#settings .fa-eye
+{
+    font-size: 13px;
+}
+
+#settings .addphoto img
+{
+    border: #000 1px solid;
+    box-shadow: 5px 3px 15px -3px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+#settings .addphoto img
+{
+    height: 200px;
+    width: 200px;
+}
+
+.settings-col-2 .img-button
+{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.settings-col-2 .db-user
+{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 12px;
+}
+
+@media(max-width: 1200px)
+{
+    #settings .settings-row-1
+    {
+        flex-direction: column-reverse;
+    }
+    #settings .settings-wrapper-1 ,
+    #settings .settings-wrapper-2
+    {
+        width: 100%;
+    }
+
+ 
+}
+
+@media(max-width: 600px)
+{
+    #settings .settings-col-1 .group
+    {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    #settings
+    {
+        padding: 20px 20px;
+    }
+ 
 }
