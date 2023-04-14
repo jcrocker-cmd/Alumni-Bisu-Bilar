@@ -8,4 +8,5 @@
 
 @push('scripts')
     <script src="/js/validation-alumni-mem.js"></script>
+    <script src="/js/show-hide-payment.js"></script>
 @endpush

@@ -1,3 +1,4 @@
+@role(['Secretary','Super-Admin', 'Admin'])
 <section class="reissueance-section">
 
 @if (session('status'))
@@ -32,10 +33,7 @@
 @foreach($reissueance as $item)
  <tr>
   <td>
-    <div class ="d-flex align-items-center">
-        <img src="{{ asset('/images/default-user.webp') }}" alt=""
-        style="height: 45px; width: 45px;" class="rounded-circle">
-    <div class="ms-3">
+    <div class="">
         <p class="fw-bold mb-1">{{ $item->name}}</p>
         <p class="text-muted mb-0">example@gmail.com</p>
 
@@ -147,3 +145,4 @@
     </div>
   </div>
 </div>
+@endrole

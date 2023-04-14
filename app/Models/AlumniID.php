@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class AlumniID extends Model
 {
@@ -17,7 +18,13 @@ class AlumniID extends Model
         'address',
         'bday',
         'course',
+        'user_id',
         'signature',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

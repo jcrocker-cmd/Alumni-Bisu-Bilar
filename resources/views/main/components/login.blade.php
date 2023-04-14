@@ -16,7 +16,7 @@
 
          <!-- <h6 class="status" id="myAlert" style="font-size: 12px;">sdfsdfsdfsdf</h6> -->
 
-        <form action="{{url('/logincheck')}}" method="post">
+        <form action="{{ route('login') }}" method="post">
         @csrf
             <div class="form first">
                 <div class="details personal">
@@ -45,8 +45,21 @@
                     <button type="submit" class="nextBtn">
                         <span class="btnText">Log in</span>
                     </button>
+
+                    <div class="links">
+
+
+                    <div class="remember_me">
+                        <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                        <label for="remember">
+                            {{ __('Remember Me') }}
+                        </label>
+                    </div>
                     
+                    <p><a href="{{ route('password.request') }}">Forgot Password?</a></p>
                     <p>Not a Member? <a href="/signin">Signin Here</a></p>
+                    </div>
 
                 </div> 
             </div>

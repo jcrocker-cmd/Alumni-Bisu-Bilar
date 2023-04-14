@@ -1,38 +1,46 @@
 <div class="dashboard-content px-3 pt-4">
-        <h2 class="fs-5">Welcome Back <span>John</span> (Administrator)</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptas iste nemo quasi aperiam ducimus sed culpa, in, praesentium iure non aliquam veniam neque! In molestias eveniet laudantium eius facere!</p>
+        <h2>Hi!  <span><strong>{{ Auth::user()->first_name }} {{ Auth::user()->middle_name }}, {{ Auth::user()->last_name }}</strong></span> ({{ Auth::user()->roles->pluck('name')->implode(', ') }})</h2>
+        <p class="text-par">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore voluptas iste nemo quasi aperiam ducimus sed culpa, in, praesentium iure non aliquam veniam neque! In molestias eveniet laudantium eius facere!</p>
       
       <div class="row pt-2 d-flex justify-content-between" id="dashboard-row">
       
         <div class="dashboard-tab-wrapper">
 
-        <a href="http://" class="text-decoration-none">
+        @role(['ID Staff','Super-Admin', 'Admin'])
+        <a href="/alumni-membership" class="text-decoration-none">
           <div class="bg-dark text-white dashboard-tab">
             <p>Alumni Members</p>
-            <p>100</p>
+            <p>{{ $numberOfAlumniMem }}</p>
           </div>
         </a>
+        @endrole
 
-        <a href="http://" class="text-decoration-none">
+        @role(['Secretary','Super-Admin', 'Admin'])
+        <a href="alumni-id" class="text-decoration-none">
           <div class="bg-dark text-white dashboard-tab">
             <p>Alumni ID Production</p>
-            <p>100</p>
+            <p>{{ $numberOfAlumniID }}</p>
           </div>
         </a>
+        @endrole
 
-        <a href="http://" class="text-decoration-none">
+        @role(['ID Staff','Super-Admin', 'Admin','Secretary'])
+        <a href="/record-of-alumni" class="text-decoration-none">
           <div class="bg-dark text-white dashboard-tab">
             <p>Record for Information of Alumni Students</p>
-            <p>{{ $numberOfAlumni }}</p>
+            <p>{{ $numberOfStudents }}</p>
           </div>
         </a>
+        @endrole
 
-        <a href="http://" class="text-decoration-none">
+        @role(['Super-Admin', 'Admin'])
+        <a href="/announcement" class="text-decoration-none">
           <div class="bg-dark text-white dashboard-tab">
             <p>Announcements</p>
             <p>{{ $numberOfAnnouncement }}</p>
           </div>
         </a>
+        @endrole
 
         </div>
 
@@ -51,7 +59,7 @@
     </div>
 
     <div class="db-bottom-col2" >
-      <table class="table table-hover align-middle mb-0 bg-light">
+      <table class="table table-hover align-middle mb-0 bg-light" id="dashboard-content-table">
         <thead class="bg-light ">
           <tr>
             <th scope="col">New Customers</th>

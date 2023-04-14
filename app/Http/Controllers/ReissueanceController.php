@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reissueance;
+use App\Models\User;
 use Session;
 use DB;
 use Illuminate\Support\Facades\File;
@@ -19,6 +20,10 @@ class ReissueanceController extends Controller
     {
         $reissuance = $request->all();
 
+        // Add the user_id to the form data
+        $reissuance['user_id'] = $request->user()->id;
+
+
         if ($image = $request->file('signature')) {
             $destinationPath = 'images/reissueance/signature/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -26,8 +31,14 @@ class ReissueanceController extends Controller
             $reissuance['signature'] = "$profileImage";
         }
         Reissueance::create($reissuance);
+
+        // Update the user's alumni_id_applied column to true
+        $user = User::find($request->user()->id);
+        $user->reissueance_applied = true;
+        $user->save();
+
         Session::flash('success_reissuance','Succesful.');
-        return redirect('/home-reissuance')->with('reissuance', $reissuance)->withInput();
+        return redirect('/success-reissueance')->with('reissuance', $reissuance)->withInput();
     }
 
     public function db_route_reissuance()
@@ -117,5 +128,10 @@ class ReissueanceController extends Controller
         $delete_reissueance -> delete();
         Session::flash('status','You`ve successfully deleted a reissueance!');
         return redirect('/reissueance')->with('delete_reissueance', $delete_reissueance); 
+    }
+
+    public function success_reissueance()
+    {
+        return view('main.success-reissueance');
     }
 }

@@ -32,26 +32,40 @@
           <img src="/images/LOGO-3.png" alt="" srcset="" class="logox">
         </div>
       </div> -->
-      <div class="user-profile" onclick="menuToggle();"> 
-        <img src="/images/default-user.webp" height="42" width="42" style="object-fit: cover;" class="user_icon">
+      <div class="user-profile" onclick="menuToggle();">
+
+        @if(Auth::user()->profile_picture)
+            <img src="{{ asset('images/user_profile/' . Auth::user()->profile_picture) }}" class="user_icon" height="42" width="42" style="object-fit: cover;">
+        @else
+            <img src="/images/default-user.webp" class="user_icon" height="42" width="42" style="object-fit: cover;">
+        @endif
       </div>
     </div>
 
     <div class="pro-menu-wrap">
         <div class="pro-menu">
             <div class="user-info">
-                    <div><h5>John Christian Narbaja</h5></div>
-                    <div><span>narbajajc</span></div>
+
+            @if (Auth::check())
+              <div><h5>{{ Auth::user()->first_name }} {{ Auth::user()->middle_name }}, {{ Auth::user()->last_name }}</h5></div>
+              <div><span>{{ Auth::user()->email }}</span></div>
+            @endif
+                    
             </div>
             <hr>
 
-        <a href="#" class="pro-menu-link">
-            <img src="images/profile/setting.png">
-            <p>My Settings</p>
+        <a href="/home-account" class="pro-menu-link">
+            <!-- <img src="/images/profile/setting.png"> -->
+            <span>Account Settings</span>
         </a>
-        <a href="/logout" class="pro-menu-link">
-            <img src="images/profile/logout.png">
-            <p>Logout</p>
+        
+        <a href="/records-of-students" class="pro-menu-link">
+            <!-- <img src="/images/profile/setting.png"> -->
+            <span>My Records</span>
+        </a>
+        <a href="/clientlogout" class="pro-menu-link">
+            <!-- <img src="/images/profile/logout.png"> -->
+            <span>Logout</span>
         </a>
 
 

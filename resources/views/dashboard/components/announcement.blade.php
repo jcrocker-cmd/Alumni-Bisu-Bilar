@@ -1,3 +1,4 @@
+@role(['Super-Admin', 'Admin'])
 <section class="announcement-section">
 
 @if (session('status'))
@@ -6,8 +7,8 @@
 
 
     <div class="pb-3 d-flex justify-content-between px-3 pt-4">
-    <h5 class="">Announcements</h5>
-    <a href="#" title="Add Announcement"><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fa fa-plus" aria-hidden="true"></i> Add Announcements</button></a>
+    <h5 class="title">Announcements</h5>
+    <a href="#" title="Add Announcement"><button class="btn btn-success add-announcement" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fa fa-plus" aria-hidden="true"></i> Add Announcements</button></a>
     </div>
 
 <div class="table-responsive px-3 pb-3">
@@ -29,11 +30,13 @@
   <td>{{ $item->description}}</td>
   <td>{{ date('F j, Y', strtotime($item->date)) }}</td>
   <td>
+
+  
   <a href="#" title="View" class="actions action-view" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#viewModal"><i class="fa fa-eye" aria-hidden="true"></i></a>
   <a href="#" title="Edit" class="actions action-edit" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa fa-pencil" aria-hidden="true"></i></a>
   <a href="/delete_announcement/{{ $item->id }}" title="Delete" onclick="return confirm(&quot;Confirm delete?&quot;)" class="actions action-delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
-  </td>
+  </td>-
   </tr>
 
 @endforeach
@@ -183,3 +186,4 @@
     </div>
   </div>
 </div>
+@endrole

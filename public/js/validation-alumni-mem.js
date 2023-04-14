@@ -10,6 +10,10 @@ var input3 = document.getElementById("bday");
 var input4 = document.getElementById("con_num");
 var input5  = document.getElementById("fb");
 var input6  = document.getElementById("addphotoBtn");
+var input7  = document.getElementById("ref");
+
+var radio1 = document.getElementById("opt1");
+var radio2 = document.getElementById("opt2");
 
 
 // Get the error message elements
@@ -18,6 +22,8 @@ var error_add = document.getElementById("error_add");
 var error_bday = document.getElementById("error_bday");
 var error_num = document.getElementById("error_num");
 var error_fb = document.getElementById("error_fb");
+var error_radio = document.getElementById("errorradio");
+var error_ref = document.getElementById("error_ref");
 
 
 var error_sig = document.getElementById("error_sig");
@@ -66,6 +72,19 @@ input6.addEventListener("change", function() {
     }
 });
 
+input7.addEventListener("keyup", function() {
+  error_ref.innerHTML = ""; // reset the error message
+  input7.style.borderColor = "";
+});
+
+radio1.addEventListener("click", function(){
+  error_radio.innerHTML = "";
+});
+radio2.addEventListener("click", function(){
+  error_radio.innerHTML = "";
+});
+
+
  // validate the input fields
  if (input1.value === "") {
     error_name.innerHTML = "<span style='margin-bottom: 0px; margin-top: 5px;' >Name field is required.</span>";
@@ -103,6 +122,16 @@ input6.addEventListener("change", function() {
     }
   }
 
+  if (!radio1.checked && !radio2.checked) {
+    error_radio.innerHTML = "<span class='err-text'>You must select one option to continue.</span>";
+  }
+
+  if(input7.value === ""){
+  error_ref.innerHTML = "<span style='margin-bottom: 0px; margin-top: 5px;' >Please enter reference.</span>";
+  input7.style.borderColor = "red";
+  }
+
+
   // Function to validate image size
   function validateImageSize(input) {
     if (input.files && input.files[0]) { // check if input has files and at least one file is selected
@@ -129,7 +158,7 @@ input6.addEventListener("change", function() {
   
   const submit_btn = document.getElementById("submit_membership");
   submit_btn.onclick = function(){
-    if (error_name.innerHTML === "" && error_add.innerHTML === "" && error_bday.innerHTML === "" && error_num.innerHTML === "" && error_fb.innerHTML === "" && error_sig.innerHTML === "" ) {
+    if (error_name.innerHTML === "" && error_add.innerHTML === "" && error_bday.innerHTML === "" && error_num.innerHTML === "" && error_fb.innerHTML === "" && error_sig.innerHTML === "" && error_radio.innerHTML === "" && error_ref.innerHTML === "" ) {
         // this.innerHTML = "<div class='loader'></div>";
         form.submit();
         submit_btn.style.backgroundColor = "#89e5ba";

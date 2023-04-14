@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('bday')->nullable();
             $table->string('course')->nullable();
+            $table->string('user_id')->nullable();
             $table->string('signature')->nullable();
             $table->timestamps();
         });

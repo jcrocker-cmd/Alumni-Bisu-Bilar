@@ -45,7 +45,8 @@
 
 .alumni-id-wrapper hr
 {
-    border-top: dashed 3px;
+    border-top: dotted 2px;
+    color: #8f8282;
     margin-bottom: 15px;
 }
 
@@ -89,7 +90,102 @@
     padding: 0 15px;
     height: 38px;
     margin: 8px 0;
+    outline: none;
 }
+
+
+/* PAYMENT */
+
+.pay_med_wrapper
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pay_med_title
+{
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.alumni-id-wrapper .fields .pay_med
+{
+    display: flex;
+}
+
+.alumni-id-wrapper .fields .radio-field
+{
+    display: flex;
+    font-size: 14px;
+    gap: 5px;
+
+}
+
+
+
+.alumni-id-wrapper .fields .radio-field input,
+.alumni-id-wrapper .fields .radio-field label
+{
+    font-family: 'Poppins', sans-serif;
+}
+
+.pay_med_content
+{
+    margin-top: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+.pay_med_content #radio1-content
+{
+    margin-top: 5px;
+    font-family: 'Poppins', sans-serif;
+    color: #148b04;
+    display: flex;
+    flex-direction: column;
+}
+
+.pay_med_content #radio2-content
+{
+    margin-top: 5px;
+    font-family: 'Poppins', sans-serif;
+    color: #148b04;
+}
+
+.pay_med_content #radio2-content img
+{
+    width: 200px;
+}
+
+.pay_med_content #radio2-content .pay_med_text
+{
+    display: flex;
+}
+
+.pay_med_content #radio2-content .pay_med_input
+{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pay_med_content #radio2-content .pay_med_input input
+{
+    padding:  0px 15px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    height: 38px;
+    width: 300px;
+}
+
 
 .alumni-id-wrapper button[type="submit"]
 {
@@ -125,7 +221,7 @@
     /* margin-top: 5px; */
 }
 
-.alumni-id-wrapper .error-text
+.error-text
 {
     font-size: 13px;
     font-style: normal;
@@ -150,6 +246,11 @@
     .alumni-id-wrapper .addphoto img
     {
         height: 200px;
+        width: 100%;
+    }
+
+    .pay_med_content #radio2-content .pay_med_input input
+    {
         width: 100%;
     }
 

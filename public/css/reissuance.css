@@ -69,6 +69,7 @@
     flex-direction: column;
     margin: 2px 0;
     width: 100%;
+    outline: none;
 }
 
 .alumni-reissuance-wrapper .fields .input-field label{

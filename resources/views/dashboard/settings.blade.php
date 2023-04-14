@@ -15,13 +15,30 @@
     
     
     <ul class ="list-unstyled px-2 ">
+      @role(['ID Staff','Super-Admin', 'Admin','Secretary'])
       <li class=""><a href="/dashboard" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-home" style="margin-right: 10px;"></i>   Dashboard</a></li>
-      <li class=""><a href="/alumni-membership" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-list" style="margin-right: 12px;"></i>   Alumni Membership <span style="margin-left: 32px;">Report</span></a></li>
-      <li class=""><a href="/alumni-id" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-portrait" style="margin-right: 15px;"></i>   Alumni ID Production <span style="margin-left: 32px;">Report</span></a></li>
-      <li class=""><a href="/rented" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-book-alt" style="margin-right: 13px;"></i>   Record for the Information <span style="margin-left: 30px;">of Alumni Students</span></a></li>
+      @endrole
+      
+      @role(['ID Staff','Super-Admin', 'Admin'])
+      <li class=""><a href="/alumni-membership" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-list" style="margin-right: 12px;"></i>   Alumni Membership Report</a></li>
+      @endrole
+
+      @role(['Secretary','Super-Admin', 'Admin'])
+      <li class=""><a href="/alumni-id" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-portrait" style="margin-right: 15px;"></i>   Alumni ID Production Report</span></a></li>
+      @endrole
+
+      @role(['ID Staff','Super-Admin', 'Admin','Secretary'])
+      <li class=""><a href="/record-of-alumni" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-book-alt" style="margin-right: 13px;"></i>   Record for the Information <span style="margin-left: 30px;">of Alumni Students</span></a></li>
+      @endrole
+      
+      @role(['Secretary','Super-Admin', 'Admin'])
       <li class=""><a href="/reissueance" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-portrait" style="margin-right: 15px;"></i>   Reissuance of ID</a></li>
+      @endrole
+
+      @role(['Super-Admin', 'Admin'])
       <li class=""><a href="/announcement" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-bullhorn" style="margin-right: 9px;"></i>   Announcement</a></li>
-      <li class=""><a href="/users" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-user" style="margin-right: 14px;"></i>   Users</a></li>
+      <li class=""><a href="/user-roles" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-user" style="margin-right: 14px;"></i>   Users Roles</a></li>
+      @endrole
     </ul>
 
     <hr class="hr-1 mx-2">
@@ -75,12 +92,14 @@
       </button>
 
           <div class="dropdown">
-          <img src="" alt="image"
-            style="height: 35px; width: 35px; object-fit: cover; border: 0.5px solid #000;" 
-            class="rounded-circle">
+            @if(Auth::user()->profile_picture)
+                <img src="{{ asset('images/user_profile/' . Auth::user()->profile_picture) }}" style="height: 35px; width: 35px; object-fit: cover; border: 0.5px solid #000;" class="rounded-circle">
+            @else
+                <img src="images/LOGO.png" style="height: 35px; width: 35px; object-fit: cover; border: 0.5px solid #000;" class="rounded-circle">
+            @endif
 
             <button class="btn btn-link dropdown-toggle account-link text-decoration-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            John Doe
+            {{ Auth::user()->first_name }} {{ Auth::user()->middle_name }} {{ Auth::user()->last_name }}
             </button>
             
               <ul class="dropdown-menu dropdown-menu-lg-end account-dropdowns" aria-labelledby="dropdownMenuButton1">

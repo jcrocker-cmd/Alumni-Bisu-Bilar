@@ -211,7 +211,7 @@ nav{
 }
 .user-info span
 {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .pro-menu hr
@@ -229,6 +229,8 @@ nav{
     text-decoration: none;
     color: #525252;
     margin: 12px 0;
+    font-size: 13px;
+
 }
 .pro-menu-link p
 {
