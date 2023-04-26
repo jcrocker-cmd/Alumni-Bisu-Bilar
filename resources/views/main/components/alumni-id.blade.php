@@ -1,14 +1,14 @@
 <section id="alumni-id-sec">
     <div class="overlay">
         <div class="alumni-id-wrapper">
-            @if(Auth::user()->alumni_id_applied)
+            {{-- @if(Auth::user()->alumni_id_applied)
                 <main class="already_applied">
                     <div class="content">
                         <i class="fas fa-check-circle"></i>
                         <span>You have already applied for an Alumni ID</span>
                     </div>
                 </main>
-            @else
+            @else --}}
 
             <h2>Application for Alumni ID</h2>
             <p>Please write the information legibly</p>
@@ -136,6 +136,6 @@
             <button type="submit" id="submit_alumni_id">SUBMIT</button>
             </form>
         </div>
-        @endif
+        {{-- @endif --}}
     </div>
 </section>

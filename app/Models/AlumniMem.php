@@ -17,6 +17,8 @@ class AlumniMem extends Model
         'con_num',
         'fb',
         'user_id',
+        'pay_med',
+        'status',
         'signature',
     ];
 

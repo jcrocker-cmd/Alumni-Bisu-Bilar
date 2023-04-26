@@ -19,6 +19,8 @@ class AlumniID extends Model
         'bday',
         'course',
         'user_id',
+        'pay_med',
+        'status',
         'signature',
     ];
 

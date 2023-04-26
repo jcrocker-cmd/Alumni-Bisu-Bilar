@@ -115,7 +115,7 @@
 .modal-dialog label,
 .modal-dialog input,
 .modal-dialog textarea,
-.modal-dialog .modal-footer button
+.modal-footer button,
 .modal-content span
 
 {
@@ -136,10 +136,98 @@
 }
 
 
+.editPhoto img
+{
+    box-shadow: 5px 3px 15px -3px rgba(0, 0, 0, 0.25);
+    height: 200px;
+    width: 300px;
+    border: 1px solid #000;
+    margin-top: 10px;
+}
+
+
+
+
+/* EDIT MODAL */
+
+.modal-body
+{
+    display: flex;
+    gap: 20px;
+}
+
+.modal-body .group
+{
+    width: 100%;
+}
+
+.modal-body .group .input-field
+{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: 2px 0;
+    width: 100%;
+}
+
+.modal-body .group .input-field label
+{
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.modal-body .group .input-field label,
+.modal-body .group .input-field .text-danger ,
+.img-button button,
+.editPhoto p
+{
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+}
+
+.modal-body .group .input-field input,
+.modal-body .group .input-field select
+{
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    font-size: 13px;
+    border-radius: 5px;
+    padding: 6px 10px;
+    border: 1px solid #aaa;
+}
+
+
 @media (max-width: 600px) {
     #record_section
     {
         padding: 70px 20px;
 
     }
+}
+
+@media (max-width: 1000px) {
+
+
+    .modal-body
+    {
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+
+    .modal-body
+    {
+        flex-direction: column;
+    }
+    
+    .editPhoto img
+    {
+        height: 200px;
+        width: 100%;
+    }
+
 }

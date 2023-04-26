@@ -134,4 +134,47 @@ class ReissueanceController extends Controller
     {
         return view('main.success-reissueance');
     }
+
+    public function db_reissueance_ajaxedit($id)
+    {
+        $reissueance = Reissueance::find($id);
+        $image_url = asset('images/reissueance/signature/' . $reissueance->signature);
+        return response()->json([
+            'status' => 200,
+            'reissueance' => $reissueance,
+            'image_url' => $image_url,
+        ]);
+    }
+
+    public function db_update_reissueance(Request $request)
+    {
+        $id = $request->input('r_id');
+        $reissueance = Reissueance::find($id);
+        $reissueance->name = $request->input('name');
+        $reissueance->id_no = $request->input('id_no');
+        $reissueance->degree = $request->input('degree');
+        $reissueance->reason = $request->input('reason');
+        $reissueance->or_no = $request->input('or_no');
+    
+        if ($request->hasFile('signature')) {
+            // Delete the old signature image if it exists
+            $oldImage = $reissueance->signature;
+            if (!empty($oldImage) && file_exists(public_path('images/reissueance/signature/'.$oldImage))) {
+                unlink(public_path('images/reissueance/signature/'.$oldImage));
+            }
+    
+            // Save the new signature image
+            $image = $request->file('signature');
+            $destinationPath = 'images/reissueance/signature/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $reissueance->signature = $profileImage;
+        }
+    
+        $reissueance->save();
+    
+        Session::flash('status','Succesfully Edited.');
+        return redirect('/reissueance')->with('reissueance', $reissueance)->withInput();
+    }
+
 }
