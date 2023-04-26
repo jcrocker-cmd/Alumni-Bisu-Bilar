@@ -199,6 +199,10 @@ hr.hr-2
 }
 
 
+
+
+
+
 /* ACCOUNT LINK */
 .account-link , .account-dropdowns
 {
@@ -616,7 +620,9 @@ hr.hr-2
 }
 
 .roles-modal .group .input-field label,
-.roles-modal .group .input-field .text-danger
+.roles-modal .group .input-field .text-danger,
+.img-button button,
+.editPhoto p
 {
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
@@ -630,6 +636,47 @@ hr.hr-2
     border-radius: 5px;
     padding: 6px 10px;
     border: 1px solid #aaa;
+}
+
+.editPhoto img
+{
+    box-shadow: 5px 3px 15px -3px rgba(0, 0, 0, 0.25);
+    height: 200px;
+    width: 300px;
+    border: 1px solid #000;
+    margin-top: 10px;
+}
+
+@media (max-width: 1000px) {
+
+
+    .roles-modal
+    {
+        flex-direction: column;
+        gap: 0px;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+
+    .roles-modal
+    {
+        flex-direction: column;
+    }
+    
+}
+
+@media (max-width: 400px) {
+
+    
+    .editPhoto img
+    {
+        height: 200px;
+        width: 100%;
+    }
+
 }
 /* BUTTON DATATABLE */
 

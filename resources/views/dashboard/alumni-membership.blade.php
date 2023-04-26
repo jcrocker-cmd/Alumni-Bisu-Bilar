@@ -147,4 +147,6 @@
     <script src="/js/chart-alumni-mem.js"></script>
 
     <script src="/js/ajax-alumni-mem-view.js"></script>
+    <script src="/js/ajax-alumni-mem-edit-db.js"></script>
+
 @endpush

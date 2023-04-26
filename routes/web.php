@@ -44,11 +44,20 @@ Route::middleware(['preventBackHistory'])->group(function () {
         Route::get('/alumni-membership', [AlumniMemController::class,'db_route_alumni_mem']);
         Route::get('/alumni_mem/{id}/ajaxview', [AlumniMemController::class, 'db_alumni_mem_ajaxview']);
         Route::get('/delete_alumni_mem/{id}', [AlumniMemController::class, 'db_delete_alumni_mem']);
+        Route::post('/confirm_amem/{id}', [AlumniMemController::class, 'confirmAmem']);
+        Route::get('/alumni-membership/{id}/ajaxedit', [AlumniMemController::class, 'db_alumni_mem_ajaxedit']);
+        Route::put('/update-student-amem-db', [AlumniMemController::class,'db_update_alumni_mem']);
+
 
 
         Route::get('/alumni-id', [AlumniIDController::class,'db_route_alumni_id']);
         Route::get('/alumni_id/{id}/ajaxview', [AlumniIDController::class, 'db_alumni_id_ajaxview']);
         Route::get('/delete_alumni_id/{id}', [AlumniIDController::class, 'db_delete_alumni_id']);
+        Route::post('/confirm_aid/{id}', [AlumniIDController::class, 'confirmAid']);
+        Route::get('/alumni_id/{id}/ajaxedit', [AlumniIDController::class, 'db_alumni_id_ajaxedit']);
+        Route::put('/update-student-aid-db', [AlumniIDController::class,'db_update_alumni_id']);
+
+
 
         Route::get('/user-roles', [AdminController::class,'route_user_role']);
         Route::post('/create-user-role', [AdminController::class,'create_user_role']);
@@ -70,6 +79,8 @@ Route::middleware(['preventBackHistory'])->group(function () {
         Route::get('/reissueance', [ReissueanceController::class,'db_route_reissuance']);
         Route::get('/reissueance/{id}/ajaxview', [ReissueanceController::class, 'db_reissueance_ajaxview']);
         Route::get('/delete_reissueance/{id}', [ReissueanceController::class, 'db_delete_reissueance']);
+        Route::get('/reissueance/{id}/ajaxedit', [ReissueanceController::class, 'db_reissueance_ajaxedit']);
+        Route::put('/update-student-reissueance-db', [ReissueanceController::class,'db_update_reissueance']);
 
 
         Route::get('/announcement', [AnnouncementController::class,'route_announcement']);
@@ -150,7 +161,22 @@ Route::middleware(['preventBackHistory'])->group(function () {
 
         
         Route::get('/records-of-students', [StudentController::class,'route_student_record']);
-        Route::get('/records-of-students-aid/{id}/ajaxview', [StudentController::class, 'student_alumni_id_ajaxview']);
+        Route::get('/records-of-students/{id}/ajaxview_aid', [StudentController::class, 'student_alumni_id_ajaxview']);
+        Route::get('/records-of-students/{id}/ajaxview_amem', [StudentController::class, 'student_alumni_mem_ajaxview']);
+        Route::get('/records-of-students/{id}/ajaxview_reissue', [StudentController::class, 'student_reissueance_ajaxview']);
+
+
+        Route::get('/records-of-students/{id}/ajaxedit_aid', [StudentController::class, 'student_alumni_id_ajaxview']);
+        Route::get('/records-of-students/{id}/ajaxedit_amem', [StudentController::class, 'student_alumni_mem_ajaxview']);
+        Route::get('/records-of-students/{id}/ajaxedit_reissue', [StudentController::class, 'student_reissueance_ajaxedit']);
+        
+        Route::put('/update-student-aid', [StudentController::class,'update_alumni_id_student']);
+        Route::put('/update-student-amem', [StudentController::class,'update_alumni_mem_student']);
+        Route::put('/update-student-reissueance', [StudentController::class,'update_reissueance_student']);
+
+
+        
+
 
 
         Route::get('/home', [ClientController::class,'route_home'])->name('client');

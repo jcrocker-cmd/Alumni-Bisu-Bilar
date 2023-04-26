@@ -93,29 +93,42 @@ class AlumniMemController extends Controller
         //     // rest of the code...
         // }
 
-    public function post_alumni_mem(Request $request)
-    {
-        $amem = $request->all();
-        // Add the user_id to the form data
-        $amem['user_id'] = $request->user()->id;
-
-        if ($image = $request->file('signature')) {
-            $destinationPath = 'images/alumni_mem/signature/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $amem['signature'] = "$profileImage";
+        public function post_alumni_mem(Request $request)
+        {
+            $amem = $request->all();
+            // Add the user_id to the form data
+            $amem['user_id'] = $request->user()->id;
+        
+            if ($image = $request->file('signature')) {
+                $destinationPath = 'images/alumni_mem/signature/';
+                $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+                $image->move($destinationPath, $profileImage);
+                $amem['signature'] = "$profileImage";
+            }
+        
+            // Determine the payment method selected by the client
+            $pay_med = $request->input('pay_med');
+        
+            // Update the status of the alumni application based on the payment method
+            if ($pay_med === 'Pay Cash') {
+                $amem['status'] = 'In Progress';
+            } else if ($pay_med === 'Pay G-Cash') {
+                $amem['status'] = 'Paid';
+            }
+        
+            AlumniMem::create($amem);
+        
+            // Update the user's alumni_mem_applied column to true
+            $user = User::find($request->user()->id);
+            $user->alumni_mem_applied = true;
+            $user->save();
+        
+            Session::flash('success_reissuance','Succesful.');
+            return redirect('/success-alumni-mem')->with('amem', $amem)->withInput();
         }
+        
 
-        AlumniMem::create($amem);
 
-        // Update the user's alumni_mem_applied column to true
-        $user = User::find($request->user()->id);
-        $user->alumni_mem_applied = true;
-        $user->save();
-
-        Session::flash('success_reissuance','Succesful.');
-        return redirect('/success-alumni-mem')->with('amem', $amem)->withInput();
-    }
 
     public function db_alumni_mem_ajaxview($id)
     {
@@ -144,5 +157,61 @@ class AlumniMemController extends Controller
     public function success_alumni_mem()
     {
         return view('main.success-alumni-mem');
+    }
+
+    public function confirmAmem($id)
+    {
+        $amem = AlumniMem::find($id);
+
+        if ($amem) {
+            $amem->status = 'Paid';
+            $amem->save();
+
+            return redirect()->back()->with('status', 'Alumni Membership confirmed successfully.');
+        }
+
+        return redirect()->back()->with('status', 'Alumni Membership not found.');
+    }
+
+    public function db_alumni_mem_ajaxedit($id)
+    {
+        $amem = AlumniMem::find($id);
+        $image_url = asset('images/alumni_mem/signature/' . $amem->signature);
+        return response()->json([
+            'status' => 200,
+            'amem' => $amem,
+            'image_url' => $image_url,
+        ]);
+    }
+
+    public function db_update_alumni_mem(Request $request)
+    {
+        $id = $request->input('mem_id');
+        $amem = AlumniMem::find($id);
+        $amem->name = $request->input('name');
+        $amem->address = $request->input('address');
+        $amem->bday = $request->input('bday');
+        $amem->con_num = $request->input('con_num');
+        $amem->fb = $request->input('fb');
+    
+        if ($request->hasFile('signature')) {
+            // Delete the old signature image if it exists
+            $oldImage = $amem->signature;
+            if (!empty($oldImage) && file_exists(public_path('images/alumni_mem/signature/'.$oldImage))) {
+                unlink(public_path('images/alumni_mem/signature/'.$oldImage));
+            }
+    
+            // Save the new signature image
+            $image = $request->file('signature');
+            $destinationPath = 'images/alumni_mem/signature/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $amem->signature = $profileImage;
+        }
+    
+        $amem->save();
+    
+        Session::flash('status','Succesfully Edited.');
+        return redirect('/alumni-membership')->with('amem', $amem)->withInput();
     }
 }

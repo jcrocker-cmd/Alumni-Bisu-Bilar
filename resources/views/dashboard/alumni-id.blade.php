@@ -148,4 +148,5 @@
       var year_data = {!! json_encode($year_counts ) !!};
     </script>
     <script src="/js/chart-alumni-id.js"></script>
+    <script src="/js/ajax-alumni-id-edit-db.js"></script>
 @endpush

@@ -148,4 +148,5 @@
     </script>
     <script src="/js/chart-reissueance.js"></script>
     <script src="/js/ajax-reissueance-view.js"></script>
+    <script src="/js/ajax-reissueance-edit-db.js"></script>
 @endpush

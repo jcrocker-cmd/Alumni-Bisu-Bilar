@@ -179,12 +179,13 @@ class StudentController extends Controller
         $alumni_id = AlumniID::where('user_id', $user_id)->with('user')->get();
         $alumni_mem = AlumniMem::where('user_id', $user_id)->with('user')->get();
         $reissue = Reissueance::where('user_id', $user_id)->with('user')->get();
-    
-        return view('main.record', compact('alumni_id'));
+
+        return view('main.record', compact('alumni_id', 'alumni_mem', 'reissue'));
     }
 
 
-    // AJAX 
+
+    // AJAX VIEW
 
     public function student_alumni_id_ajaxview($id)
     {
@@ -198,4 +199,182 @@ class StudentController extends Controller
     }
     
 
+    public function student_alumni_mem_ajaxview($id)
+    {
+        $amem = AlumniMem::find($id);
+        $image_url = asset('images/alumni_mem/signature/' . $amem->signature);
+        return response()->json([
+            'status' => 200,
+            'amem' => $amem,
+            'image_url' => $image_url,
+        ]);
+    }
+
+    public function student_reissueance_ajaxview($id)
+    {
+        $reissueance = Reissueance::find($id);
+        $image_url = asset('images/reissueance/signature/' . $reissueance->signature);
+        return response()->json([
+            'status' => 200,
+            'reissueance' => $reissueance,
+            'image_url' => $image_url,
+        ]);
+    }
+    
+
+    #AJAX EDIT
+
+    public function student_alumni_id_ajaxedit($id)
+    {
+        $alumni_id = AlumniID::find($id);
+        $image_url = asset('images/alumni_id/signature/' . $alumni_id->signature);
+        return response()->json([
+            'status' => 200,
+            'alumni_id' => $alumni_id,
+            'image_url' => $image_url,
+        ]);
+    }
+
+    
+    public function student_alumni_mem_ajaxedit($id)
+    {
+        $amem = AlumniMem::find($id);
+        $image_url = asset('images/alumni_mem/signature/' . $amem->signature);
+        return response()->json([
+            'status' => 200,
+            'amem' => $amem,
+            'image_url' => $image_url,
+        ]);
+    }
+    public function student_reissueance_ajaxedit($id)
+    {
+        $reissueance = Reissueance::find($id);
+        $image_url = asset('images/reissueance/signature/' . $reissueance->signature);
+        return response()->json([
+            'status' => 200,
+            'reissueance' => $reissueance,
+            'image_url' => $image_url,
+        ]);
+    }
+
+    // AJAX UPDATE
+    public function update_alumni_mem_student(Request $request)
+    {
+        $id = $request->input('mem_id');
+        $amem = AlumniMem::find($id);
+        $amem->name = $request->input('name');
+        $amem->address = $request->input('address');
+        $amem->bday = $request->input('bday');
+        $amem->con_num = $request->input('con_num');
+        $amem->fb = $request->input('fb');
+    
+        if ($request->hasFile('signature')) {
+            // Delete the old signature image if it exists
+            $oldImage = $amem->signature;
+            if (!empty($oldImage) && file_exists(public_path('images/alumni_mem/signature/'.$oldImage))) {
+                unlink(public_path('images/alumni_mem/signature/'.$oldImage));
+            }
+    
+            // Save the new signature image
+            $image = $request->file('signature');
+            $destinationPath = 'images/alumni_mem/signature/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $amem->signature = $profileImage;
+        }
+    
+        $amem->save();
+    
+        Session::flash('success','Succesfully Edited.');
+        return redirect('/records-of-students')->with('amem', $amem)->withInput();
+    }
+
+    public function update_reissueance_student(Request $request)
+    {
+        $id = $request->input('r_id');
+        $reissueance = Reissueance::find($id);
+        $reissueance->name = $request->input('name');
+        $reissueance->id_no = $request->input('id_no');
+        $reissueance->degree = $request->input('degree');
+        $reissueance->reason = $request->input('reason');
+        $reissueance->or_no = $request->input('or_no');
+    
+        if ($request->hasFile('signature')) {
+            // Delete the old signature image if it exists
+            $oldImage = $reissueance->signature;
+            if (!empty($oldImage) && file_exists(public_path('images/reissueance/signature/'.$oldImage))) {
+                unlink(public_path('images/reissueance/signature/'.$oldImage));
+            }
+    
+            // Save the new signature image
+            $image = $request->file('signature');
+            $destinationPath = 'images/reissueance/signature/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $reissueance->signature = $profileImage;
+        }
+    
+        $reissueance->save();
+    
+        Session::flash('success','Succesfully Edited.');
+        return redirect('/records-of-students')->with('reissueance', $reissueance)->withInput();
+    }
+
+    public function update_alumni_id_student(Request $request)
+    {
+        $id = $request->input('aid_id');
+        $aid = AlumniID::find($id);
+        $aid->name = $request->input('name');
+        $aid->id_no = $request->input('id_no');
+        $aid->address = $request->input('address');
+        $aid->bday = $request->input('bday');
+        $aid->course = $request->input('course');
+
+    
+        // Get the selected year from the form data
+        $year = $aid['id_no'];
+    
+        // Get the number of existing alumni IDs for the selected year
+        $count = AlumniID::where('id_no', $year)->count();
+    
+        // Generate the next alumni ID for the selected year
+        if ($count == 0) {
+            // If there are no existing alumni IDs for the selected year, set the count to 1
+            $count = 1;
+        } else {
+            // Otherwise, get the latest alumni ID for the selected year and increment the count by 1
+            $latest_alumni_id = AlumniID::where('id_no', $year)->latest()->first();
+            $count = intval(substr($latest_alumni_id->a_no, -4)) + 1;
+        }
+    
+        // Generate the next alumni ID based on the year and count
+        $alumni_id = $year . '-' . str_pad($count, 4, '0', STR_PAD_LEFT);
+    
+        // Add the generated alumni ID to the form data
+        $aid->a_no = $alumni_id;
+    
+        if ($request->hasFile('signature')) {
+            // Delete the old signature image if it exists
+            $oldImage = $aid->signature;
+            if (!empty($oldImage) && file_exists(public_path('images/alumni_id/signature/'.$oldImage))) {
+                unlink(public_path('images/alumni_id/signature/'.$oldImage));
+            }
+    
+            // Save the new signature image
+            $image = $request->file('signature');
+            $destinationPath = 'images/alumni_id/signature/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $aid->signature = $profileImage;
+        }
+    
+
+        $aid->save();
+
+        
+        Session::flash('success','Succesfully Edited.');
+        return redirect('/records-of-students')->with('aid', $aid)->withInput();
+    }
+    
+    
 }

@@ -116,6 +116,19 @@ class AlumniIDController extends Controller
             $image->move($destinationPath, $profileImage);
             $aid['signature'] = "$profileImage";
         }
+
+
+        // Determine the payment method selected by the client
+        $pay_med = $request->input('pay_med');
+
+        // Update the status of the alumni application based on the payment method
+        if ($pay_med === 'Pay Cash') {
+            $aid['status'] = 'In Progress';
+        } else if ($pay_med === 'Pay G-Cash') {
+            $aid['status'] = 'Paid';
+        }
+
+
         AlumniID::create($aid);
 
         // Update the user's alumni_id_applied column to true
@@ -157,6 +170,89 @@ class AlumniIDController extends Controller
     {
         return view('main.success-alumni-id');
     }
+
+    public function confirmAid($id)
+    {
+        $aid = AlumniID::find($id);
+
+        if ($aid) {
+            $aid->status = 'Paid';
+            $aid->save();
+
+            return redirect()->back()->with('status', 'Alumni ID confirmed successfully.');
+        }
+
+        return redirect()->back()->with('status', 'Alumni ID not found.');
+    }
+
+    public function db_alumni_id_ajaxedit($id)
+    {
+        $alumni_id = AlumniID::find($id);
+        $image_url = asset('images/alumni_id/signature/' . $alumni_id->signature);
+        return response()->json([
+            'status' => 200,
+            'alumni_id' => $alumni_id,
+            'image_url' => $image_url,
+        ]);
+    }
+
+    public function db_update_alumni_id(Request $request)
+    {
+        $id = $request->input('aid_id');
+        $aid = AlumniID::find($id);
+        $aid->name = $request->input('name');
+        $aid->id_no = $request->input('id_no');
+        $aid->address = $request->input('address');
+        $aid->bday = $request->input('bday');
+        $aid->course = $request->input('course');
+
+    
+        // Get the selected year from the form data
+        $year = $aid['id_no'];
+    
+        // Get the number of existing alumni IDs for the selected year
+        $count = AlumniID::where('id_no', $year)->count();
+    
+        // Generate the next alumni ID for the selected year
+        if ($count == 0) {
+            // If there are no existing alumni IDs for the selected year, set the count to 1
+            $count = 1;
+        } else {
+            // Otherwise, get the latest alumni ID for the selected year and increment the count by 1
+            $latest_alumni_id = AlumniID::where('id_no', $year)->latest()->first();
+            $count = intval(substr($latest_alumni_id->a_no, -4)) + 1;
+        }
+    
+        // Generate the next alumni ID based on the year and count
+        $alumni_id = $year . '-' . str_pad($count, 4, '0', STR_PAD_LEFT);
+    
+        // Add the generated alumni ID to the form data
+        $aid->a_no = $alumni_id;
+    
+        if ($request->hasFile('signature')) {
+            // Delete the old signature image if it exists
+            $oldImage = $aid->signature;
+            if (!empty($oldImage) && file_exists(public_path('images/alumni_id/signature/'.$oldImage))) {
+                unlink(public_path('images/alumni_id/signature/'.$oldImage));
+            }
+    
+            // Save the new signature image
+            $image = $request->file('signature');
+            $destinationPath = 'images/alumni_id/signature/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $aid->signature = $profileImage;
+        }
+    
+
+        $aid->save();
+
+        
+        Session::flash('status','Succesfully Edited.');
+        return redirect('/alumni-id')->with('aid', $aid)->withInput();
+    }
+    
+
 
       
 }

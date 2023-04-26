@@ -48,6 +48,7 @@
   <td>{{ $item->reason}}</td>
   <td>
   <a href="#" title="View" class="actions action-view" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#viewModal"><i class="fa fa-eye" aria-hidden="true"></i></a>
+  <a href="#" title="Edit" class="actions action-edit" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa fa-pencil" aria-hidden="true"></i></a>
   <a href="/delete_reissueance/{{ $item->id }}" title="Delete" onclick="return confirm(&quot;Confirm delete?&quot;)" class="actions action-delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
   </td>
@@ -96,7 +97,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg" style="width: 100%;">
     <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">View Reissuance</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Reissuance</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -104,7 +105,7 @@
         <table class="table" cellspacing="0" cellpadding="0" style="border: 1px solid #003049;">
           <thead class="table" style="background: #045597; color: white;">
             <tr>
-            <th style="padding: 10px; text-align: left; width: 30%;">Reissuance Details</th>
+            <th style="padding: 10px; text-align: left; width: 30%;">Details</th>
             <th style="padding: 10px; text-align: left; width: 70%;"></th>
             </tr>
           </thead>
@@ -142,6 +143,94 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- EDIT Reiisuence -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+    <form action="/update-student-reissueance-db" method="post" id="edit_user_form" enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Reissueance</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body roles-modal">
+        @csrf
+        @method('put')
+
+
+            <div class="group">
+              
+              <div class="mb-3" style="display: none;">
+                <label for="recipient-name" class="col-form-label">ID:</label>
+                <input type="text" id="edit_r_id" class="form-control" name="r_id">
+              </div>
+              
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">Name:</label>
+                <input type="text" name="name" class="" id="edit_r_name">
+                <span class="text-danger" id="edit_error_fname"></span>
+              </div>
+
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">ID #:</label>
+                <input type="number" name="id_no" class="" id="edit_r_idno">
+                <span class="text-danger" id="edit_error_mname"></span>
+              </div>
+
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">Degree:</label>
+                <input type="text" name="degree" class="" id="edit_r_degree">
+                <span class="text-danger" id="edit_error_mname"></span>
+              </div>
+
+
+              
+            <div class="mb-2 input-field">
+                <label for="recipient-name" class="">Reason:</label>
+                <input type="text" name="reason" class="" id="edit_r_reason">
+                <span class="text-danger" id="edit_error_lname"></span>
+              </div>
+
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">OR #:</label>
+                <input type="number" name="or_no" class=""  name="email" id="edit_r_orno">
+                <span class="text-danger" id="edit_error_email"></span>
+              </div>
+
+
+            </div>
+
+            <div class="group">
+
+
+              <div class="editPhoto">
+                <img src=""
+                id="change-img-add" style="object-fit: cover;">
+                <p class="pt-2">Edit your Signature <span class="error-text" id="error_sig"></span></p>
+              </div>
+
+              <div class="img-button">
+                  <input type="file" name="signature" id="addphotoBtn" accept="image/jpg, image/jpeg, image/png" hidden>
+                  <button onclick ="addPhoto()" type="button" class="addphoto-btn btn btn-primary" id="addphotoBtn">Choose Image</button>
+              </div>
+
+              
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="update_user_button">Update</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

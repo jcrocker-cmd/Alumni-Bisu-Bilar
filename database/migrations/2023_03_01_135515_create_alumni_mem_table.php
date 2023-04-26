@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('con_num')->nullable();
             $table->string('fb')->nullable();
             $table->string('user_id')->nullable();
+            $table->string('pay_med')->nullable();
+            $table->string('status')->nullable();
             $table->string('signature')->nullable();
             $table->timestamps();
         });

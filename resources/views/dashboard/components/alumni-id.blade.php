@@ -19,6 +19,8 @@
   <th scope="col">ID No</th>
   <th scope="col">Address</th>
   <th scope="col">Course</th>
+  <th scope="col">Payment Method</th>
+  <th scope="col">Status</th>
   <th scope="col">Actions</th>
 </tr>
 </thead>
@@ -43,12 +45,39 @@
   
   <td>{{ $item->address}}</td>
   <td>{{ $item->course}}</td>
+
+  <td>{{ $item->pay_med}}</td>
   <td>
+  @if ($item->status == 'In Progress')
+      <span class="badge bg-warning rounded-pill">{{ $item->status }}</span>
+  @elseif ($item->status == 'Paid')
+      <span class="badge bg-success rounded-pill">{{ $item->status }}</span>
+  @endif
+  </td>
+
+
+  <td>
+  <div style="display: flex;">
+  <div class="d-flex align-items-center">
   <a href="#" title="View" class="actions action-view" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#viewModal"><i class="fa fa-eye" aria-hidden="true"></i></a>
+  <a href="#" title="Edit" class="actions action-edit" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa fa-pencil" aria-hidden="true"></i></a>
   
   @role(['Secretary','Super-Admin', 'Admin'])
   <a href="/delete_alumni_id/{{ $item->id }}" title="Delete" onclick="return confirm(&quot;Confirm delete?&quot;)" class="actions action-delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
   @endrole
+  </div>
+
+
+  @if ($item->status != 'Paid')
+    <div class="d-flex align-items-center" style="gap: 5px;">
+      <form method="POST" action="/confirm_aid/{{$item->id}}">
+        @csrf
+        <input type="hidden" name="aid_id" value="{{ $item->id }}">
+        <button type="submit" class="btn btn-primary" style="font-size: 10px;">Confirm</button>
+      </form>
+    </div>
+  </div>
+  @endif
 
   </td>
   </tr>
@@ -102,7 +131,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg" style="width: 100%;">
     <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">View Reissuance</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Alumni ID</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -110,7 +139,7 @@
         <table class="table" cellspacing="0" cellpadding="0" style="border: 1px solid #003049;">
           <thead class="table" style="background: #045597; color: white;">
             <tr>
-            <th style="padding: 10px; text-align: left; width: 30%;">Reissuance Details</th>
+            <th style="padding: 10px; text-align: left; width: 30%;">Details</th>
             <th style="padding: 10px; text-align: left; width: 70%;"></th>
             </tr>
           </thead>
@@ -140,6 +169,14 @@
               <td style="padding: 10px;"><span id="view_course"></span></td>
             </tr>
             <tr>
+              <td style="padding: 10px;">Payment Method</td>
+              <td style="padding: 10px;"><span id="view_paymed"></span></td>
+            </tr>
+            <tr>
+              <td style="padding: 10px;">Status</td>
+              <td style="padding: 10px;"><span id="view_status"></span></td>
+            </tr>
+            <tr>
               <td style="padding: 10px;">Signature</td>
               <td style="padding: 10px;"><span id="view_sig"><img src="" style="width: 200px;"></span></td>
             </tr>
@@ -152,6 +189,95 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- EDIT AlUMNI ID -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+
+    <form action="/update-student-aid-db" method="post" id="edit_user_form" enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Alumni ID</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body roles-modal">
+        @csrf
+        @method('put')
+
+
+            <div class="group">
+              
+          <div class="mb-3" style="display: none;">
+              <label for="recipient-name" class="col-form-label">ID:</label>
+              <input type="text" id="edit_aid_id" class="form-control" name="aid_id">
+            </div>
+
+
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">ID # (Year Graudated):</label>
+                <input type="number" name="id_no" class="" id="edit_id_no">
+                <span class="text-danger" id="edit_error_mname"></span>
+              </div>
+
+              <div class="mb-2 input-field" style="display: none;">
+                <label for="recipient-name" class="">ALUMNI #:</label>
+                <input type="text" name="a_no" class="" id="">
+                <span class="text-danger" id="edit_error_mname"></span>
+              </div>
+
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">Name:</label>
+                <input type="text" name="name" class="" id="edit_name">
+                <span class="text-danger" id="edit_error_lname"></span>
+              </div>
+
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">Address:</label>
+                <input type="text" name="address" class=""  name="email" id="edit_address" required>
+                <span class="text-danger" id="edit_error_email"></span>
+              </div>
+
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">Birthday:</label>
+                <input type="date" name="bday" class="" id="edit_bday">
+                <span class="text-danger" id="edit_error_address"></span>
+              </div>
+              
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">Course:</label>
+                <input type="text" name="course" class="" id="edit_course">
+                <span class="text-danger" id="edit_error_address"></span>
+              </div>
+
+
+            </div>
+
+            <div class="group">
+
+
+
+              <div class="editPhoto">
+                <img src=""
+                id="change-img-add" style="object-fit: cover;">
+                <p class="pt-2">Edit Student Signature <span class="error-text" id="error_sig"></span></p>
+              </div>
+
+              <div class="img-button">
+                  <input type="file" name="signature" id="addphotoBtn" accept="image/jpg, image/jpeg, image/png" hidden>
+                  <button onclick ="addPhoto()" type="button" class="addphoto-btn btn btn-primary" id="addphotoBtn">Choose Image</button>
+              </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="update_user_button">Update</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
