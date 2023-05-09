@@ -26,11 +26,16 @@
 <tbody>
 @foreach($amem as $item)
  <tr>
-  <td>
+ <td>
     <div class ="d-flex align-items-center">
-    <div class="">
-        <p class="fw-bold mb-1">{{ $item->name}}</p>
-        <p class="text-muted mb-0">example@gmail.com</p>
+    @if($item->user->profile_picture)
+        <img src="{{ asset('images/user_profile/' . $item->user->profile_picture) }}" style="height: 45px; width: 45px; object-fit: cover;" class="rounded-circle">
+    @else
+        <img src="images/LOGO.png" style="height: 45px; width: 45px; object-fit: cover;" class="rounded-circle">
+    @endif
+    <div class="ms-3">
+        <p class="fw-bold mb-1">{{ $item->first_name }} {{ $item->last_name }} </p>
+        <p class="text-muted mb-0">{{ $item->user->email }}</p>
 
     </div>
     </div>
@@ -169,10 +174,6 @@
               <td style="padding: 10px;">Status</td>
               <td style="padding: 10px;"><span id="view_status"></span></td>
             </tr>
-            <tr>
-              <td style="padding: 10px;">Signature</td>
-              <td style="padding: 10px;"><span id="view_sig"><img src="" style="width: 200px;"></span></td>
-            </tr>
           </tbody>
         </table>
 
@@ -240,22 +241,6 @@
               </div>
 
 
-            </div>
-
-            <div class="group">
-
-
-              <div class="editPhoto">
-                <img src=""
-                id="change-img-add" style="object-fit: cover;">
-                <p class="pt-2">Edit your Signature <span class="error-text" id="error_sig"></span></p>
-              </div>
-
-              <div class="img-button">
-                  <input type="file" name="signature" id="addphotoBtn" accept="image/jpg, image/jpeg, image/png" hidden>
-                  <button onclick ="addPhoto()" type="button" class="addphoto-btn btn btn-primary" id="addphotoBtn">Choose Image</button>
-              </div>
-              
             </div>
         </div>
         <div class="modal-footer">

@@ -18,6 +18,26 @@ class ReissueanceController extends Controller
 
     public function post_reissuance(Request $request)
     {
+
+
+        $this->validate($request, [
+            'name' => 'required',
+            'id_no' => 'required',
+            'degree' => 'required',
+            'reason' => 'required',
+            'or_no' => 'required',
+            'signature' => 'required|image|max:1024'
+            ], [
+            'name.required' => 'Please enter your name.',
+            'id_no.required' => 'Please enter your ID no.',
+            'degree.required' => 'Please enter your degree.',
+            'reason.required' => 'Please tell us your reason.',
+            'or_no.required' => 'Please enter your OR no.',
+            'signature.required' => '(Please select signature.)',
+            'signature.image' => '(Please select an image.)',
+            'signature.max' => '(File size must be less than 1 MB).'
+            ]);
+        
         $reissuance = $request->all();
 
         // Add the user_id to the form data

@@ -63,96 +63,44 @@
         <thead class="bg-light ">
           <tr>
             <th scope="col">New Customers</th>
+            <th scope="col"></th>
           </tr>
         </thead>
-            <tbody>
+        <tbody>
+            @if(count($allusers) > 0)
+            @foreach($allusers->reverse() as $item)
               <tr>
 
                 <td>
                   <div class ="d-flex align-items-center">
-                      <img src="user.jpg" alt=""
-                      style="height: 45px; width: 45px;" class="rounded-circle">
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">John Christian Narbaja</p>
-                        <p class="text-muted mb-0">narbajajc@gmail.com</p>
+
+                  @if($item->profile_picture)
+                      <img src="{{ asset('images/user_profile/' . $item->profile_picture) }}" style="height: 45px; width: 45px; object-fit: cover;" class="rounded-circle">
+                  @else
+                      <img src="images/LOGO.png" style="height: 45px; width: 45px; object-fit: cover;" class="rounded-circle">
+                  @endif
+
+                    <div class="ms-3 ">
+                        <p class="fw-bold mb-1">{{ $item->first_name}} {{ $item->last_name}}</p>
+                        <p class="text-muted mb-0">{{ $item->email}}</p>
 
                     </div>
                   </div>
 
                 </td>
 
-              </tr>
-
-              <tr>
-
-                <td>
-                  <div class ="d-flex align-items-center">
-                      <img src="user.jpg" alt=""
-                      style="height: 45px; width: 45px;" class="rounded-circle">
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">John Christian Narbaja</p>
-                        <p class="text-muted mb-0">narbajajc@gmail.com</p>
-
-                    </div>
-                  </div>
-
+                <td style="text-align: right">
+                  <p class="fst-italic text-muted my-0" >Member Since:</p>
+                  <p class="fst-italic text-muted my-0" >{{ $item->created_at->format('M j, Y h:i A')}}</p>
                 </td>
 
               </tr>
-
-              <tr>
-
-                <td>
-                  <div class ="d-flex align-items-center">
-                      <img src="user.jpg" alt=""
-                      style="height: 45px; width: 45px;" class="rounded-circle">
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">John Christian Narbaja</p>
-                        <p class="text-muted mb-0">narbajajc@gmail.com</p>
-
-                    </div>
-                  </div>
-
-                </td>
-
+              @endforeach
+              @else
+              <tr class="no-data">
+                <td colspan="2" class="text-center">No new user for the last 24hrs</td>
               </tr>
-
-              <tr>
-
-                <td>
-                  <div class ="d-flex align-items-center">
-                      <img src="user.jpg" alt=""
-                      style="height: 45px; width: 45px;" class="rounded-circle">
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">John Christian Narbaja</p>
-                        <p class="text-muted mb-0">narbajajc@gmail.com</p>
-
-                    </div>
-                  </div>
-
-                </td>
-
-              </tr>
-
-              <tr>
-
-                <td>
-                  <div class ="d-flex align-items-center">
-                      <img src="user.jpg" alt=""
-                      style="height: 45px; width: 45px;" class="rounded-circle">
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">John Christian Narbaja</p>
-                        <p class="text-muted mb-0">narbajajc@gmail.com</p>
-
-                    </div>
-                  </div>
-
-                </td>
-
-              </tr>
-
-  
-    
+              @endif
             </tbody>
       </table>
     </div>

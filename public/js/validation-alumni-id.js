@@ -1,168 +1,89 @@
 
-// Get the form element
-var form = document.getElementById("alumni_id_form");
+  // // add a custom method to check the file size
+  // $.validator.addMethod('filesize', function(value, element, param) {
+  //   return this.optional(element) || (element.files[0].size <= param * 1000000);
+  // }, 'File size must be less than {0} MB.');
 
+  // $.validator.addMethod('filetype', function(value, element, param) {
+  //   var fileType = element.files[0].type;
+  //   return this.optional(element) || (fileType === 'image/jpeg' || fileType === 'image/png');
+  // }, 'File must be a JPEG or PNG image.');
 
-// Get the input elements
-var input1 = document.getElementById("a_no");
-var input2 = document.getElementById("id_no");
-var input3 = document.getElementById("name");
-var input4 = document.getElementById("address");
-var input5  = document.getElementById("bday");
-var input6  = document.getElementById("course");
-var input7  = document.getElementById("addphotoBtn");
+  // $(document).ready(function() {
+  //   // initialize the validator
+  //   var validator = $('#alumni_id_form').validate({
+  //     rules: {
+  //       id_no: {
+  //         required: true,
+  //       },
+  //       name: {
+  //           required: true,
+  //         },
+  //         bday: {
+  //           required: true,
+  //         },
+  //         address: {
+  //           required: true,
+  //         },
 
-var radio1 = document.getElementById("opt1");
-var radio2 = document.getElementById("opt2");
+  //         course: {
+  //           required: true,
+  //         },
+  //         address: {
+  //           required: true,
+  //         },
+  //         signature: {
+  //           required: true,
+  //           filesize: 1,
+  //           filetype: true
+  //         }
+  //     },
+  //     messages: {
+  //       id_no: {
+  //         required: "Please enter your ID no",
+  //       },
+        
+  //       name: {
+  //           required: "Please enter your name",
+  //         },
+  //         bday: {
+  //           required: "Please enter your birthday",
+  //         },
+  //         address: {
+  //           required: "Please enter your address",
+  //         },
 
+  //         course: {
+  //           required: "Please enter your course",
+  //         },
+  //         address: {
+  //           required: "Please enter your address",
+  //         },
+  //         signature: {
+  //           required: 'Please select a file.',
+  //           filesize: 'File size must be less than 1 MB.',
+  //           filetype: 'File must be a JPEG or PNG image.'
+  //         }
 
-// Get the error message elements
-var error_a_no = document.getElementById("error_a_no");
-var error_id_no = document.getElementById("error_id_no");
-var error_name = document.getElementById("error_name");
-var error_add = document.getElementById("error_add");
-var error_bday = document.getElementById("error_bday");
-var error_course = document.getElementById("error_course");
-var error_radio = document.getElementById("errorradio");
+        
+  //     },
+  //     errorPlacement: function(error, element) {
+  //       error.insertAfter(element.next());
+  //     },
 
-
-var error_sig = document.getElementById("error_sig");
-var image = document.getElementById("change-img-add");
-
-
-// Add a submit event listener to the form
-form.addEventListener("submit", function(event) {
-  event.preventDefault(); // prevent the form from submitting
-
-  // Reset the error messages
-input1.addEventListener("keyup", function() {
-  error_a_no.innerHTML = ""; // reset the error message
-    input1.style.borderColor = "";
-});
-
-input2.addEventListener("change", function() {
-    error_id_no.innerHTML = ""; // reset the error message
-    input2.style.borderColor = "";
-});
-
-input3.addEventListener("keyup", function() {
-    error_name.innerHTML = ""; // reset the error message
-    input3.style.borderColor = "";
-});
-input4.addEventListener("keyup", function() {
-    error_add.innerHTML = ""; // reset the error message
-    input4.style.borderColor = "";
-});
-
-input5.addEventListener("change", function() {
-    error_bday.innerHTML = ""; // reset the error message
-    input5.style.borderColor = "";
-});
-
-input6.addEventListener("keyup", function() {
-  error_course.innerHTML = ""; // reset the error message
-  input6.style.borderColor = "";
-});
-
-input7.addEventListener("change", function() {
-    error_sig.innerHTML = ""; // reset the error message
-    image.style.borderColor = "";
-    if (!validateImageSize(input7)) {
-      error_sig.innerHTML = "<span class='err-text' >(Image size should be less than 1MB.)</span>";
-      image.style.borderColor = "red";
-    }
-    if (!validateImageType(input7)) {
-      error_sig.innerHTML = "<span class='err-text' >(Only image files are allowed.)</span>";
-      image.style.borderColor = "red";
-    }
-});
-
-
-radio1.addEventListener("click", function(){
-    error_radio.innerHTML = "";
-});
-radio2.addEventListener("click", function(){
-    error_radio.innerHTML = "";
-});
-
- // validate the input fields
- if (input1.value === "") {
-    error_a_no.innerHTML = "<span style='margin-bottom: 0px; margin-top: 5px;' >Alumni ID is required.</span>";
-    input1.style.borderColor = "red";
-  }
-  if (input2.value === "") {
-    error_id_no.innerHTML = "<span style='margin-bottom: 0px; margin-top: 5px;' >ID No. field is required.</span>";
-    input2.style.borderColor = "red";
-  }
-  if(input3.value === ""){
-    error_name.innerHTML = "<span style='margin-bottom: 0px; margin-top: 5px;' >Name field is required.</span>";
-    input3.style.borderColor = "red";
-  }
-  if(input4.value === ""){
-    error_add.innerHTML = "<span style='margin-bottom: 0px; margin-top: 5px;' >Address field is required.</span>";
-    input4.style.borderColor = "red";
-  }
-
-  if(input5.value === ""){
-    error_bday.innerHTML = "<span style='margin-bottom: 0px; margin-top: 5px;' >Birthday field is required..</span>";
-    input5.style.borderColor = "red";
-  }
-
-  if(input6.value === ""){
-    error_course.innerHTML = "<span style='margin-bottom: 0px; margin-top: 5px;' >Course field is required.</span>";
-    input6.style.borderColor = "red";
-  }
-
-  if(input7.value === ""){
-    error_sig.innerHTML = "<span style='margin-bottom: 0px; margin-top: 5px;' >(Please Upload your Signature)</span>";
-    image.style.borderColor = "red";
-  } else {
-    if (!validateImageSize(input7)) {
-      error_sig.innerHTML = "<span class='err-text' >(Image size should be less than 1MB.)</span>";
-      image.style.borderColor = "red";
-    }
-    if (!validateImageType(input7)) {
-      error_sig.innerHTML = "<span class='err-text' >(Only image files are allowed.)</span>";
-      image.style.borderColor = "red";
-    }
-  }
-
-    if (!radio1.checked && !radio2.checked) {
-        error_radio.innerHTML = "<span class='err-text'>You must select one option to continue.</span>";
-  }
-
-
-  // Function to validate image size
-  function validateImageSize(input) {
-    if (input.files && input.files[0]) { // check if input has files and at least one file is selected
-        const fileSize = input.files[0].size / 1024 / 1024; // get the file size in MB
-        if (fileSize > 1) { // check if file size is greater than 1MB
-            return false; // return false if file size is greater than 1MB
-        }
-    }
-    return true; // return true if file size is less than or equal to 1MB or input doesn't have files
-  }
-
-  // Function to validate image type
-  function validateImageType(input) {
-      if (input.files && input.files[0]) { // check if input has files and at least one file is selected
-          const allowedTypes = ["image/jpeg", "image/png", "image/gif"]; // allowed image types
-          const fileType = input.files[0].type; // get the file type
-          if (!allowedTypes.includes(fileType)) { // check if file type is not in the allowed image types
-              return false; // return false if file type is not allowed
-          }
-      }
-      return true; // return true if file type is allowed or input doesn't have files
-  }
+  //     submitHandler: function(form) {
+  //       form.submit();
+  //     }
+  //   });
   
-
+  //   // validate the form fields before submitting
+  //   $('#alumni_id_form').on('submit', function() {
+  //     return validator.form();
+  //   });
   
-  const submit_btn = document.getElementById("submit_alumni_id");
-  submit_btn.onclick = function(){
-    if (error_a_no.innerHTML === "" && error_id_no.innerHTML === "" && error_name.innerHTML === "" && error_add.innerHTML === "" && error_bday.innerHTML === "" && error_course.innerHTML === "" && error_sig.innerHTML === "" && error_radio.innerHTML === "") {
-        // this.innerHTML = "<div class='loader'></div>";
-        form.submit();
-        submit_btn.style.backgroundColor = "#89e5ba";
-    }
-  }
-});
+  //   // validate the form fields on change and blur events
+  //   $('#id_no, #name, #bday, #course, #address, #addphotoBtn').on('change blur', function() {
+  //     validator.element(this);
+  //   });
+  // });
+

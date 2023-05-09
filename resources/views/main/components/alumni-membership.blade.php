@@ -11,18 +11,18 @@
         <h2>Application for Alumni Membership</h2>
         <p>Please write the information legibly</p>
         <hr style="">
-        <form action="home-alumni-membership-post" enctype="multipart/form-data" id="alumni_mem_form" method="post">
+        <form action="/home-alumni-membership-post" enctype="multipart/form-data" id="alumni_mem_form" method="post">
         @csrf
         <div class="fields">
             <label for="message-text" class="">Name: <span class="sub-name">(ex: CERO, JOSENITO A.)</span> </label>
             <input type="text" class="" id="name" name="name" placeholder="Enter your name" value="{{ Auth::user()->last_name }}, {{ Auth::user()->first_name }} {{ Auth::user()->middle_name }}"></input>
-            <span class="error-text" id="error_name"></span>
+            <span class="error-text" id="error_name">@error('name') {{$message}} @enderror</span>
         </div>
 
         <div class="fields">
             <label for="message-text" class="">Address: <span></span> </label>
             <input type="text" class="" id="address" name="address" placeholder="Enter your address" value="{{ Auth::user()->address }}"></input>
-            <span class="error-text" id="error_add"></span>
+            <span class="error-text" id="error_add">@error('address') {{$message}} @enderror</span>
         </div>
 
         <div class="group">
@@ -30,19 +30,19 @@
             <div class="fields">
                 <label for="message-text" class="">Birthday: <span></span> </label>
                 <input type="date" class="" id="bday" name="bday" placeholder="Enter your Birthday"></input>
-                <span class="error-text" id="error_bday"></span>
+                <span class="error-text" id="error_bday">@error('bday') {{$message}} @enderror</span>
             </div>
 
             <div class="fields">
                 <label for="message-text" class="">Contact No. : <span></span> </label>
                 <input type="number" class="" id="con_num" name="con_num" placeholder="Enter your number"></input>
-                <span class="error-text" id="error_num"></span>
+                <span class="error-text" id="error_num">@error('con_num') {{$message}} @enderror</span>
             </div>
 
             <div class="fields">
                 <label for="message-text" class="">FB Account: <span></span> </label>
                 <input type="text" class="" id="fb" name="fb" placeholder="Enter your facebook account"></input>
-                <span class="error-text" id="error_fb"></span>
+                <span class="error-text" id="error_fb">@error('fb') {{$message}} @enderror</span>
 
             </div>
             
@@ -76,19 +76,27 @@
 
                 <div id="radio2-content" style="display: none;">
                     <div>
-                        <img src="/images/qr.png" alt="" srcset="">
+                        @if($payment->gcash_qr)
+                            <img src="{{ asset('images/qr/' . $payment->gcash_qr) }}"  style="object-fit: cover;">
+                        @else
+                            <img src="images/LOGO.png" style="object-fit: cover;">
+                        @endif
                     </div>
 
                     <div>
                         <div class="pay_med_text">
                             <!-- <span><strong>Scan QR</strong></span> -->
-                            <span><strong>Scan QR</strong> or <strong>09127725518 (John Christian B.)</strong></span>
+                            <span><strong>Scan QR</strong> or <strong>{{ $payment->gcash_no}} ({{ $payment->reciever_name}})</strong></span>
                         </div>
 
                         <div class="pay_med_input">
                             <label for="message-text" class="">Enter Reference #: <span></span> </label>
-                            <input type="number" class="" id="ref" name="ref" placeholder="Enter G-Cash reference no."></input>
+                            <input type="number" class="" id="ref" name="reference_no" placeholder="Enter G-Cash reference no."></input>
                             <span class="error-text" id="error_ref"></span>
+                        </div>
+
+                        <div class="price_input" hidden>
+                            <input type="number" class="" id="price" name="price" placeholder="Enter G-Cash reference no." value="{{ $payment->alumni_mem_price}}"></input>
                         </div>
                     </div>
 
@@ -96,22 +104,10 @@
             </div>
 
             </div>
-
-        <div class="addphoto">
-            <img src="images/signature.png"
-            id="change-img-add" class="image" style="object-fit: cover;" draggable="true">
-            <p>Add your Signature <span class="error-text" id="error_sig"></span></p>
-            
-        </div>
-
-        <div class="img-button mt-3">
-            <input type="file" name="signature" id="addphotoBtn" class="signature" accept="image/jpg, image/jpeg, image/png" hidden>
-            <button onclick ="addPhoto()" type="button" class="addphoto-btn" id="addphotoBtn">Choose Image</button>
-        </div>
-
         
         <button type="submit" id="submit_membership">SUBMIT</button>
-    </form>
     </div>
+    </form>
+
     @endif
 </section>

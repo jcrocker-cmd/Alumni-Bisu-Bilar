@@ -90,6 +90,11 @@ Route::middleware(['preventBackHistory'])->group(function () {
         Route::get('/announcement/{id}/ajaxview', [AnnouncementController::class, 'db_announcement_ajaxview']);
         Route::get('/announcement/{id}/ajaxedit', [AnnouncementController::class, 'db_announcement_ajaxedit']);
 
+        Route::get('/payment_settings', [AdminController::class,'route_payment_settings']);
+        Route::put('/update_payment', [AdminController::class, 'db_payment_update']);
+
+        Route::get('/sales_report', [AdminController::class,'route_sales_report']);
+
 
 
         Route::get('/settings', function () {
@@ -141,10 +146,6 @@ Route::middleware(['preventBackHistory'])->group(function () {
         Route::get('/success-alumni-mem', [AlumniMemController::class,'success_alumni_mem']);
         Route::get('/success-alumni-mem', [AlumniMemController::class,'success_alumni_mem']);
 
-
-        Route::get('/home-alumni-membership', function () {
-            return view('main.alumni-membership');
-        });
 
         Route::get('/home-account', function () {
             return view('main.account');

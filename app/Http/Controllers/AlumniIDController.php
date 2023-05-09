@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AlumniID;
 use App\Models\User;
+use App\Models\Payment;
 use Session;
 use DB;
 use Illuminate\Support\Facades\File;
@@ -78,11 +79,32 @@ class AlumniIDController extends Controller
 
     public function route_alumni_id()
     {
-        return view('main.alumni-id');
+        $payment = Payment::first();
+        return view('main.alumni-id',compact('payment'));
     }
 
     public function post_alumni_id(Request $request)
     {
+
+        $this->validate($request, [
+            'id_no' => 'required',
+            'name' => 'required',
+            'bday' => 'required',
+            'course' => 'required',
+            'address' => 'required',
+            'signature' => 'required|image|max:1024'
+            ], [
+            'id_no.required' => 'Please enter your ID no.',
+            'name.required' => 'Please enter your name.',
+            'bday.required' => 'Please enter your birthday.',
+            'course.required' => 'Please enter your course.',
+            'address.required' => 'Please enter your address.',
+            'signature.required' => '(Please select signature.)',
+            'signature.image' => '(Please select an image.)',
+            'signature.max' => '(File size must be less than 1 MB).'
+            ]);
+          
+            
         $aid = $request->all();
 
         // Add the user_id to the form data
@@ -125,7 +147,7 @@ class AlumniIDController extends Controller
         if ($pay_med === 'Pay Cash') {
             $aid['status'] = 'In Progress';
         } else if ($pay_med === 'Pay G-Cash') {
-            $aid['status'] = 'Paid';
+            $aid['status'] = 'In Progress';
         }
 
 
@@ -205,6 +227,7 @@ class AlumniIDController extends Controller
         $aid->address = $request->input('address');
         $aid->bday = $request->input('bday');
         $aid->course = $request->input('course');
+        $aid->reference_no = $request->input('reference_no');
 
     
         // Get the selected year from the form data

@@ -13,6 +13,8 @@ $(document).on('click', '.view_alumni_mem', function(event) {
             $('#view_mem_fb').text(response.amem.fb);
             $('#view_mem_paymed').text(response.amem.pay_med);
             $('#view_mem_status').text(response.amem.status);
+            $('#view_mem_ref').text(response.amem.reference_no);
+            $('#view_mem_price').text(response.amem.price);
             $('#view_mem_sig img').attr('src', response.image_url);
             $('#view_mem_date').text(moment(response.amem.created_at).format('LLLL'));
         },

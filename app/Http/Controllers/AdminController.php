@@ -9,12 +9,16 @@ use App\Models\AlumniID;
 use App\Models\AlumniMem;
 use App\Models\Admininfo;
 use App\Models\User;
+use App\Models\Payment;
 use Spatie\Permission\Models\Role;
 use Session;
 use Hash;
 use Mail;
 use Auth;
+use DB;
 use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
+
 
 class AdminController extends Controller
 {
@@ -50,6 +54,192 @@ class AdminController extends Controller
      }
      
    }
+
+   public function route_payment_settings()
+   {
+        $payment = Payment::first();
+        return view('dashboard.payment', compact('payment'));
+   }
+
+   public function route_sales_report()
+   {
+    // ALUMNI MEMBERSHIP SALES
+
+        // DAY
+        $amem_daily_payment = DB::table('alumni_mem')
+        ->select(DB::raw('SUM(price) as total_sales, DATE(created_at) as day'))
+        ->where('status', '=', 'Paid')
+        ->groupBy('day')
+        ->get();
+
+
+        $days = [];
+        $day_counts = [];
+        
+        foreach ($amem_daily_payment as $payment) {
+            $days[] = date("F j, Y", strtotime($payment->day));
+            $day_counts [] = $payment->total_sales;
+        }
+        
+
+
+        // WEEK
+        $amem_weekly_payment = DB::table('alumni_mem')
+        ->select(DB::raw('SUM(price) as total_price, DATE(DATE_FORMAT(created_at, "%Y-%m-%d") - INTERVAL DAYOFWEEK(created_at) - 1 DAY) as week_start_date'))
+        ->where('status', 'Paid')
+        ->groupBy('week_start_date')
+        ->get();
+    
+        $weeks = [];
+        $week_counts  = [];
+        
+        foreach ($amem_weekly_payment as $payment) {
+            $weeks[] = 'Week of '.date("F j, Y", strtotime($payment->week_start_date));
+            $week_counts [] = $payment->total_price;
+        }
+    
+
+        // MONTH
+        $amem_monthly_payment = DB::table('alumni_mem')
+            ->select(DB::raw('SUM(price) as sum, DATE(DATE_FORMAT(created_at, "%Y-%m-01")) as month_start_date'))
+            ->where('status', 'Paid')
+            ->groupBy('month_start_date')
+            ->get();
+
+        $months = [];
+        $month_counts  = [];
+
+        foreach ($amem_monthly_payment as $payment) {
+            $months[] = date("F Y", strtotime($payment->month_start_date));
+            $month_counts [] = $payment->sum;
+        }
+
+
+
+        // YEAR
+        $amem_yearly_payment = DB::table('alumni_mem')
+        ->select(DB::raw('SUM(price) as total_sales, YEAR(created_at) as year'))
+        ->where('status', 'Paid')
+        ->groupBy('year')
+        ->get();
+    
+        $years = [];
+        $year_counts = [];
+        
+        foreach ($amem_yearly_payment as $payment) {
+            $years[] = $payment->year;
+            $year_counts[] = $payment->total_sales;
+        }
+
+        // ALUMNI ID SALES
+
+        // DAY
+        $aid_daily_payment = DB::table('alumni_id')
+        ->select(DB::raw('SUM(price) as total_sales, DATE(created_at) as day'))
+        ->where('status', '=', 'Paid')
+        ->groupBy('day')
+        ->get();
+
+
+        $aid_days = [];
+        $aid_day_counts = [];
+        
+        foreach ($aid_daily_payment as $aid_payment) {
+            $aid_days[] = date("F j, Y", strtotime($aid_payment->day));
+            $aid_day_counts [] = $aid_payment->total_sales;
+        }
+        
+
+
+        // WEEK
+        $aid_weekly_payment = DB::table('alumni_id')
+        ->select(DB::raw('SUM(price) as total_price, DATE(DATE_FORMAT(created_at, "%Y-%m-%d") - INTERVAL DAYOFWEEK(created_at) - 1 DAY) as week_start_date'))
+        ->where('status', 'Paid')
+        ->groupBy('week_start_date')
+        ->get();
+    
+        $aid_weeks = [];
+        $aid_week_counts  = [];
+        
+        foreach ($aid_weekly_payment as $aid_payment) {
+            $aid_weeks[] = 'Week of '.date("F j, Y", strtotime($aid_payment->week_start_date));
+            $aid_week_counts [] = $aid_payment->total_price;
+        }
+    
+
+        // MONTH
+        $aid_monthly_payment = DB::table('alumni_id')
+            ->select(DB::raw('SUM(price) as sum, DATE(DATE_FORMAT(created_at, "%Y-%m-01")) as month_start_date'))
+            ->where('status', 'Paid')
+            ->groupBy('month_start_date')
+            ->get();
+
+        $aid_months = [];
+        $aid_month_counts  = [];
+
+        foreach ($aid_monthly_payment as $aid_payment) {
+            $aid_months[] = date("F Y", strtotime($aid_payment->month_start_date));
+            $aid_month_counts [] = $aid_payment->sum;
+        }
+
+
+
+        // YEAR
+        $aid_yearly_payment = DB::table('alumni_id')
+        ->select(DB::raw('SUM(price) as total_sales, YEAR(created_at) as year'))
+        ->where('status', 'Paid')
+        ->groupBy('year')
+        ->get();
+    
+        $aid_years = [];
+        $aid_year_counts = [];
+        
+        foreach ($aid_yearly_payment as $aid_payment) {
+            $aid_years[] = $aid_payment->year;
+            $aid_year_counts[] = $aid_payment->total_sales;
+        }
+        
+
+      return view('dashboard.sales', 
+      compact('day_counts', 'week_counts', 'month_counts','year_counts','days', 'weeks', 'months','years',
+      'aid_day_counts', 'aid_week_counts', 'aid_month_counts','aid_year_counts','aid_days', 'aid_weeks', 'aid_months','aid_years',
+    ));
+   }
+
+   public function db_payment_update(Request $request)
+   {
+       $id = $request->input('payment_id');
+       $payment = Payment::find($id);
+       $payment->reciever_name = $request->input('reciever_name');
+       $payment->gcash_no = $request->input('gcash_no');
+       $payment->alumni_id_price = $request->input('alumni_id_price');
+       $payment->alumni_mem_price = $request->input('alumni_mem_price');
+
+
+
+
+       if ($request->hasFile('gcash_qr')) {
+           // Delete the old gcash_qr image if it exists
+           $oldImage = $payment->signature;
+           if (!empty($oldImage) && file_exists(public_path('images/qr/'.$oldImage))) {
+               unlink(public_path('images/qr/'.$oldImage));
+           }
+   
+           // Save the new gcash_qr image
+           $image = $request->file('gcash_qr');
+           $destinationPath = 'images/qr/';
+           $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+           $image->move($destinationPath, $profileImage);
+           $payment->gcash_qr = $profileImage;
+       }
+   
+
+       $payment->save();
+
+       
+       Session::flash('status','Succesfully Edited.');
+       return redirect('/payment_settings')->with('payment', $payment)->withInput();
+   }
  
     public function route_dashboard()
  
@@ -61,12 +251,43 @@ class AdminController extends Controller
      $numberOfStudents = User::whereHas('roles', function ($query) {
         $query->where('name', 'Student');
     })->count();
+
+    
+    $last24Hours = Carbon::now()->subDay();
+
+    $allusers = User::with('roles')
+    ->whereHas('roles', function ($query) {
+        $query->whereIn('name', ['Student']);
+    })
+    ->where('created_at', '>=', $last24Hours)
+    ->orderBy('created_at')
+    ->get();
+
+
+    $monthly_signins = DB::table('users')
+    ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+    ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+    ->select(DB::raw('COUNT(*) as count, MONTH(users.created_at) as month'))
+    ->where('roles.name', '=', 'Student')
+    ->groupBy('month')
+    ->get();
+
+    $months = [];
+    $signins = [];
+
+    foreach ($monthly_signins as $signin) {
+    $months[] = date("F", mktime(0, 0, 0, $signin->month, 1));
+    $signins[] = $signin->count;
+    }
     
      return view('dashboard.dashboard')->with([
         'numberOfAnnouncement' => $numberOfAnnouncement,
         'numberOfAlumniID' => $numberOfAlumniID,
         'numberOfAlumniMem' => $numberOfAlumniMem,
-        'numberOfStudents' => $numberOfStudents
+        'numberOfStudents' => $numberOfStudents,
+        'months' => $months,
+        'signins' => $signins,
+        'allusers' => $allusers,
     ]);
 
     }

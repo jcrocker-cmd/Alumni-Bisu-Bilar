@@ -157,6 +157,7 @@
 
 .pay_med_content #radio2-content img
 {
+    border: 1px solid #000;
     width: 200px;
 }
 
@@ -223,11 +224,8 @@
 
 .error-text
 {
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
     color: red;
-    /* margin-top: 0; */
+    font-size: 13px;
 }
 
 

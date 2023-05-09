@@ -1,14 +1,14 @@
 @extends('dashboard.layout.master')
 
-@section('title', 'Announcement')
-
 @section('styles')
     @include('dashboard.assets.style')
 @endsection
 
+@section('title', 'Admin | Dashboard')
+
 @section('content')
     <div class="main-container d-flex">
-    <div class="sidebar" id="side_nav">
+  <div class="sidebar" id="side_nav">
     <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
         <!-- <h1 class="fs-4 text-white px-3">   You-Drive</h1> -->
         <img src="/images/LOGO-3.png" class="sidebar-logo px-3 py-3" alt="Comapny Logo">
@@ -38,16 +38,12 @@
       @endrole
 
       @role(['Super-Admin', 'Admin'])
-      <li class="active"><a href="/announcement" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-bullhorn" style="margin-right: 9px;"></i>   Announcement</a></li>
+      <li class=""><a href="/announcement" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-bullhorn" style="margin-right: 9px;"></i>   Announcement</a></li>
       <li class=""><a href="/user-roles" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-user" style="margin-right: 14px;"></i>   Users Roles</a></li>
       @endrole
 
       @role(['Super-Admin', 'Admin'])
-      <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-bullhorn" style="margin-right: 9px;"></i>   Peyment Setting</a></li>
-      @endrole
-
-      @role(['Super-Admin', 'Admin'])
-      <li class=""><a href="/payment_settings" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-wallet" style="margin-right: 9px;"></i>   Payment Settings</a></li>
+      <li class="active"><a href="/payment_settings" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-wallet" style="margin-right: 9px;"></i>   Payment Settings</a></li>
       <li class=""><a href="/sales_report" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-coins" style="margin-right: 9px;"></i>   Sales Report</a></li>
       @endrole
 
@@ -94,7 +90,7 @@
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarText">
-      
+
       <button type="button" class="btn position-relative nav-notif"><a href="/notification" class="text-decoration-none text-dark"><i class="fal fa-bell"></i>
       <span class="nav-notif-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
         99+
@@ -127,7 +123,7 @@
   </nav>
   <div id="dashboard-content">
   
-    @include('dashboard.components.announcement')
+    @include('dashboard.components.payment')
 </div>
 
   </div>
@@ -141,9 +137,7 @@
 
 
 @push('scripts')
-    <script src="/js/moment-library.js"></script>
-    <script src="/js/ajax-announce-view.js"></script>
-    <script src="/js/ajax-announce-edit.js"></script>
-    <script src="/js/db-validation-announce.js"></script>
-    <script src="/js/db-validation-announce-edit.js"></script>
+    <script src="/js/chart-library.js"></script>
+
 @endpush
+

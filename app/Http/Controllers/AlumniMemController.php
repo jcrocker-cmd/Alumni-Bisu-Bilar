@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AlumniMem;
+use App\Models\Payment;
 use App\Models\User;
 use Session;
 use DB;
@@ -13,8 +14,8 @@ class AlumniMemController extends Controller
 {
     public function route_alumni_mem()
     {
-        
-        return view('main.alumni-membership');
+        $payment = Payment::first();
+        return view('main.alumni-membership',compact('payment'));
     }
 
     public function db_route_alumni_mem()
@@ -28,7 +29,7 @@ class AlumniMemController extends Controller
         ->select(DB::raw('COUNT(*) as count, DATE(created_at) as day'))
         ->groupBy('day')
         ->get();
-
+    
         $days = [];
         $day_counts = [];
 
@@ -95,6 +96,22 @@ class AlumniMemController extends Controller
 
         public function post_alumni_mem(Request $request)
         {
+
+            $this->validate($request, [
+                'name' => 'required',
+                'bday' => 'required',
+                'con_num' => 'required|numeric',
+                'address' => 'required',
+                'fb' => 'required'
+                ], [
+                'name.required' => 'Please enter your name.',
+                'bday.required' => 'Please enter your birthday.',
+                'con_num.required' => 'Please enter your contact no.',
+                'con_num.numeric' => 'Please enter a number.',
+                'address.required' => 'Please enter your address.',
+                'fb.required' => 'Please enter your FB.',
+                ]);
+
             $amem = $request->all();
             // Add the user_id to the form data
             $amem['user_id'] = $request->user()->id;
@@ -113,7 +130,7 @@ class AlumniMemController extends Controller
             if ($pay_med === 'Pay Cash') {
                 $amem['status'] = 'In Progress';
             } else if ($pay_med === 'Pay G-Cash') {
-                $amem['status'] = 'Paid';
+                $amem['status'] = 'In Progress';
             }
         
             AlumniMem::create($amem);
@@ -193,6 +210,7 @@ class AlumniMemController extends Controller
         $amem->bday = $request->input('bday');
         $amem->con_num = $request->input('con_num');
         $amem->fb = $request->input('fb');
+        $amem->reference_no = $request->input('reference_no');
     
         if ($request->hasFile('signature')) {
             // Delete the old signature image if it exists

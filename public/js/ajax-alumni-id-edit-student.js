@@ -13,6 +13,7 @@ $(document).on('click', '.edit_alumni_id', function(event) {
             $('#edit_address').val(response.alumni_id.address);
             $('#edit_bday').val(response.alumni_id.bday);
             $('#edit_course').val(response.alumni_id.course);
+            $('#edit_ref').val(response.alumni_id.reference_no);
             $('#edit_sig_img').attr('src', response.image_url);
         },
         error: function(xhr) {
