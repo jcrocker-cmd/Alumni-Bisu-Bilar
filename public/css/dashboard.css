@@ -459,6 +459,35 @@ hr.hr-2
 }
 
 
+/* PAYMENT SETTINGS */
+.all-payment-section .addphoto img
+{
+    width: 200px;
+    border: 1px solid #000;
+}
+
+
+.all-payment-section input,
+.all-payment-section label,
+.all-payment-section .group2 button,
+.all-payment-section  button
+{
+    font-size: 13px;
+}
+
+
+@media(max-width: 400px)
+{
+    .all-payment-section .addphoto img,
+    .all-payment-section  button
+
+    {
+        width: 100%;
+    }
+
+ 
+}
+
 
 
 

@@ -17,9 +17,11 @@
             <ul class="js-sub-menu sub-menu">
               <li><a href="/home-alumni-membership">Apply for Alumni Membership</a></li>
               <li><a href="/home-alumni-id">Apply for Alumni ID</a></li>
-              <li><a href="/home-reissuance">Re-issueance for Alumni ID</a></li>
+
             </ul>
           </li>
+
+          <li><a href="/home-reissuance">Re-issueance</a></li>
           
           <li><a href="#about_sec">About Us</a></li>
           <li><a href="#about_sec">Contact Us</a></li>

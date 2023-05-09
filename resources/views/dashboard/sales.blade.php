@@ -1,14 +1,14 @@
 @extends('dashboard.layout.master')
 
-@section('title', 'Announcement')
-
 @section('styles')
     @include('dashboard.assets.style')
 @endsection
 
+@section('title', 'Sales Report')
+
 @section('content')
     <div class="main-container d-flex">
-    <div class="sidebar" id="side_nav">
+  <div class="sidebar" id="side_nav">
     <div class="header-box px-2 pt-3 pb-4 d-flex justify-content-between">
         <!-- <h1 class="fs-4 text-white px-3">   You-Drive</h1> -->
         <img src="/images/LOGO-3.png" class="sidebar-logo px-3 py-3" alt="Comapny Logo">
@@ -38,17 +38,13 @@
       @endrole
 
       @role(['Super-Admin', 'Admin'])
-      <li class="active"><a href="/announcement" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-bullhorn" style="margin-right: 9px;"></i>   Announcement</a></li>
+      <li class=""><a href="/announcement" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-bullhorn" style="margin-right: 9px;"></i>   Announcement</a></li>
       <li class=""><a href="/user-roles" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-user" style="margin-right: 14px;"></i>   Users Roles</a></li>
       @endrole
 
       @role(['Super-Admin', 'Admin'])
-      <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-bullhorn" style="margin-right: 9px;"></i>   Peyment Setting</a></li>
-      @endrole
-
-      @role(['Super-Admin', 'Admin'])
       <li class=""><a href="/payment_settings" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-wallet" style="margin-right: 9px;"></i>   Payment Settings</a></li>
-      <li class=""><a href="/sales_report" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-coins" style="margin-right: 9px;"></i>   Sales Report</a></li>
+      <li class="active"><a href="/sales_report" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-coins" style="margin-right: 9px;"></i>   Sales Report</a></li>
       @endrole
 
     </ul>
@@ -94,7 +90,7 @@
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarText">
-      
+
       <button type="button" class="btn position-relative nav-notif"><a href="/notification" class="text-decoration-none text-dark"><i class="fal fa-bell"></i>
       <span class="nav-notif-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
         99+
@@ -127,7 +123,7 @@
   </nav>
   <div id="dashboard-content">
   
-    @include('dashboard.components.announcement')
+    @include('dashboard.components.sales')
 </div>
 
   </div>
@@ -142,8 +138,40 @@
 
 @push('scripts')
     <script src="/js/moment-library.js"></script>
-    <script src="/js/ajax-announce-view.js"></script>
-    <script src="/js/ajax-announce-edit.js"></script>
-    <script src="/js/db-validation-announce.js"></script>
-    <script src="/js/db-validation-announce-edit.js"></script>
+    <script src="/js/chart-library.js"></script>
+
+    <script type="text/javascript">
+      var day_labels = {!! json_encode($days) !!}.map(date => new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }));
+      var day_data = {!! json_encode($day_counts) !!};
+
+      var week_labels = {!! json_encode($weeks) !!}.map(date => new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+      var week_data = {!! json_encode($week_counts) !!};
+
+      var month_labels = {!! json_encode($months) !!}.map(date => new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }));
+      var month_data = {!! json_encode($month_counts) !!};
+      
+      var year_labels = {!! json_encode($years ) !!}.map(year => new Date(year + '-01-01').toLocaleDateString('en-US', { year: 'numeric' }));
+      var year_data = {!! json_encode($year_counts ) !!};
+    </script>
+
+    <script src="/js/chart-alumni-mem-sales.js"></script>
+
+    <script type="text/javascript">
+      var aid_day_labels = {!! json_encode($aid_days) !!}.map(date => new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }));
+      var aid_day_data = {!! json_encode($aid_day_counts) !!};
+
+      var aid_week_labels = {!! json_encode($aid_weeks) !!}.map(date => new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+      var aid_week_data = {!! json_encode($aid_week_counts) !!};
+
+      var aid_month_labels = {!! json_encode($aid_months) !!}.map(date => new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' }));
+      var aid_month_data = {!! json_encode($aid_month_counts) !!};
+      
+      var aid_year_labels = {!! json_encode($aid_years ) !!}.map(year => new Date(year + '-01-01').toLocaleDateString('en-US', { year: 'numeric' }));
+      var aid_year_data = {!! json_encode($aid_year_counts ) !!};
+    </script>
+
+
+    <script src="/js/chart-alumni-id-sales.js"></script>
+
 @endpush
+

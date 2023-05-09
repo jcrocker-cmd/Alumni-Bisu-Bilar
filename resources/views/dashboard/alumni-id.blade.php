@@ -4,6 +4,8 @@
     @include('dashboard.assets.style')
 @endsection
 
+@section('title', 'Alumni ID')
+
 @section('content')
     <div class="main-container d-flex">
     <div class="sidebar" id="side_nav">
@@ -19,11 +21,11 @@
       <li class=""><a href="/dashboard" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-home" style="margin-right: 10px;"></i>   Dashboard</a></li>
       @endrole
 
-      @role(['ID Staff','Super-Admin', 'Admin'])
+      @role(['Secretary','Super-Admin', 'Admin'])
       <li class=""><a href="/alumni-membership" class="text-decoration-none px-3 py-2 d-block"><i class="fal fa-list" style="margin-right: 12px;"></i>   Alumni Membership Report</a></li>
       @endrole
 
-      @role(['Secretary','Super-Admin', 'Admin'])
+      @role(['ID Staff','Super-Admin', 'Admin'])
       <li class="active"><a href="/alumni-id" class="text-decoration-none px-3 py-2 d-block"><i class="far fa-portrait" style="margin-right: 15px;"></i>   Alumni ID Production Report</span></a></li>
       @endrole
 
@@ -39,6 +41,12 @@
       <li class=""><a href="/announcement" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-bullhorn" style="margin-right: 9px;"></i>   Announcement</a></li>
       <li class=""><a href="/user-roles" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-user" style="margin-right: 14px;"></i>   Users Roles</a></li>
       @endrole
+
+      @role(['Super-Admin', 'Admin'])
+      <li class=""><a href="/payment_settings" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-wallet" style="margin-right: 9px;"></i>   Payment Settings</a></li>
+      <li class=""><a href="/sales_report" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-coins" style="margin-right: 9px;"></i>   Sales Report</a></li>
+      @endrole
+
     </ul>
 
     <hr class="hr-1 mx-2">

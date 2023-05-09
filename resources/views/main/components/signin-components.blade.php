@@ -3,7 +3,7 @@
         <div class="header-section">
             <img src="/images/LOGO-black.png" alt="" srcset="" class="logo-for-signin">
             <h1>|</h1>
-            <header>Registration</header>
+            <header>Sign In</header>
         </div>
         <form action="post_signin" method="post">
         @csrf

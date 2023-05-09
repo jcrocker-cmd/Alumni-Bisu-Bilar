@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('pay_med')->nullable();
             $table->string('status')->nullable();
             $table->string('signature')->nullable();
+            $table->string('price')->nullable();
+            $table->string('reference_no')->nullable();
             $table->timestamps();
         });
     }

@@ -250,6 +250,14 @@
               <td style="padding: 10px;"><span id="view_status"></span></td>
             </tr>
             <tr>
+              <td style="padding: 10px;">Gcash Ref. No</td>
+              <td style="padding: 10px;"><span id="view_ref"></span></td>
+            </tr>
+            <tr>
+              <td style="padding: 10px;">Price</td>
+              <td style="padding: 10px;"><span id="view_price"></span></td>
+            </tr>
+            <tr>
               <td style="padding: 10px;">Signature</td>
               <td style="padding: 10px;"><span id="view_sig"><img src="" style="width: 200px;"></span></td>
             </tr>
@@ -314,7 +322,7 @@
 
               <div class="mb-2 input-field">
                 <label for="recipient-name" class="">Address:</label>
-                <input type="text" name="address" class=""  name="email" id="edit_address" required>
+                <input type="text" name="address" class="" id="edit_address" required>
                 <span class="text-danger" id="edit_error_email"></span>
               </div>
 
@@ -327,6 +335,12 @@
               <div class="mb-2 input-field">
                 <label for="recipient-name" class="">Course:</label>
                 <input type="text" name="course" class="" id="edit_course">
+                <span class="text-danger" id="edit_error_address"></span>
+              </div>
+
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">Gcash Ref. no.:</label>
+                <input type="number" name="reference_no" class="" id="edit_ref">
                 <span class="text-danger" id="edit_error_address"></span>
               </div>
 
@@ -408,13 +422,18 @@
               <td style="padding: 10px;"><span id="view_mem_status"></span></td>
             </tr>
             <tr>
-              <td style="padding: 10px;">Signature</td>
-              <td style="padding: 10px;"><span id="view_mem_sig"><img src="" style="width: 200px;"></span></td>
+              <td style="padding: 10px;">Gcash Ref. No</td>
+              <td style="padding: 10px;"><span id="view_mem_ref"></span></td>
+            </tr>
+            <tr>
+              <td style="padding: 10px;">Price</td>
+              <td style="padding: 10px;"><span id="view_mem_price"></span></td>
             </tr>
             <tr>
               <td style="padding: 10px;">Created at</td>
               <td style="padding: 10px;"><span id="view_mem_date"></span></td>
             </tr>
+            
           </tbody>
         </table>
 
@@ -470,34 +489,25 @@
 
               <div class="mb-2 input-field">
                 <label for="recipient-name" class="">Contact #:</label>
-                <input type="number" name="con_num" class=""  name="email" id="edit_mem_con_num">
+                <input type="number" name="con_num" class="" id="edit_mem_con_num">
                 <span class="text-danger" id="edit_error_email"></span>
               </div>
 
               <div class="mb-2 input-field">
                 <label for="recipient-name" class="">FB Account:</label>
-                <input type="text" name="fb" class=""  name="email" id="edit_mem_fb">
+                <input type="text" name="fb" class="" id="edit_mem_fb">
+                <span class="text-danger" id="edit_error_email"></span>
+              </div>
+
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">Gcash Ref. no. :</label>
+                <input type="number" name="reference_no" class=""  id="edit_mem_ref">
                 <span class="text-danger" id="edit_error_email"></span>
               </div>
 
 
             </div>
 
-            <div class="group">
-
-
-              <div class="editPhoto">
-                <img src=""
-                id="edit_mem_sig_img" style="object-fit: cover;">
-                <p class="pt-2">Edit your Signature <span class="error-text" id="error_sig"></span></p>
-              </div>
-
-              <div class="img-button">
-                  <input type="file" name="signature" id="addphotoBtn_amem" accept="image/jpg, image/jpeg, image/png" hidden>
-                  <button onclick ="addphoto_amem()" type="button" class="addphoto-btn bg-primary" id="addphotoBtn_amem">Choose Image</button>
-              </div>
-              
-            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -620,7 +630,7 @@
 
               <div class="mb-2 input-field">
                 <label for="recipient-name" class="">OR #:</label>
-                <input type="number" name="or_no" class=""  name="email" id="edit_r_orno">
+                <input type="number" name="or_no" class=""  id="edit_r_orno">
                 <span class="text-danger" id="edit_error_email"></span>
               </div>
 

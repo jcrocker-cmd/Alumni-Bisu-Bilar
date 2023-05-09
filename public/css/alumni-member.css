@@ -7,6 +7,12 @@
     margin-top: 70px;
 }
 
+#alumni_mem_form .error-text
+{
+    font-size: 13px;
+    color: red;
+}
+
 .alumni-member-wrapper
 {
     background-color: #fff;
@@ -142,6 +148,7 @@
 
 .pay_med_content #radio2-content img
 {
+    border: 1px solid #000;
     width: 200px;
 }
 
@@ -201,14 +208,6 @@
 }
 
 
-.alumni-member-wrapper .error-text
-{
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    color: red;
-    /* margin-top: 0; */
-}
 
 
 @media(max-width: 540px){

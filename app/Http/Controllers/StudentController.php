@@ -267,6 +267,7 @@ class StudentController extends Controller
         $amem->bday = $request->input('bday');
         $amem->con_num = $request->input('con_num');
         $amem->fb = $request->input('fb');
+        $amem->reference_no = $request->input('reference_no');
     
         if ($request->hasFile('signature')) {
             // Delete the old signature image if it exists
@@ -329,6 +330,8 @@ class StudentController extends Controller
         $aid->address = $request->input('address');
         $aid->bday = $request->input('bday');
         $aid->course = $request->input('course');
+        $aid->reference_no = $request->input('reference_no');
+
 
     
         // Get the selected year from the form data

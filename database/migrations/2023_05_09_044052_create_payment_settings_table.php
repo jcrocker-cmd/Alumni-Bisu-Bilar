@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('admininfo', function (Blueprint $table) {
+        Schema::create('payment_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name')->nullable();
-            $table->string('middle_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('password')->nullable();
+            $table->string('reciever_name')->nullable();
+            $table->string('alumni_id_price')->nullable();
+            $table->string('alumni_mem_price')->nullable();
+            $table->string('gcash_no')->nullable();
+            $table->string('gcash_qr')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admininfo');
+        Schema::dropIfExists('payment_settings');
     }
 };

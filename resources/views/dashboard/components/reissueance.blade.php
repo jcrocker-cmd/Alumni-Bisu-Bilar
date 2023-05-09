@@ -32,15 +32,22 @@
 <tbody>
 @foreach($reissueance as $item)
  <tr>
-  <td>
-    <div class="">
-        <p class="fw-bold mb-1">{{ $item->name}}</p>
-        <p class="text-muted mb-0">example@gmail.com</p>
+ <td>
+    <div class ="d-flex align-items-center">
+    @if($item->user->profile_picture)
+        <img src="{{ asset('images/user_profile/' . $item->user->profile_picture) }}" style="height: 45px; width: 45px; object-fit: cover;" class="rounded-circle">
+    @else
+        <img src="images/LOGO.png" style="height: 45px; width: 45px; object-fit: cover;" class="rounded-circle">
+    @endif
+    <div class="ms-3">
+        <p class="fw-bold mb-1">{{ $item->first_name }} {{ $item->last_name }} </p>
+        <p class="text-muted mb-0">{{ $item->user->email }}</p>
 
     </div>
     </div>
 
   </td>
+  
   <td>{{ $item->or_no}}</td>
   
   <td>{{ $item->id_no}}</td>

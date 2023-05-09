@@ -27,17 +27,22 @@
 <tbody>
 @foreach($alumni_id as $item)
  <tr>
-  <td>
+ <td>
     <div class ="d-flex align-items-center">
-
-    <div class="">
-        <p class="fw-bold mb-1">{{ $item->name}}</p>
-        <p class="text-muted mb-0">example@gmail.com</p>
+    @if($item->user->profile_picture)
+        <img src="{{ asset('images/user_profile/' . $item->user->profile_picture) }}" style="height: 45px; width: 45px; object-fit: cover;" class="rounded-circle">
+    @else
+        <img src="images/LOGO.png" style="height: 45px; width: 45px; object-fit: cover;" class="rounded-circle">
+    @endif
+    <div class="ms-3">
+        <p class="fw-bold mb-1">{{ $item->first_name }} {{ $item->last_name }} </p>
+        <p class="text-muted mb-0">{{ $item->user->email }}</p>
 
     </div>
     </div>
 
   </td>
+
   <td>
     {{ $item->a_no}}
   </td>
@@ -199,7 +204,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
 
-    <form action="/update-student-aid-db" method="post" id="edit_user_form" enctype="multipart/form-data">
+    <form action="/update-student-aid-db" method="post" id="alumni_id_form" enctype="multipart/form-data">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Edit Alumni ID</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
