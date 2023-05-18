@@ -134,6 +134,37 @@
     /* margin-top: -12px; */
 }
 
+@media (max-width: 600px) {
+
+
+    .alumni-reissuance-wrapper
+    {
+        padding: 20px;
+    }
+    
+    .alumni-reissuance-wrapper h2 
+    {
+        font-size: 15px;
+    }
+
+    .alumni-reissuance-wrapper p,
+    .alumni-reissuance-wrapper .fields .input-field label,
+    .alumni-reissuance-wrapper .fields .input-field input, select,
+    .alumni-reissuance-wrapper .addphoto-btn,
+    .alumni-reissuance-wrapper button[type="submit"]
+    {
+        font-size: 12px;
+    }
+
+    .alumni-reissuance-wrapper .addphoto img
+    {
+        height: 150px;
+        width: 250px;
+    }
+
+}
+
+
 
 @media(max-width: 540px){
     

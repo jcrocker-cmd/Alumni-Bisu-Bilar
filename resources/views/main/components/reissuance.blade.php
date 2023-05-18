@@ -26,13 +26,13 @@
 
                     <div class="input-field">
                         <label for="message-text" class="">ID No. : <span></span> </label>
-                        <input type="number" class="" id="id_no" placeholder="Please enter ID no" name="id_no"></input>
+                        <input type="number" class="" id="id_no" placeholder="Please enter ID no" name="id_no" C></input>
                         <span class="error-text" id="error_id_no">@error('id_no') {{$message}} @enderror</span>
                     </div>
 
                     <div class="input-field">
                         <label for="message-text" class="">Degree : <span></span> </label>
-                        <input type="text" class="" id="degree" placeholder="Please enter your Degree" name="degree"></input>
+                        <input type="text" class="" id="degree" placeholder="Please enter your Degree" name="degree" value="{{ old('degree') }}"></input>
                         <span class="error-text" id="error_degree">@error('degree') {{$message}} @enderror</span>
                     </div>
 
@@ -41,13 +41,13 @@
                 <div class="group">
                     <div class="input-field">
                         <label for="message-text" class="">Reason : <span></span> </label>
-                        <input type="text" class="" id="reason" placeholder="Enter your Reason" name="reason"></input>
+                        <input type="text" class="" id="reason" placeholder="Enter your Reason" name="reason" value="{{ old('reason') }}"></input>
                         <span class="error-text" id="error_reason">@error('reason') {{$message}} @enderror</span>
                     </div>
 
                     <div class="input-field">
                         <label for="message-text" class="">Or No. : <span></span> </label>
-                        <input type="number" class="" id="or_no" placeholder="Enter your OR no." name="or_no"></input>
+                        <input type="number" class="" id="or_no" placeholder="Enter your OR no." name="or_no" value="{{ old('or_no') }}"></input>
                         <span class="error-text" id="error_or_no">@error('or_no') {{$message}} @enderror</span>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                     <button onclick ="addPhoto()" type="button" class="addphoto-btn" id="addphotoBtn">Choose Image</button>
                 </div>
 
-            <button type="submit" id="submit_reissueance">SUBMIT</button>
+            <button type="submit" onclick="this.disabled=true;this.form.submit();" id="submit_reissueance">SUBMIT</button>
         </form>
         </div>
         @endif

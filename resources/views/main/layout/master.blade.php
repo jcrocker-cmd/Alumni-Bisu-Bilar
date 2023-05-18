@@ -49,6 +49,7 @@
     </div>
 
     <!-- <script src="/bootstrap/js/bootstrap.min.js"></script> -->
+    <script src="/js/home-side-bar.js"></script>
     <script src="/js/navbar.js"></script>
     <script src="/js/jquery.js"></script>
     <script src="/js/addphoto.js"></script>

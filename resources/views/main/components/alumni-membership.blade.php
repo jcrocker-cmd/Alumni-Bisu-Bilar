@@ -29,13 +29,13 @@
             
             <div class="fields">
                 <label for="message-text" class="">Birthday: <span></span> </label>
-                <input type="date" class="" id="bday" name="bday" placeholder="Enter your Birthday"></input>
+                <input type="date" class="" id="bday" name="bday" value ="{{ old('bday') }}" placeholder="Enter your Birthday"></input>
                 <span class="error-text" id="error_bday">@error('bday') {{$message}} @enderror</span>
             </div>
 
             <div class="fields">
                 <label for="message-text" class="">Contact No. : <span></span> </label>
-                <input type="number" class="" id="con_num" name="con_num" placeholder="Enter your number"></input>
+                <input type="number" class="" id="con_num" name="con_num" value ="{{ old('con_num') }}" placeholder="Enter your number"></input>
                 <span class="error-text" id="error_num">@error('con_num') {{$message}} @enderror</span>
             </div>
 
@@ -43,7 +43,6 @@
                 <label for="message-text" class="">FB Account: <span></span> </label>
                 <input type="text" class="" id="fb" name="fb" placeholder="Enter your facebook account"></input>
                 <span class="error-text" id="error_fb">@error('fb') {{$message}} @enderror</span>
-
             </div>
             
         </div>
@@ -51,7 +50,7 @@
         <div class="pay_med_wrapper">
 
             <span class="pay_med_title">Payment Method</span>
-
+            <span class="pay_med_price">Amount( ₱ {{ $payment->alumni_mem_price}}.00)</span>
             <div class="group pay_med">
 
                 <div class="radio-field">
@@ -105,7 +104,7 @@
 
             </div>
         
-        <button type="submit" id="submit_membership">SUBMIT</button>
+        <button type="submit" onclick="this.disabled=true;this.form.submit();" id="submit_membership">SUBMIT</button>
     </div>
     </form>
 

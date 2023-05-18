@@ -11,6 +11,8 @@ $(document).on('click', '.action-edit', function(event) {
             $('#edit_id_no').val(response.alumni_id.id_no);
             $('#edit_name').val(response.alumni_id.name);
             $('#edit_address').val(response.alumni_id.address);
+            $('#edit_cs').val(response.alumni_id.citizenship);
+            $('#edit_month').val(response.alumni_id.month_grad);
             $('#edit_bday').val(response.alumni_id.bday);
             $('#edit_course').val(response.alumni_id.course);
             $('#change-img-add').attr('src', response.image_url);

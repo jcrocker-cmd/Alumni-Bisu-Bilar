@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('course')->nullable();
             $table->string('user_id')->nullable();
             $table->string('pay_med')->nullable();
+            $table->string('citizenship')->nullable();
+            $table->string('month_grad')->nullable();
             $table->string('status')->nullable();
             $table->string('signature')->nullable();
             $table->string('price')->nullable();

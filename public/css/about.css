@@ -71,6 +71,35 @@
     width: 350px;
 }
 
+@media(max-width: 600px){
+    .about_wrapper h2
+    {
+        font-size: 17px;
+    }
+
+    .logo-for-about
+    {
+        width: 180px;
+    }
+    
+    .about_row_2 .contact-box .icon
+    {
+        min-width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+    .about_row_2 .contact-box h4,
+    .about_row_2 .contact-box p
+    {
+        font-size: 12px;
+    }
+    .contact-box
+    {
+        gap: 10px;
+    }
+    
+  }
+
 @media (max-width:1000px)
 {
     .about_row_1,
@@ -99,10 +128,7 @@
 
 @media (max-width: 590px)
 {
-    .logo-for-about
-    {
-        width: 250px;
-    }
+
     .about_wrapper
     {
         padding: 40px 20px;

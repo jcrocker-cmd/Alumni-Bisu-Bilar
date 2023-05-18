@@ -56,11 +56,14 @@
 
     <li class=""><a href="/settings" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-cog" style="margin-right: 12px;"></i>  Settings</a></li>
 
-      <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
-      <span><i class="fal fa-bell" style="margin-right: 13px;"></i>  Notification</span>
-      <span class="bg-danger rounded-pill text-white px-2 py-0 d-flex align-items-center message-notif">02</span>
-      </a>
-      </li>
+    <li class="">
+        <a href="/admin_notification" class="text-decoration-none px-3 py-2 d-block d-flex justify-content-between">
+            <span><i class="fal fa-bell" style="margin-right: 10px;"></i>Notification</span>
+            @if($notificationsUnread->count() > 0)
+                <span class="bg-danger rounded-pill text-white px-2 py-0 d-flex align-items-center message-notif">{{ $notificationsUnread->count() }}</span>
+            @endif
+        </a>
+    </li>
       
     </ul>
 
@@ -90,14 +93,17 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarText">
       
-      <button type="button" class="btn position-relative nav-notif"><a href="/notification" class="text-decoration-none text-dark"><i class="fal fa-bell"></i>
-      <span class="nav-notif-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-        99+
-        <span class="visually-hidden">unread notification</span>
-      </span>
-    </a>
+    <button type="button" class="btn position-relative nav-notif">
+          <a href="/admin_notification" class="text-decoration-none text-dark">
+              <i class="fal fa-bell"></i>
+              @if($notificationsUnread->count() > 0)
+              <span class="nav-notif-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{ $notificationsUnread->count() }}
+                  <span class="visually-hidden">unread notification</span>
+              </span>
+              @endif
+          </a>
       </button>
-
           <div class="dropdown">
             @if(Auth::user()->profile_picture)
                 <img src="{{ asset('images/user_profile/' . Auth::user()->profile_picture) }}" style="height: 35px; width: 35px; object-fit: cover; border: 0.5px solid #000;" class="rounded-circle">

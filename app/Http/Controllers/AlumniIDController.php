@@ -6,14 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\AlumniID;
 use App\Models\User;
 use App\Models\Payment;
+use App\Models\Admin_Notifications;
+use App\Models\Client_Notifications;
 use Session;
 use DB;
+use Auth;
 use Illuminate\Support\Facades\File;
 
 class AlumniIDController extends Controller
 {
     public function db_route_alumni_id()
     {   
+
+        $notificationsUnread = Admin_Notifications::whereNull('read_at')->get();
         $alumni_id = AlumniID::all();
         
         // DAY
@@ -73,14 +78,19 @@ class AlumniIDController extends Controller
         $year_counts[] = $aid->count;
         }
 
-        return view ('dashboard.alumni-id', compact('alumni_id', 'day_counts', 'week_counts', 'month_counts','year_counts','days', 'weeks', 'months','years',));
+        return view ('dashboard.alumni-id', compact('notificationsUnread','alumni_id', 'day_counts', 'week_counts', 'month_counts','year_counts','days', 'weeks', 'months','years',));
         }
 
 
     public function route_alumni_id()
     {
+       
+        $user_id = Auth::id();
+        $notificationsUnread = Client_Notifications::where('user_id', $user_id)
+            ->whereNull('read_at')
+            ->get();
         $payment = Payment::first();
-        return view('main.alumni-id',compact('payment'));
+        return view('main.alumni-id',compact('payment','notificationsUnread'));
     }
 
     public function post_alumni_id(Request $request)
@@ -151,16 +161,33 @@ class AlumniIDController extends Controller
         }
 
 
-        AlumniID::create($aid);
+        $alumniID = AlumniID::create($aid);
 
         // Update the user's alumni_id_applied column to true
         $user = User::find($request->user()->id);
         $user->alumni_id_applied = true;
         $user->save();
+
+        $admin_notification = new Admin_Notifications();
+        $admin_notification->user_id = Auth::user()->id;
+        $admin_notification->alumniid_id = $alumniID->id;
+        $admin_notification->message = 'Applied for Alumni ID';
+        $admin_notification->save();
         
         Session::flash('success_reissuance','Succesful.');
         return redirect('/success-alumni-id')->with('aid', $aid)->withInput();
     }
+
+    public function notify_alumni_id(Request $request)
+    {
+        $client_notification = new Client_Notifications();
+        $client_notification->user_id = $request->input('user_id');
+        $client_notification->message = 'Your Alumni ID is Ready';
+        $client_notification->save();
+        Session::flash('status','Notified Succesfully.');
+        return redirect('/alumni-id');
+    }
+
     
     
 
@@ -190,7 +217,11 @@ class AlumniIDController extends Controller
 
     public function success_alumni_id()
     {
-        return view('main.success-alumni-id');
+        $user_id = Auth::id();
+        $notificationsUnread = Client_Notifications::where('user_id', $user_id)
+            ->whereNull('read_at')
+            ->get();
+        return view('main.success-alumni-id',compact('notificationsUnread'));
     }
 
     public function confirmAid($id)
@@ -225,6 +256,8 @@ class AlumniIDController extends Controller
         $aid->name = $request->input('name');
         $aid->id_no = $request->input('id_no');
         $aid->address = $request->input('address');
+        $aid->citizenship = $request->input('citizenship');
+        $aid->month_grad = $request->input('month_grad');
         $aid->bday = $request->input('bday');
         $aid->course = $request->input('course');
         $aid->reference_no = $request->input('reference_no');

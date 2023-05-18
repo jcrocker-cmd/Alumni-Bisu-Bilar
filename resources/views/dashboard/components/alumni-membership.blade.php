@@ -34,7 +34,7 @@
         <img src="images/LOGO.png" style="height: 45px; width: 45px; object-fit: cover;" class="rounded-circle">
     @endif
     <div class="ms-3">
-        <p class="fw-bold mb-1">{{ $item->first_name }} {{ $item->last_name }} </p>
+        <p class="fw-bold mb-1">{{ $item->name }}</p>
         <p class="text-muted mb-0">{{ $item->user->email }}</p>
 
     </div>
@@ -71,17 +71,30 @@
   </div>
 
 
-
+  <div class="d-flex align-items-center" style="gap: 5px;">
   @if ($item->status != 'Paid')
-    <div class="d-flex align-items-center" style="gap: 5px;">
       <form method="POST" action="/confirm_amem/{{$item->id}}">
         @csrf
         <input type="hidden" name="amem_id" value="{{ $item->id }}">
         <button type="submit" class="btn btn-primary" style="font-size: 10px;">Confirm</button>
       </form>
     </div>
-  </div>
   @endif
+
+  @if ($item->status === 'Paid')
+    <form action="/notify-alumni-mem/{{ $item->id}}" method="POST" class="d-inline-block">
+      @csrf
+      <input type="hidden" name="notification_id" value="{{ $item->id }}">
+      <input type="hidden" name="user_id" id="" value="{{ $item->user_id}}">
+      <button type="submit" class="btn btn-success text-white" style="font-size: 10px;">
+        <i class="fas fa-envelope-open-text"></i> Notify
+      </button>
+    </form>
+    </div>
+    @endif
+
+  </div>
+
 
   </td>
   </tr>

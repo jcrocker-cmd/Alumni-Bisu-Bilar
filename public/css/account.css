@@ -114,6 +114,44 @@
     font-size: 12px;
 }
 
+/* TABLES */
+#myAlert ,
+.table-responsive,
+#clientTable,
+#clientTable thead ,
+#clientTable tbody,
+#clientTable2,
+#clientTable2 thead ,
+#clientTable2 tbody ,
+#clientTable3,
+#clientTable3 thead ,
+#clientTable3 tbody 
+{
+    font-size: 13px;
+}
+
+@media (max-width:805px) {
+
+    #settings .addphoto img
+    {
+        width: 90px;
+        height: 90px;
+    }
+    #settings  .settings-col-1 .group label,
+    #settings  .settings-col-1 .group input,
+    #settings  .settings-row-1 button,
+    #settings  .settings-col-2 button,
+    #settings  .settings-wrapper button
+    {
+        font-size: 11px;
+    }
+    .settings-title
+    {
+        font-size: 14px;
+    }
+}
+
+
 @media(max-width: 1200px)
 {
     #settings .settings-row-1
@@ -140,6 +178,22 @@
     #settings
     {
         padding: 20px 20px;
+    }
+
+    /* TABLES */
+    #myAlert ,
+    .table-responsive,
+    #clientTable,
+    #clientTable thead ,
+    #clientTable tbody,
+    #clientTable2,
+    #clientTable2 thead ,
+    #clientTable2 tbody ,
+    #clientTable3,
+    #clientTable3 thead ,
+    #clientTable3 tbody 
+    {
+        font-size: 11px;
     }
  
 }

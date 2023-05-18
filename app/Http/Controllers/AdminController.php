@@ -10,6 +10,7 @@ use App\Models\AlumniMem;
 use App\Models\Admininfo;
 use App\Models\User;
 use App\Models\Payment;
+use App\Models\Admin_Notifications;
 use Spatie\Permission\Models\Role;
 use Session;
 use Hash;
@@ -25,6 +26,12 @@ class AdminController extends Controller
     public function route_db_login()
     {
        return view('dashboard.dashboard-login');
+    }
+
+    public function route_db_settings()
+    {
+        $notificationsUnread = Admin_Notifications::whereNull('read_at')->get();
+       return view('dashboard.settings',compact('notificationsUnread'));
     }
 
     function db_check_login(Request $request)
@@ -57,8 +64,9 @@ class AdminController extends Controller
 
    public function route_payment_settings()
    {
+        $notificationsUnread = Admin_Notifications::whereNull('read_at')->get();
         $payment = Payment::first();
-        return view('dashboard.payment', compact('payment'));
+        return view('dashboard.payment', compact('payment','notificationsUnread'));
    }
 
    public function route_sales_report()
@@ -66,6 +74,7 @@ class AdminController extends Controller
     // ALUMNI MEMBERSHIP SALES
 
         // DAY
+        $notificationsUnread = Admin_Notifications::whereNull('read_at')->get();
         $amem_daily_payment = DB::table('alumni_mem')
         ->select(DB::raw('SUM(price) as total_sales, DATE(created_at) as day'))
         ->where('status', '=', 'Paid')
@@ -201,7 +210,7 @@ class AdminController extends Controller
         
 
       return view('dashboard.sales', 
-      compact('day_counts', 'week_counts', 'month_counts','year_counts','days', 'weeks', 'months','years',
+      compact('notificationsUnread','day_counts', 'week_counts', 'month_counts','year_counts','days', 'weeks', 'months','years',
       'aid_day_counts', 'aid_week_counts', 'aid_month_counts','aid_year_counts','aid_days', 'aid_weeks', 'aid_months','aid_years',
     ));
    }
@@ -244,7 +253,7 @@ class AdminController extends Controller
     public function route_dashboard()
  
     {
-
+    $notificationsUnread = Admin_Notifications::whereNull('read_at')->get();
      $numberOfAnnouncement = Announcement::count();
      $numberOfAlumniID = AlumniID::count();
      $numberOfAlumniMem = AlumniMem::count();
@@ -288,6 +297,7 @@ class AdminController extends Controller
         'months' => $months,
         'signins' => $signins,
         'allusers' => $allusers,
+        'notificationsUnread' => $notificationsUnread,
     ]);
 
     }
@@ -406,12 +416,13 @@ class AdminController extends Controller
 
     public function route_user_role()
     {
+        $notificationsUnread = Admin_Notifications::whereNull('read_at')->get();
         $user_roles = User::with('roles')
         ->whereHas('roles', function ($query) {
             $query->whereIn('name', ['Admin', 'ID Staff']);
         })
         ->get();
-       return view('dashboard.users', compact('user_roles'));
+       return view('dashboard.users', compact('user_roles','notificationsUnread'));
     }
 
 

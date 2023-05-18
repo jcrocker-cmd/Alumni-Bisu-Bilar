@@ -140,3 +140,26 @@
     font-size: 40px;
     color: #2FAA4B;
 }
+
+
+@media (max-width: 600px) {
+    .success_page .content span,
+    .success_page .links span,
+    .success_page .links ,
+    .success_page_reissueance .content span,
+    .success_page_reissueance .links,
+    .success_page_reissueance .links span,
+    .already_applied .content span
+
+    {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .success_page .content i,
+    .success_page_reissueance .content i,
+    .already_applied .content i
+    {
+        font-size: 25px;
+    }
+}

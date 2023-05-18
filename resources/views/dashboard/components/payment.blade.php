@@ -35,7 +35,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">₱</span>
                     </div>
-                    <input type="number" class="form-control" id="exampleFormControlInput1" name="alumni_id_price" placeholder="Enter price" value="{{ $payment->alumni_id_price}}">
+                    <input type="number" class="form-control" id="exampleFormControlInput1" name="alumni_id_price" placeholder="Enter price" value="{{ $payment->alumni_id_price}}.00">
                 </div>
 
                 <label for="exampleFormControlInput1">Alumi Membership price</label>
@@ -43,7 +43,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">₱</span>
                     </div>
-                    <input type="number" class="form-control" id="exampleFormControlInput1" name="alumni_mem_price" placeholder="Enter price" value="{{ $payment->alumni_mem_price}}">
+                    <input type="number" class="form-control" id="exampleFormControlInput1" name="alumni_mem_price" placeholder="Enter price" value="{{ $payment->alumni_mem_price}}.00">
                 </div>
 
 

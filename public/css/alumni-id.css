@@ -104,7 +104,8 @@
     flex-direction: column;
 }
 
-.pay_med_title
+.pay_med_title,
+.pay_med_price
 {
 
     font-family: 'Poppins', sans-serif;
@@ -228,7 +229,49 @@
     font-size: 13px;
 }
 
+@media (max-width: 600px) {
 
+
+    .alumni-id-wrapper
+    {
+        padding: 20px;
+    }
+    
+    .alumni-id-wrapper h2 
+    {
+        font-size: 15px;
+    }
+
+    .alumni-id-wrapper p,
+    .alumni-id-wrapper .fields .input-field label,
+    .alumni-id-wrapper .fields  .input-field input, select,
+    .alumni-id-wrapper button[type="button"],
+    .alumni-id-wrapper button[type="submit"],
+    .pay_med_title,
+    .pay_med_price,
+    .pay_med input,
+    .pay_med label,
+    #radio1-content span,
+    .pay_med_text span,
+    .pay_med_input input,
+    .pay_med_input label
+    {
+        font-size: 12px;
+    }
+
+    .alumni-id-wrapper .addphoto img
+    {
+        height: 150px;
+        width: 250px;
+    }
+
+    .alumni-id-wrapper .addphoto img
+    {
+        height: 150px;
+        width: 250px;
+    }
+
+}
 
 @media(max-width: 540px){
     

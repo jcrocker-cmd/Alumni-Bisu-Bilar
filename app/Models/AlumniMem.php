@@ -21,6 +21,7 @@ class AlumniMem extends Model
         'status',
         'signature',
         'reference_no',
+        'price',
     ];
 
     public function user()

@@ -7,13 +7,20 @@ use App\Models\Reissueance;
 use App\Models\User;
 use Session;
 use DB;
+use App\Models\Admin_Notifications;
+use App\Models\Client_Notifications;
+use Auth;
 use Illuminate\Support\Facades\File;
 
 class ReissueanceController extends Controller
 {
     public function route_reissuance()
     {
-        return view('main.reissuance');
+        $user_id = Auth::id();
+        $notificationsUnread = Client_Notifications::where('user_id', $user_id)
+            ->whereNull('read_at')
+            ->get();
+        return view('main.reissuance',compact('notificationsUnread'));
     }
 
     public function post_reissuance(Request $request)
@@ -50,20 +57,38 @@ class ReissueanceController extends Controller
             $image->move($destinationPath, $profileImage);
             $reissuance['signature'] = "$profileImage";
         }
-        Reissueance::create($reissuance);
+        $ReissueanceID = Reissueance::create($reissuance);
 
         // Update the user's alumni_id_applied column to true
         $user = User::find($request->user()->id);
         $user->reissueance_applied = true;
         $user->save();
 
+        $admin_notification = new Admin_Notifications();
+        $admin_notification->user_id = Auth::user()->id;
+        $admin_notification->reissueance_id = $ReissueanceID->id;
+        $admin_notification->message = 'Applied for Reissueance';
+        $admin_notification->save();
+
         Session::flash('success_reissuance','Succesful.');
         return redirect('/success-reissueance')->with('reissuance', $reissuance)->withInput();
+    }
+
+    public function notify_reissueance(Request $request)
+    {
+        $client_notification = new Client_Notifications();
+        $client_notification->user_id = $request->input('user_id');
+        $client_notification->message = 'Your Re-issueance is Done';
+        $client_notification->save();
+        Session::flash('status','Notified Succesfully.');
+        return redirect('/alumni-membership');
     }
 
     public function db_route_reissuance()
     {
         $reissueance = Reissueance::all();
+        $notificationsUnread = Admin_Notifications::whereNull('read_at')->get();
+
 
         // DAY
         $daily_reissuance = DB::table('reissueances')
@@ -122,7 +147,7 @@ class ReissueanceController extends Controller
         $year_counts[] = $reissuance->count;
         }
 
-        return view ('dashboard.reissueance', compact('reissueance', 'day_counts', 'week_counts', 'month_counts','year_counts','days', 'weeks', 'months','years',));
+        return view ('dashboard.reissueance', compact('notificationsUnread','reissueance', 'day_counts', 'week_counts', 'month_counts','year_counts','days', 'weeks', 'months','years',));
         }
 
     public function db_reissueance_ajaxview($id)
@@ -152,7 +177,11 @@ class ReissueanceController extends Controller
 
     public function success_reissueance()
     {
-        return view('main.success-reissueance');
+        $user_id = Auth::id();
+        $notificationsUnread = Client_Notifications::where('user_id', $user_id)
+            ->whereNull('read_at')
+            ->get();
+        return view('main.success-reissueance',compact('notificationsUnread'));
     }
 
     public function db_reissueance_ajaxedit($id)

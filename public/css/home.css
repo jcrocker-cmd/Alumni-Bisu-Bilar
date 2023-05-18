@@ -121,3 +121,25 @@
 
     
   }
+
+
+  @media(max-width: 600px){
+
+        .col-1 a
+    {
+        font-size: 20px;
+    }
+        .home-row
+    {
+        padding: 60px 20px;
+    }
+        .col-1 , .col-2
+    {
+        width: 100%;
+        padding: 0px 0px;
+    }
+        .logo-for-home
+    {
+        width: 150px;
+    }
+  }

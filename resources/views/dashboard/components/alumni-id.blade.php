@@ -35,7 +35,7 @@
         <img src="images/LOGO.png" style="height: 45px; width: 45px; object-fit: cover;" class="rounded-circle">
     @endif
     <div class="ms-3">
-        <p class="fw-bold mb-1">{{ $item->first_name }} {{ $item->last_name }} </p>
+        <p class="fw-bold mb-1">{{ $item->name }}</p>
         <p class="text-muted mb-0">{{ $item->user->email }}</p>
 
     </div>
@@ -72,17 +72,28 @@
   @endrole
   </div>
 
-
+  <div class="d-flex align-items-center" style="gap: 5px;">
   @if ($item->status != 'Paid')
-    <div class="d-flex align-items-center" style="gap: 5px;">
       <form method="POST" action="/confirm_aid/{{$item->id}}">
         @csrf
         <input type="hidden" name="aid_id" value="{{ $item->id }}">
         <button type="submit" class="btn btn-primary" style="font-size: 10px;">Confirm</button>
       </form>
     </div>
-  </div>
   @endif
+
+  @if ($item->status === 'Paid')
+    <form action="/notify-alumni-id/{{ $item->id}}" method="POST" class="d-inline-block">
+      @csrf
+      <input type="hidden" name="notification_id" value="{{ $item->id }}">
+      <input type="hidden" name="user_id" id="" value="{{ $item->user_id}}">
+      <button type="submit" class="btn btn-success text-white" style="font-size: 10px;">
+        <i class="fas fa-envelope-open-text"></i> Notify
+      </button>
+    </form>
+    </div>
+    @endif
+
 
   </td>
   </tr>
@@ -166,6 +177,14 @@
               <td style="padding: 10px;"><span id="view_address"></span></td>
             </tr>
             <tr>
+              <td style="padding: 10px;">Citizenship</td>
+              <td style="padding: 10px;"><span id="view_cs"></span></td>
+            </tr>
+            <tr>
+              <td style="padding: 10px;">Month Garduated</td>
+              <td style="padding: 10px;"><span id="view_month"></span></td>
+            </tr>
+            <tr>
               <td style="padding: 10px;">Birthday</td>
               <td style="padding: 10px;"><span id="view_bday"></span></td>
             </tr>
@@ -242,7 +261,28 @@
 
               <div class="mb-2 input-field">
                 <label for="recipient-name" class="">Address:</label>
-                <input type="text" name="address" class=""  name="email" id="edit_address" required>
+                <input type="text" name="address" class=""  id="edit_address" required>
+                <span class="text-danger" id="edit_error_email"></span>
+              </div>
+
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">Month Graduated:</label>
+                  <select id="edit_month" name="month_grad" value="{{ old('month_grad') }}">
+                      <option value="" disabled>Select a month</option>
+                      <?php
+                      $months = [
+                          'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+                      ];
+                      foreach ($months as $month) {
+                          echo "<option value='$month'>$month</option>";
+                      }
+                      ?>
+                  </select>
+              </div>
+
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">Citizenship:</label>
+                <input type="text" name="citizenship" class=""  id="edit_cs" >
                 <span class="text-danger" id="edit_error_email"></span>
               </div>
 
