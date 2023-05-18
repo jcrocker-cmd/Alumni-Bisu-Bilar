@@ -11,5 +11,5 @@
 @endsection
 
 @push('scripts')
-    <script src="/js/db-password-showhide.js"></script>
+    
 @endpush

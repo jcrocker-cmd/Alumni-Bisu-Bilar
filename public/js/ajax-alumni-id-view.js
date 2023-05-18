@@ -10,6 +10,8 @@ $(document).on('click', '.action-view', function(event) {
             $('#view_id_no').text(response.alumni_id .id_no);
             $('#view_name').text(response.alumni_id .name);
             $('#view_address').text(response.alumni_id .address);
+            $('#view_cs').text(response.alumni_id.citizenship);
+            $('#view_month').text(response.alumni_id.month_grad);
             $('#view_bday').text(response.alumni_id .bday);
             $('#view_course').text(response.alumni_id .course);
             $('#view_paymed').text(response.alumni_id.pay_med);

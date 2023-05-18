@@ -20,9 +20,12 @@ class AlumniID extends Model
         'course',
         'user_id',
         'pay_med',
+        'citizenship',
+        'month_grad',
         'status',
         'signature',
         'reference_no',
+        'price',
     ];
 
     public function user()

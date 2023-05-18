@@ -22,6 +22,22 @@
                             <input type="text" class="" id="a_no" name="a_no" placeholder=""></input>
                         </div>
 
+
+                        <div class="input-field">
+                            <label for="message-text" class="">Name: <span class="sub-name">(ex: CERO, JOSENITO A.)</span> </label>
+                            <input type="text" class="" id="name" name="name"placeholder="Enter your name" value="{{ Auth::user()->last_name }}, {{ Auth::user()->first_name }} {{ Auth::user()->middle_name }}"></input>
+                            <span class="error-text" id="error_name">@error('name') {{$message}} @enderror</span>
+                        </div>
+                        
+                        
+                        <div class="input-field">
+                            <label for="message-text" class="">Citizenship: <span class="sub-name">(ex: Filipino)</span> </label>
+                            <input type="text" class="" id="citizenship" name="citizenship" placeholder="Enter your Citizenship" value="{{ old('citizenship') }}"></input>
+                            <span class="error-text" id="error_name">@error('name') {{$message}} @enderror</span>
+                        </div>
+                    </div>
+
+                    <div class="group">
                         <div class="input-field">
                             <label for="id_no" class="">ID No. : <span class="sub-name">(Year Grauduated)</span> </label>
                             <select id="id_no" name="id_no" value="{{ old('id_no') }}">
@@ -34,12 +50,21 @@
                             </select>
                             <span class="error-text" id="error_id_no">@error('id_no') {{$message}} @enderror</span>
                         </div>
-
-                        <div class="input-field">
-                            <label for="message-text" class="">Name: <span class="sub-name">(ex: CERO, JOSENITO A.)</span> </label>
-                            <input type="text" class="" id="name" name="name"placeholder="Enter your name" value="{{ Auth::user()->last_name }}, {{ Auth::user()->first_name }} {{ Auth::user()->middle_name }}"></input>
-                            <span class="error-text" id="error_name">@error('name') {{$message}} @enderror</span>
-                        </div>
+                            <div class="input-field">
+                                <label for="id_no" class="">Month : <span class="sub-name">(Month Graduated)</span> </label>
+                                <select id="month_grad" name="month_grad" value="{{ old('month_grad') }}">
+                                    <option value="" disabled>Select a month</option>
+                                    <?php
+                                    $months = [
+                                        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+                                    ];
+                                    foreach ($months as $month) {
+                                        echo "<option value='$month'>$month</option>";
+                                    }
+                                    ?>
+                                </select>
+                                <span class="error-text" id="error_id_no">@error('id_no') {{$message}} @enderror</span>
+                            </div>
 
                     </div>
 
@@ -73,7 +98,7 @@
                     <div class="pay_med_wrapper">
 
                         <span class="pay_med_title">Payment Method</span>
-
+                        <span class="pay_med_price">Amount( ₱ {{ $payment->alumni_id_price}}.00)</span>
                         <div class="group pay_med">
 
                             <div class="radio-field">
@@ -142,7 +167,7 @@
                     <button onclick ="addPhoto()" type="button" class="addphoto-btn" id="addphotoBtn">Choose Image</button>
                 </div>
 
-                <button type="submit" id="submit_alumni_id">SUBMIT</button>
+                <button type="submit"  onclick="this.disabled=true;this.form.submit();" id="submit_alumni_id">SUBMIT</button>
             </div>
         </form>
 

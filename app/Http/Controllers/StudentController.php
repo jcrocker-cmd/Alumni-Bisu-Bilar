@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\AlumniID;
 use App\Models\AlumniMem;
 use App\Models\Reissueance;
+use App\Models\Admin_Notifications;
+use App\Models\Client_Notifications;
 use Session;
 use DB;
 use Auth;
@@ -14,6 +16,14 @@ use Illuminate\Support\Facades\File;
 
 class StudentController extends Controller
 {
+    public function route_user_settings()
+    {
+        $user_id = Auth::id();
+        $notificationsUnread = Client_Notifications::where('user_id', $user_id)
+            ->whereNull('read_at')
+            ->get();
+        return view('main.account', compact('notificationsUnread'));
+    }
     public function route_user_role()
     {
         $user_roles = User::with('roles')
@@ -21,6 +31,10 @@ class StudentController extends Controller
             $query->whereIn('name', ['Student']);
         })
         ->get();
+        $notificationsUnread = Admin_Notifications::whereNull('read_at')->get();
+
+
+
     
         // // Get the user role names
         // $role_names = $user_roles->pluck('roles.0.name');
@@ -95,7 +109,7 @@ class StudentController extends Controller
         //     $year_counts[] = $students->count;
         // }
             
-           return view('dashboard.record', compact('user_roles'));
+        return view('dashboard.record', compact('notificationsUnread','user_roles'));
     }
 
     public function db_record_ajaxview($id)
@@ -175,12 +189,16 @@ class StudentController extends Controller
 
     public function route_student_record()
     {
+        $user_id = Auth::id();
+        $notificationsUnread = Client_Notifications::where('user_id', $user_id)
+            ->whereNull('read_at')
+            ->get();
         $user_id = auth()->user()->id;
         $alumni_id = AlumniID::where('user_id', $user_id)->with('user')->get();
         $alumni_mem = AlumniMem::where('user_id', $user_id)->with('user')->get();
         $reissue = Reissueance::where('user_id', $user_id)->with('user')->get();
 
-        return view('main.record', compact('alumni_id', 'alumni_mem', 'reissue'));
+        return view('main.record', compact('notificationsUnread','alumni_id', 'alumni_mem', 'reissue'));
     }
 
 
@@ -328,6 +346,8 @@ class StudentController extends Controller
         $aid->name = $request->input('name');
         $aid->id_no = $request->input('id_no');
         $aid->address = $request->input('address');
+        $aid->citizenship = $request->input('citizenship');
+        $aid->month_grad = $request->input('month_grad');
         $aid->bday = $request->input('bday');
         $aid->course = $request->input('course');
         $aid->reference_no = $request->input('reference_no');

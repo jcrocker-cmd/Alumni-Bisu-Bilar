@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\AlumniMem;
 use App\Models\Payment;
 use App\Models\User;
+use App\Models\Admin_Notifications;
+use App\Models\Client_Notifications;
+use Auth;
 use Session;
 use DB;
 use Illuminate\Support\Facades\File;
@@ -14,13 +17,18 @@ class AlumniMemController extends Controller
 {
     public function route_alumni_mem()
     {
+        $user_id = Auth::id();
+        $notificationsUnread = Client_Notifications::where('user_id', $user_id)
+            ->whereNull('read_at')
+            ->get();
         $payment = Payment::first();
-        return view('main.alumni-membership',compact('payment'));
+        return view('main.alumni-membership',compact('payment','notificationsUnread'));
     }
 
     public function db_route_alumni_mem()
     {
 
+        $notificationsUnread = Admin_Notifications::whereNull('read_at')->get();
 
         $amem = AlumniMem::all();
         
@@ -81,7 +89,7 @@ class AlumniMemController extends Controller
         $year_counts[] = $membership->count;
         }
 
-        return view ('dashboard.alumni-membership', compact('amem', 'day_counts', 'week_counts', 'month_counts','year_counts','days', 'weeks', 'months','years',));
+        return view ('dashboard.alumni-membership', compact('notificationsUnread','amem', 'day_counts', 'week_counts', 'month_counts','year_counts','days', 'weeks', 'months','years',));
         }
 
         // public function db_route_alumni_mem()
@@ -133,18 +141,34 @@ class AlumniMemController extends Controller
                 $amem['status'] = 'In Progress';
             }
         
-            AlumniMem::create($amem);
-        
+            $alumniMem = AlumniMem::create($amem);
+
             // Update the user's alumni_mem_applied column to true
             $user = User::find($request->user()->id);
             $user->alumni_mem_applied = true;
             $user->save();
+
+
+            // Create notification
+            $admin_notification = new Admin_Notifications();
+            $admin_notification->user_id = Auth::user()->id;
+            $admin_notification->alumnimem_id = $alumniMem->id;
+            $admin_notification->message = 'Applied for Alumni Membership';
+            $admin_notification->save();
         
             Session::flash('success_reissuance','Succesful.');
             return redirect('/success-alumni-mem')->with('amem', $amem)->withInput();
         }
         
-
+        public function notify_alumni_mem(Request $request)
+        {
+            $client_notification = new Client_Notifications();
+            $client_notification->user_id = $request->input('user_id');
+            $client_notification->message = 'Your Alumni Membership is Done';
+            $client_notification->save();
+            Session::flash('status','Notified Succesfully.');
+            return redirect('/alumni-membership');
+        }
 
 
     public function db_alumni_mem_ajaxview($id)
@@ -173,7 +197,11 @@ class AlumniMemController extends Controller
 
     public function success_alumni_mem()
     {
-        return view('main.success-alumni-mem');
+        $user_id = Auth::id();
+        $notificationsUnread = Client_Notifications::where('user_id', $user_id)
+            ->whereNull('read_at')
+            ->get();
+        return view('main.success-alumni-mem',compact('notificationsUnread'));
     }
 
     public function confirmAmem($id)

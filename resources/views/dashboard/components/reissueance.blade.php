@@ -40,7 +40,7 @@
         <img src="images/LOGO.png" style="height: 45px; width: 45px; object-fit: cover;" class="rounded-circle">
     @endif
     <div class="ms-3">
-        <p class="fw-bold mb-1">{{ $item->first_name }} {{ $item->last_name }} </p>
+        <p class="fw-bold mb-1">{{ $item->name }}</p>
         <p class="text-muted mb-0">{{ $item->user->email }}</p>
 
     </div>
@@ -57,6 +57,16 @@
   <a href="#" title="View" class="actions action-view" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#viewModal"><i class="fa fa-eye" aria-hidden="true"></i></a>
   <a href="#" title="Edit" class="actions action-edit" data-id="{{ $item->id }}" data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa fa-pencil" aria-hidden="true"></i></a>
   <a href="/delete_reissueance/{{ $item->id }}" title="Delete" onclick="return confirm(&quot;Confirm delete?&quot;)" class="actions action-delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+    <form action="/notify-reissueance/{{ $item->id}}" method="POST" class="d-inline-block">
+      @csrf
+      <input type="hidden" name="notification_id" value="{{ $item->id }}">
+      <input type="hidden" name="user_id" id="" value="{{ $item->user_id}}">
+      <button type="submit" class="btn btn-success text-white" style="font-size: 10px;">
+        <i class="fas fa-envelope-open-text"></i> Notify
+      </button>
+    </form>
+
 
   </td>
   </tr>

@@ -13,6 +13,8 @@ $(document).on('click', '.view_alumni_id', function(event) {
             $('#view_bday').text(response.alumni_id.bday);
             $('#view_course').text(response.alumni_id.course);
             $('#view_paymed').text(response.alumni_id.pay_med);
+            $('#view_cs').text(response.alumni_id.citizenship);
+            $('#view_month').text(response.alumni_id.month_grad);
             $('#view_status').text(response.alumni_id.status);
             $('#view_ref').text(response.alumni_id.reference_no);
             $('#view_price').text(response.alumni_id.price);

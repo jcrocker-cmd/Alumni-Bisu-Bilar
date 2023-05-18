@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Announcement;
+use App\Models\Admin_Notifications;
 use Session;
 use Mail;
 use DB;
@@ -13,8 +14,9 @@ class AnnouncementController extends Controller
 
     public function route_announcement()
     {
+        $notificationsUnread = Admin_Notifications::whereNull('read_at')->get();
         $announce = Announcement::all();
-        return view('dashboard.announcement')->with('announce', $announce); 
+        return view('dashboard.announcement',compact('notificationsUnread','announce')); 
     }
 
 
@@ -33,7 +35,7 @@ class AnnouncementController extends Controller
           $announce->save();
 
             // Get all email addresses from the users table
-            $emails = DB::table('signin')->pluck('email')->toArray();
+            $emails = DB::table('users')->pluck('email')->toArray();
 
             Mail::send('dashboard.email-template', ['data' => $data], function($message) use ($data, $emails) {
                 // Send email to all email addresses

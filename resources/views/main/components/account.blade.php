@@ -13,11 +13,11 @@
   <h6 class="alert alert-danger" id="myAlert">{{ session('failpassword') }}</h6>
 @endif
     
-    <h5 class="pb-2 text-white">Account Settings</h5>
+    <h5 class="pb-2 text-white settings-title">Account Settings</h5>
 
     <div class="settings-row-1">
     <div class="settings-wrapper-1 px-3 py-4">
-        <h6>Edit profile Information</h6>
+        <h6 class="settings-title">Edit profile Information</h6>
         <hr>
 
         <form action="/change-student-info" method="post">

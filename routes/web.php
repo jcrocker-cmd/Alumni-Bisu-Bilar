@@ -10,6 +10,7 @@ use App\Http\Controllers\SigninController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\NotificationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,11 +96,21 @@ Route::middleware(['preventBackHistory'])->group(function () {
 
         Route::get('/sales_report', [AdminController::class,'route_sales_report']);
 
+        Route::get('/admin_notification', [NotificationController::class,'db_notification']);
+        Route::put('/mark_as_read_admin/{id}', [NotificationController::class, 'markNotificationAsRead_admin']);
+        Route::get('/delete_admin_notification/{id}', [NotificationController::class,'deleteNotification_admin']);        
 
+        Route::post('/notify-alumni-id/{id}', [AlumniIDController::class,'notify_alumni_id']);
+        Route::post('/notify-alumni-mem/{id}', [AlumniMemController::class,'notify_alumni_mem']);
+        Route::post('/notify-reissueance/{id}', [ReissueanceController::class,'notify_reissueance']);
 
-        Route::get('/settings', function () {
-            return view('dashboard.settings');
-        });
+        
+        
+        Route::get('/settings', [AdminController::class,'route_db_settings']);
+
+        // Route::get('/settings', function () {
+        //     return view('dashboard.settings');
+        // });
     });
 });
 
@@ -144,12 +155,11 @@ Route::middleware(['preventBackHistory'])->group(function () {
         Route::get('/home-alumni-membership', [AlumniMemController::class,'route_alumni_mem']);
         Route::post('/home-alumni-membership-post', [AlumniMemController::class,'post_alumni_mem']);
         Route::get('/success-alumni-mem', [AlumniMemController::class,'success_alumni_mem']);
+
+        Route::get('/home-account', [StudentController::class,'route_user_settings']);
+
         Route::get('/success-alumni-mem', [AlumniMemController::class,'success_alumni_mem']);
 
-
-        Route::get('/home-account', function () {
-            return view('main.account');
-        });
 
         Route::put('/change-student-password', [StudentController::class,'student_password_update']);
         Route::put('/change-student-info', [StudentController::class,'student_info_update']);
@@ -177,6 +187,10 @@ Route::middleware(['preventBackHistory'])->group(function () {
 
 
         
+        // NOTIFICATION
+        Route::get('/my_notification', [NotificationController::class,'user_notification']);
+        Route::put('/mark_as_read_user/{id}', [NotificationController::class, 'markNotificationAsRead_user']);
+        Route::get('/delete_user_notification/{id}', [NotificationController::class,'deleteNotification_user']);    
 
 
 

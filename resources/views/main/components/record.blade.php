@@ -10,9 +10,9 @@
     <div class="alumniid_application">
         <div class="alumniid_application_sec">
         @if(Auth::user()->alumni_id_applied)
-        <span class="text mb-2"><strong> Alumni ID Application</strong></span>
+        <span class="text mb-2 sub-text"><strong> Alumni ID Application</strong></span>
             <div class="table-responsive pb-3" style="width: 100%;">
-                <table class="table align-middle mb-0 bg-light table-bordered table-hover display responsive nowrap" id="dbTable" style="width: 100%;">
+                <table class="table align-middle mb-0 bg-light table-bordered table-hover display responsive nowrap" id="clientTable" style="width: 100%;">
                     <thead class="table text-black" >
                         <tr>
                             <th scope="col">Student</th>
@@ -77,9 +77,9 @@
     <div class="alumnimem_application">
     <div class="alumnimem_application_sec">
         @if(Auth::user()->alumni_mem_applied)
-        <span class="text mb-2"><strong> Alumni Membership Application</strong></span>
+        <span class="text mb-2 sub-text"><strong> Alumni Membership Application</strong></span>
             <div class="table-responsive pb-3" style="width: 100%;">
-                <table class="table align-middle mb-0 bg-light table-bordered table-hover display responsive nowrap" id="dbTable" style="width: 100%;">
+                <table class="table align-middle mb-0 bg-light table-bordered table-hover display responsive nowrap" id="clientTable2" style="width: 100%;">
                     <thead class="table text-black" >
                         <tr>
                             <th scope="col">Student</th>
@@ -142,9 +142,9 @@
 
     <div class="reissueance_application_sec">
         @if(Auth::user()->reissueance_applied)
-        <span class="text mb-2"><strong>Reissueance of ID</strong></span>
+        <span class="text mb-2 sub-text"><strong>Reissueance of ID</strong></span>
             <div class="table-responsive pb-3" style="width: 100%;">
-                <table class="table align-middle mb-0 bg-light table-bordered table-hover display responsive nowrap" id="dbTable" style="width: 100%;">
+                <table class="table align-middle mb-0 bg-light table-bordered table-hover display responsive nowrap" id="clientTable3" style="width: 100%;">
                     <thead class="table text-black" >
                         <tr>
                             <th scope="col">Student</th>
@@ -246,6 +246,14 @@
               <td style="padding: 10px;"><span id="view_paymed"></span></td>
             </tr>
             <tr>
+              <td style="padding: 10px;">Citizenship</td>
+              <td style="padding: 10px;"><span id="view_cs"></span></td>
+            </tr>
+            <tr>
+              <td style="padding: 10px;">Month Garduated</td>
+              <td style="padding: 10px;"><span id="view_month"></span></td>
+            </tr>
+            <tr>
               <td style="padding: 10px;">Status</td>
               <td style="padding: 10px;"><span id="view_status"></span></td>
             </tr>
@@ -322,7 +330,7 @@
 
               <div class="mb-2 input-field">
                 <label for="recipient-name" class="">Address:</label>
-                <input type="text" name="address" class="" id="edit_address" required>
+                <input type="text" name="address" class="" id="edit_address" >
                 <span class="text-danger" id="edit_error_email"></span>
               </div>
 
@@ -330,6 +338,27 @@
                 <label for="recipient-name" class="">Birthday:</label>
                 <input type="date" name="bday" class="" id="edit_bday">
                 <span class="text-danger" id="edit_error_address"></span>
+              </div>
+
+              <div class="mb-2 input-field" >
+                <label for="recipient-name" class="">Month Graduated:</label>
+                  <select id="edit_month" name="month_grad" value="{{ old('month_grad') }}">
+                      <option value="" disabled>Select a month</option>
+                      <?php
+                      $months = [
+                          'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+                      ];
+                      foreach ($months as $month) {
+                          echo "<option value='$month'>$month</option>";
+                      }
+                      ?>
+                  </select>
+              </div>
+
+              <div class="mb-2 input-field">
+                <label for="recipient-name" class="">Citizenship:</label>
+                <input type="text" name="citizenship" class=""  id="edit_cs" >
+                <span class="text-danger" id="edit_error_email"></span>
               </div>
               
               <div class="mb-2 input-field">
