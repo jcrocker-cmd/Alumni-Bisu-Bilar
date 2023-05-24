@@ -57,8 +57,8 @@
                         </label>
                     </div>
                     
-                    <p><a href="{{ route('password.request') }}">Forgot Password?</a></p>
-                    <p>Not a Member? <a href="/signin">Signin Here</a></p>
+                    <p class="forgot"><a href="{{ route('password.request') }}">Forgot Password?</a></p>
+                    <span class="not-member">Not a Member? <a href="/signin">Signin Here</a></span>
                     </div>
 
                 </div> 

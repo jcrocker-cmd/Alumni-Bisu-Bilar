@@ -193,6 +193,9 @@ Route::middleware(['preventBackHistory'])->group(function () {
         Route::get('/delete_user_notification/{id}', [NotificationController::class,'deleteNotification_user']);    
 
 
+        Route::get('/home-announcements', [StudentController::class,'route_user_announcements']);
+        Route::get('/home-about', [StudentController::class,'route_user_about']);
+
 
         Route::get('/home', [ClientController::class,'route_home'])->name('client');
     });

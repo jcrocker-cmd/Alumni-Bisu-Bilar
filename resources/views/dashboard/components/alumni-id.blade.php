@@ -197,6 +197,10 @@
               <td style="padding: 10px;"><span id="view_paymed"></span></td>
             </tr>
             <tr>
+              <td style="padding: 10px;">Gcash Reference #</td>
+              <td style="padding: 10px;"><span id="view_ref"></span></td>
+            </tr>
+            <tr>
               <td style="padding: 10px;">Status</td>
               <td style="padding: 10px;"><span id="view_status"></span></td>
             </tr>

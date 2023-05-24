@@ -17,6 +17,24 @@ header
     
 }
 
+.my-notif {
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .notif-number {
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 4px 8px;
+    margin-left: 10px; 
+  }
+  
+
+
 .search-bar form
 {
     width: 300px;
@@ -490,7 +508,7 @@ nav li a:hover:after
     font-family: 'Poppins', sans-serif;
   }
 
-  @media (max-width:805px) {
+  @media (max-width:1150px) {
     nav
     {
         padding: 20px 20px;

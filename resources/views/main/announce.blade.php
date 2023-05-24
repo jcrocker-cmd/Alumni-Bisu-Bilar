@@ -4,9 +4,9 @@
 
 @section('content') 
     @include('main.components.navbar')
-    @include('main.components.home-components')
+    <main class="main_announce">
     @include('main.components.news-announcements')
-    @include('main.components.about')
+    </main>
     @include('main.components.footer')
 @endsection
 

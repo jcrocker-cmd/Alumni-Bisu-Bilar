@@ -13,6 +13,7 @@ $(document).on('click', '.action-view', function(event) {
             $('#view_fb').text(response.amem.fb);
             $('#view_paymed').text(response.amem.pay_med);
             $('#view_status').text(response.amem.status);
+            $('#view_ref').text(response.amem.reference_no);
             $('#view_sig img').attr('src', response.image_url);
             $('#view_date').text(moment(response.amem.created_at).format('LLLL'));
         },

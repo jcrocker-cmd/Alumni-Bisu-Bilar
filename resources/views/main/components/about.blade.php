@@ -12,9 +12,9 @@
                 <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
                 <div class="text">
                     <h4>Address</h4>
-                    <p>Lot 9 Blk 6 Windfields Subdivision <br>
-                        Danglag, Consolacion City, Cebu<br>
-                        Philippines, 6001
+                    <p>Zamora, Bilar, Bohol <br>
+                    Region 7- Central Visayas<br>
+                    Philippines, 6317
                     </p>
                 </div>
             </div>
@@ -23,9 +23,7 @@
                 <div class="icon"><i class="fas fa-phone"></i></div>
                 <div class="text">
                     <h4>Phone</h4>
-                    <p>Lot 9 Blk 6 Windfields Subdivision <br>
-                        Danglag, Consolacion City, Cebu<br>
-                        Philippines, 6001
+                    <p>+63 907 3657 181
                     </p>
                 </div>
             </div>
@@ -34,9 +32,7 @@
                 <div class="icon"><i class="fas fa-envelope"></i></div>
                 <div class="text">
                     <h4>Email</h4>
-                    <p>Lot 9 Blk 6 Windfields Subdivision <br>
-                        Danglag, Consolacion City, Cebu<br>
-                        Philippines, 6001
+                    <p>bisualumni3@gmail.com
                     </p>
                 </div>
             </div>
