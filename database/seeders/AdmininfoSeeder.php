@@ -21,10 +21,10 @@ class AdmininfoSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'first_name' => 'Johnny Boy',
-            'middle_name' => 'Johnny Boy',
-            'last_name' => 'Johnny Boy',
-            'email' => 'narbajajc@gmail.com',
+            'first_name' => 'BISU',
+            'middle_name' => '',
+            'last_name' => 'Bilar',
+            'email' => 'bisualumni3@gmail.com',
             'password' => Hash::make('aug151973'),
             'address' => 'Bilar',
             // 'address' => 'Bilar',

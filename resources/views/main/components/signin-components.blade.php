@@ -83,7 +83,7 @@
                         <i class="uil uil-navigator"></i>
                     </button>
                     
-                    <p>Already a Member? <a href="/student_login">Login Here</a></p>
+                    <span class="already_member">Already a Member? <a href="/student_login">Login Here</a></span>
 
                 </div> 
             </div>

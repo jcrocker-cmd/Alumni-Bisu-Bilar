@@ -13,16 +13,18 @@
         <hr style="">
         <form action="/home-alumni-membership-post" enctype="multipart/form-data" id="alumni_mem_form" method="post">
         @csrf
-        <div class="fields">
-            <label for="message-text" class="">Name: <span class="sub-name">(ex: CERO, JOSENITO A.)</span> </label>
-            <input type="text" class="" id="name" name="name" placeholder="Enter your name" value="{{ Auth::user()->last_name }}, {{ Auth::user()->first_name }} {{ Auth::user()->middle_name }}"></input>
-            <span class="error-text" id="error_name">@error('name') {{$message}} @enderror</span>
-        </div>
+        <div class="group">
+            <div class="fields">
+                <label for="message-text" class="">Name: <span class="sub-name">(ex: CERO, JOSENITO A.)</span> </label>
+                <input type="text" class="" id="name" name="name" placeholder="Enter your name" value="{{ Auth::user()->last_name }}, {{ Auth::user()->first_name }} {{ Auth::user()->middle_name }}"></input>
+                <span class="error-text" id="error_name">@error('name') {{$message}} @enderror</span>
+            </div>
 
-        <div class="fields">
-            <label for="message-text" class="">Address: <span></span> </label>
-            <input type="text" class="" id="address" name="address" placeholder="Enter your address" value="{{ Auth::user()->address }}"></input>
-            <span class="error-text" id="error_add">@error('address') {{$message}} @enderror</span>
+            <div class="fields">
+                <label for="message-text" class="">Address: <span></span> </label>
+                <input type="text" class="" id="address" name="address" placeholder="Enter your address" value="{{ Auth::user()->address }}"></input>
+                <span class="error-text" id="error_add">@error('address') {{$message}} @enderror</span>
+            </div>
         </div>
 
         <div class="group">
@@ -37,12 +39,6 @@
                 <label for="message-text" class="">Contact No. : <span></span> </label>
                 <input type="number" class="" id="con_num" name="con_num" value ="{{ old('con_num') }}" placeholder="Enter your number"></input>
                 <span class="error-text" id="error_num">@error('con_num') {{$message}} @enderror</span>
-            </div>
-
-            <div class="fields">
-                <label for="message-text" class="">FB Account: <span></span> </label>
-                <input type="text" class="" id="fb" name="fb" placeholder="Enter your facebook account"></input>
-                <span class="error-text" id="error_fb">@error('fb') {{$message}} @enderror</span>
             </div>
             
         </div>

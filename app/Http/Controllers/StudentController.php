@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\AlumniID;
 use App\Models\AlumniMem;
 use App\Models\Reissueance;
+use App\Models\Announcement;
 use App\Models\Admin_Notifications;
 use App\Models\Client_Notifications;
 use Session;
@@ -16,6 +17,26 @@ use Illuminate\Support\Facades\File;
 
 class StudentController extends Controller
 {
+
+    public function route_user_announcements()
+    {
+        $user_id = Auth::id();
+        $announce = Announcement::all();
+        $notificationsUnread = Client_Notifications::where('user_id', $user_id)
+            ->whereNull('read_at')
+            ->get();
+        return view('main.announce', compact('notificationsUnread','announce'));
+    }
+
+    public function route_user_about()
+    {
+        $user_id = Auth::id();
+        $notificationsUnread = Client_Notifications::where('user_id', $user_id)
+            ->whereNull('read_at')
+            ->get();
+        return view('main.contact', compact('notificationsUnread'));
+    }
+
     public function route_user_settings()
     {
         $user_id = Auth::id();

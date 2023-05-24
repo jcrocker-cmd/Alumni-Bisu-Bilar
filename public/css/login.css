@@ -160,6 +160,32 @@
     width: 100%;
 }
 
+@media (max-width: 600px) {
+    #login .input-field label,
+    #login .input-field input,
+    #login .input-field .error-text,
+    #login .container form .btnText,
+    #login .remember_me,
+    .forgot a,
+    .not-member
+    {
+        font-size: 12px;
+    }
+
+        #login .logo-for-signin
+    {
+        width: 150px;
+    }
+
+    #login .header-section h1,
+    #login .header-section header
+    {
+        font-size: 20px;
+    }
+
+}
+
+
 @media (max-width: 910px) {
     .container form{
         overflow-y: scroll;

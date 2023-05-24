@@ -80,7 +80,8 @@
           <li> <a href="/home-alumni-id">Alumni ID</a></li>
           <li> <a href="/home-alumni-membership">Alumni Membership</a></li>
           <li> <a href="/home-reissuance">Reissueance</a></li>
-          <li> <a href="/home">Contact Us</a></li>
+          <li> <a href="/home-announcements">Announcements</a></li>
+          <li> <a href="/home-about">Contact Us</a></li>
     </div>
 
     <div class="header-col-2">
@@ -200,7 +201,14 @@
   <div>
 <a href="/home-account">Account Settings</a>
 <a href="/records-of-students">My Records</a>
-<a href="/my_notification">My Notifications</a>
+
+<div class="my-notif">
+    <a href="/my_notification">
+    <span class="notif-word">My Notification
+    @if($notificationsUnread->count() > 0)<span class="notif-number">{{ $notificationsUnread->count() }}</span></span>
+    @endif
+    </a>
+</div>
     <hr>
 <a href="/home">Home</a>
 <a href="/home-alumni-id">Alumni ID</a>

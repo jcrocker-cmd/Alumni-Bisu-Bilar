@@ -145,7 +145,7 @@
                   <option disabled selected>Select Role</option>
                   <option value="2">Admin</option>
                   <option value="3">ID Staff</option>
-                  <option value="4">Secreatary</option>
+                  <option value="4">Secretary</option>
                 </select>
                 <span class="text-danger" id="error_role" ></span>
               </div>

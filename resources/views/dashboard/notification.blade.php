@@ -48,7 +48,7 @@
 
       @role(['Super-Admin', 'Admin'])
       <li class=""><a href="/payment_settings" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-wallet" style="margin-right: 9px;"></i>   Payment Settings</a></li>
-      <li class=""><a href="/sales_report" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-coins" style="margin-right: 9px;"></i>   Sales Report</a></li>
+      <li class=""><a href="/sales_report" class="text-decoration-none px-3 py-2 d-block"><i class="fas fa-coins" style="margin-right: 9px;"></i>   Financial Report</a></li>
       @endrole
 
     </ul>
@@ -122,7 +122,7 @@
             </button>
             
               <ul class="dropdown-menu dropdown-menu-lg-end account-dropdowns" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Account Settings</a></li>
+              <li><a class="dropdown-item" href="/settings">Account Settings</a></li>
                 <li><a class="dropdown-item" href="/adminlogout">Log-out</a></li>
               </ul>
             </div>

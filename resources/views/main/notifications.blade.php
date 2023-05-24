@@ -1,5 +1,7 @@
 @extends('main.layout.master')
 
+@section('title', 'Alumni | BISU-Bilar')
+
 @push('styles')
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main-notif.css">

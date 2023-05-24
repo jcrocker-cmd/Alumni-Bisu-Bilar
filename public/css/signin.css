@@ -141,6 +141,37 @@
     /* margin-top: 0; */
 }
 
+@media (max-width: 600px) {
+    #signin .input-field label,
+    #signin .input-field input,
+    #signin .input-field .error-text,
+    #signin .input-field select,
+    #signin .container form .btnText,
+    #signin .remember_me,
+    .already_member
+    {
+        font-size: 12px;
+    }
+
+        #signin .logo-for-signin
+    {
+        width: 150px;
+    }
+
+    #signin .header-section h1,
+    #signin .header-section header
+    {
+        font-size: 20px;
+    }
+    #signin .fields .group
+    {
+        display: flex;
+        gap: 0px;
+    }
+
+
+}
+
 @media (max-width: 910px) {
     .container form{
         overflow-y: scroll;

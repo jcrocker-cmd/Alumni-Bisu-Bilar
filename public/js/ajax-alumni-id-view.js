@@ -15,6 +15,7 @@ $(document).on('click', '.action-view', function(event) {
             $('#view_bday').text(response.alumni_id .bday);
             $('#view_course').text(response.alumni_id .course);
             $('#view_paymed').text(response.alumni_id.pay_med);
+            $('#view_ref').text(response.alumni_id.reference_no);
             $('#view_status').text(response.alumni_id.status);
             $('#view_sig img').attr('src', response.image_url);
             $('#view_date').text(moment(response.alumni_id .created_at).format('LLLL'));
